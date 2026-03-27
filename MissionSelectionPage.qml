@@ -12,7 +12,7 @@ Item {
         color: "#050a15"
 
         // Subtle grid background
-        Canvas {
+        /*Canvas {
             anchors.fill: parent
             onPaint: {
                 var ctx = getContext("2d")
@@ -31,7 +31,7 @@ Item {
                     ctx.stroke()
                 }
             }
-        }
+        }*/
     }
 
     ColumnLayout {

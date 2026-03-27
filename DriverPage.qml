@@ -237,7 +237,7 @@ Item {
                     }
                 }
 
-                Canvas {
+                /*Canvas {
                     id: splitCanvas
                     anchors.fill: parent
 
@@ -349,7 +349,7 @@ Item {
                             ctx.stroke()
                         }
                     }
-                }
+                }*/
 
                 // 4. THE NUMBERS AROUND THE TOP ARC ONLY
                 Repeater {
@@ -733,7 +733,7 @@ Item {
                     }
                 }
 
-                Canvas {
+                /*Canvas {
                     id: gMeterCanvas
                     anchors.fill: parent
 
@@ -832,7 +832,7 @@ Item {
                         // Turn the glow OFF immediately so it doesn't bleed into the next frame
                         ctx.shadowBlur = 0
                     }
-                }
+                }*/
             }
         }
     }

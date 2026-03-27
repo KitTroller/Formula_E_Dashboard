@@ -14,7 +14,7 @@ Item {
         color: "#0a0a0c" // Deep, almost black, engineering grey
 
         // Optional: Draw a subtle grid line pattern for that "Telemetry" feel
-        Canvas {
+        /*Canvas {
             anchors.fill: parent
             onPaint: {
                 var ctx = getContext("2d")
@@ -33,7 +33,7 @@ Item {
                     ctx.stroke()
                 }
             }
-        }
+        }*/
     }
 
     // ==========================================
@@ -564,7 +564,7 @@ Item {
                 }
 
                 // 2. THE CONNECTOR LINES
-                Canvas {
+                /*Canvas {
                     anchors.fill: parent
                     onPaint: {
                         var ctx = getContext("2d")
@@ -586,7 +586,7 @@ Item {
                         ctx.lineTo(cx + 150, cy + 120)
                         ctx.stroke()
                     }
-                }
+                }*/
 
                 // 3. THE CAR WIREFRAME
                 Item {
