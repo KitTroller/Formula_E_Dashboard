@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Shapes    // Required for GPU-accelerated geometry
+import QtQuick.Effects   // Required for MultiEffect (Drop shadows/glows)
 
 Item {
     id: root
@@ -27,9 +29,9 @@ Item {
     }
 
     Item {
-            anchors.fill: parent
-            anchors.margins: 20
-            anchors.topMargin: 50 // Push the grid down slightly to clear the logo
+        anchors.fill: parent
+        anchors.margins: 20
+        anchors.topMargin: 50 // Push the grid down slightly to clear the logo
 
         // ==========================================
         // LEFT COLUMN: Energy & Power
@@ -70,19 +72,29 @@ Item {
                         fillMode: Image.PreserveAspectFit
                         property real currentSoc: root.telemetry ? root.telemetry.soc : 0
                         source: {
-                            if (currentSoc >= 85) return "qrc:/FormulaDash/assets/battery_6.png"
-                            if (currentSoc >= 68) return "qrc:/FormulaDash/assets/battery_5.png"
-                            if (currentSoc >= 51) return "qrc:/FormulaDash/assets/battery_4.png"
-                            if (currentSoc >= 34) return "qrc:/FormulaDash/assets/battery_3.png"
-                            if (currentSoc >= 17) return "qrc:/FormulaDash/assets/battery_2.png"
-                            if (currentSoc >= 5)  return "qrc:/FormulaDash/assets/battery_1.png"
-                            return "qrc:/FormulaDash/assets/battery_0.png"
+                            if (currentSoc >= 85)
+                                return "qrc:/FormulaDash/assets/battery_6.png";
+                            if (currentSoc >= 68)
+                                return "qrc:/FormulaDash/assets/battery_5.png";
+                            if (currentSoc >= 51)
+                                return "qrc:/FormulaDash/assets/battery_4.png";
+                            if (currentSoc >= 34)
+                                return "qrc:/FormulaDash/assets/battery_3.png";
+                            if (currentSoc >= 17)
+                                return "qrc:/FormulaDash/assets/battery_2.png";
+                            if (currentSoc >= 5)
+                                return "qrc:/FormulaDash/assets/battery_1.png";
+                            return "qrc:/FormulaDash/assets/battery_0.png";
                         }
                     }
 
                     Text {
                         property real animatedSoc: root.telemetry ? root.telemetry.soc : 0
-                        Behavior on animatedSoc { NumberAnimation { duration: 250 } }
+                        Behavior on animatedSoc {
+                            NumberAnimation {
+                                duration: 250
+                            }
+                        }
                         text: Math.round(animatedSoc) + "%"
                         color: animatedSoc > 20 ? "#ffffff" : "#ff3333"
                         font.pixelSize: 32
@@ -93,7 +105,9 @@ Item {
             }
 
             // Space filler between SOC and Metrics
-            Item { Layout.preferredHeight: 2 }
+            Item {
+                Layout.preferredHeight: 2
+            }
 
             // --- ACCUMULATOR VOLTAGE & POWER TARGET ---
             ColumnLayout {
@@ -133,7 +147,9 @@ Item {
 
                             // 2. Force QML to smoothly interpolate any changes over 250ms
                             Behavior on animatedVoltage {
-                                NumberAnimation { duration: 250 }
+                                NumberAnimation {
+                                    duration: 250
+                                }
                             }
 
                             // 3. Bind the text to the SMOOTH animated variable
@@ -153,13 +169,26 @@ Item {
                 ColumnLayout {
                     spacing: -5
                     Layout.leftMargin: 20
-                    Text { text: "POWER TARGET"; color: "#777777"; font.pixelSize: 14; font.bold: true; font.letterSpacing: 1.5 }
-                    Text { text: (root.telemetry ? root.telemetry.powerTarget.toFixed(0) : "0") + " kW"; color: "#ffcc00"; font.pixelSize: 30; font.bold: true } // Upscaled slightly to balance the voltage
+                    Text {
+                        text: "POWER TARGET"
+                        color: "#777777"
+                        font.pixelSize: 14
+                        font.bold: true
+                        font.letterSpacing: 1.5
+                    }
+                    Text {
+                        text: (root.telemetry ? root.telemetry.powerTarget.toFixed(0) : "0") + " kW"
+                        color: "#ffcc00"
+                        font.pixelSize: 30
+                        font.bold: true
+                    } // Upscaled slightly to balance the voltage
                 }
             }
 
             // --- THE MAGIC FLEXIBLE SPACER (The "Spring") ---
-            Item { Layout.fillHeight: true }
+            Item {
+                Layout.fillHeight: true
+            }
         }
 
         // ==========================================
@@ -184,8 +213,7 @@ Item {
                     radius: 4
                     Text {
                         anchors.centerIn: parent
-                        text: (parent.dTime > 0 ? "+" : "") + parent.dTime.toFixed(
-                                  3) + " s"
+                        text: (parent.dTime > 0 ? "+" : "") + parent.dTime.toFixed(3) + " s"
                         color: "white"
                         font.pixelSize: 20
                         font.bold: true
@@ -199,9 +227,7 @@ Item {
                     Text {
                         anchors.centerIn: parent
                         // Combines Lap Count and Lap Time!
-                        text: root.telemetry ? "L" + root.telemetry.lapCount + " - "
-                                               + root.telemetry.lapTime.toFixed(
-                                                   1) + "s" : "L0 - 0.0s"
+                        text: root.telemetry ? "L" + root.telemetry.lapCount + " - " + root.telemetry.lapTime.toFixed(1) + "s" : "L0 - 0.0s"
                         color: "#ffffff"
                         font.pixelSize: 20
                         font.bold: true
@@ -351,6 +377,92 @@ Item {
                     }
                 }*/
 
+                // ==========================================
+                // HARDWARE ACCELERATED SPLIT HERO GAUGE
+                // ==========================================
+                // ==========================================
+                // HARDWARE ACCELERATED SPLIT HERO GAUGE
+                // ==========================================
+                Shape {
+                    anchors.fill: parent
+                    layer.enabled: true
+                    layer.samples: 4
+
+                    // 1. SPEED BACKGROUND ARC (Top)
+                    ShapePath {
+                        strokeColor: "#1a1a1f"
+                        strokeWidth: 15
+                        fillColor: "transparent"
+                        capStyle: ShapePath.RoundCap
+                        PathAngleArc {
+                            centerX: heroGaugeContainer.width / 2
+                            centerY: heroGaugeContainer.height / 2
+                            radiusX: 110
+                            radiusY: 110
+                            startAngle: 189
+                            sweepAngle: 162
+                        }
+                    }
+
+                    // 2. POWER BACKGROUND ARC (Bottom)
+                    ShapePath {
+                        strokeColor: "#1a1a1f"
+                        strokeWidth: 15
+                        fillColor: "transparent"
+                        capStyle: ShapePath.RoundCap
+                        PathAngleArc {
+                            centerX: heroGaugeContainer.width / 2
+                            centerY: heroGaugeContainer.height / 2
+                            radiusX: 110
+                            radiusY: 110
+                            startAngle: 171
+                            sweepAngle: -162 // Negative sweep goes counter-clockwise!
+                        }
+                    }
+
+                    // 3. SPEED ACTIVE ARC (Top) - Signature Cyan
+                    ShapePath {
+                        strokeColor: "#00ffcc"
+                        strokeWidth: 15
+                        fillColor: "transparent"
+                        capStyle: ShapePath.RoundCap
+                        PathAngleArc {
+                            centerX: heroGaugeContainer.width / 2
+                            centerY: heroGaugeContainer.height / 2
+                            radiusX: 110
+                            radiusY: 110
+                            startAngle: 189
+                            sweepAngle: {
+                                // Notice we use heroGaugeContainer.animatedSpeed instead of raw telemetry!
+                                var val = heroGaugeContainer.animatedSpeed;
+                                var ratio = Math.max(0.001, Math.min(val / 145.0, 1.0));
+                                return 162 * ratio;
+                            }
+                        }
+                    }
+
+                    // 4. POWER ACTIVE ARC (Bottom) - Dynamically changes to Red at high power
+                    ShapePath {
+                        strokeColor: (root.telemetry && root.telemetry.power > 80) ? "#ff3333" : "#ffcc00"
+                        strokeWidth: 15
+                        fillColor: "transparent"
+                        capStyle: ShapePath.RoundCap
+                        PathAngleArc {
+                            centerX: heroGaugeContainer.width / 2
+                            centerY: heroGaugeContainer.height / 2
+                            radiusX: 110
+                            radiusY: 110
+                            startAngle: 171
+                            sweepAngle: {
+                                // Uses 40 for testing if telemetry is missing
+                                var val = Math.abs(heroGaugeContainer.animatedPower);
+                                var ratio = Math.max(0.001, Math.min(val / 80.0, 1.0));
+                                return -162 * ratio;
+                            }
+                        }
+                    }
+                }
+
                 // 4. THE NUMBERS AROUND THE TOP ARC ONLY
                 Repeater {
                     model: [0, 20, 40, 60, 80, 100, 120]
@@ -402,8 +514,7 @@ Item {
                     }
 
                     Text {
-                        text: Math.abs(
-                                  heroGaugeContainer.animatedPower).toFixed(1)
+                        text: Math.abs(heroGaugeContainer.animatedPower).toFixed(1)
                         color: heroGaugeContainer.animatedPower < 0 ? "#00ffcc" : "#ffcc00"
                         font.pixelSize: 32
                         font.bold: true
@@ -516,8 +627,6 @@ Item {
                         Layout.alignment: Qt.AlignHCenter
                     }
                 }
-
-
             }
         }
 
@@ -545,14 +654,22 @@ Item {
                         fillMode: Image.PreserveAspectFit
                         source: "qrc:/FormulaDash/assets/cooling_off.png" // Update to png!
                         opacity: (root.telemetry && root.telemetry.coolingActive) ? 0.0 : 1.0
-                        Behavior on opacity { NumberAnimation { duration: 250 } }
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 250
+                            }
+                        }
                     }
                     Image {
                         anchors.fill: parent
                         fillMode: Image.PreserveAspectFit
                         source: "qrc:/FormulaDash/assets/cooling_on.png" // Update to png!
                         opacity: (root.telemetry && root.telemetry.coolingActive) ? 1.0 : 0.0
-                        Behavior on opacity { NumberAnimation { duration: 250 } }
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 250
+                            }
+                        }
                     }
                 }
 
@@ -565,14 +682,22 @@ Item {
                         fillMode: Image.PreserveAspectFit
                         source: "qrc:/FormulaDash/assets/radio_off.png"
                         opacity: (root.telemetry && root.telemetry.radioActive) ? 0.0 : 1.0
-                        Behavior on opacity { NumberAnimation { duration: 250 } }
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 250
+                            }
+                        }
                     }
                     Image {
                         anchors.fill: parent
                         fillMode: Image.PreserveAspectFit
                         source: "qrc:/FormulaDash/assets/radio_on.png"
                         opacity: (root.telemetry && root.telemetry.radioActive) ? 1.0 : 0.0
-                        Behavior on opacity { NumberAnimation { duration: 250 } }
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 250
+                            }
+                        }
                     }
                 }
                 // TRACTION CONTROL ICON
@@ -584,14 +709,22 @@ Item {
                         fillMode: Image.PreserveAspectFit
                         source: "qrc:/FormulaDash/assets/tc_off.png"
                         opacity: (root.telemetry && root.telemetry.tcWarning) ? 0.0 : 1.0
-                        Behavior on opacity { NumberAnimation { duration: 250 } }
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 250
+                            }
+                        }
                     }
                     Image {
                         anchors.fill: parent
                         fillMode: Image.PreserveAspectFit
                         source: "qrc:/FormulaDash/assets/tc_on.png"
                         opacity: (root.telemetry && root.telemetry.tcWarning) ? 1.0 : 0.0
-                        Behavior on opacity { NumberAnimation { duration: 250 } }
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 250
+                            }
+                        }
                     }
                 }
             }
@@ -607,14 +740,22 @@ Item {
                         fillMode: Image.PreserveAspectFit
                         source: "qrc:/FormulaDash/assets/regen_off.png"
                         opacity: (root.telemetry && root.telemetry.regenActive) ? 0.0 : 1.0
-                        Behavior on opacity { NumberAnimation { duration: 250 } }
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 250
+                            }
+                        }
                     }
                     Image {
                         anchors.fill: parent
                         fillMode: Image.PreserveAspectFit
                         source: "qrc:/FormulaDash/assets/regen_on.png"
                         opacity: (root.telemetry && root.telemetry.regenActive) ? 1.0 : 0.0
-                        Behavior on opacity { NumberAnimation { duration: 250 } }
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 250
+                            }
+                        }
                     }
                 }
 
@@ -626,14 +767,22 @@ Item {
                         fillMode: Image.PreserveAspectFit
                         source: "qrc:/FormulaDash/assets/torque_vectoring_off.png"
                         opacity: (root.telemetry && root.telemetry.tvActive) ? 0.0 : 1.0
-                        Behavior on opacity { NumberAnimation { duration: 250 } }
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 250
+                            }
+                        }
                     }
                     Image {
                         anchors.fill: parent
                         fillMode: Image.PreserveAspectFit
                         source: "qrc:/FormulaDash/assets/torque_vectoring_on.png"
                         opacity: (root.telemetry && root.telemetry.tvActive) ? 1.0 : 0.0
-                        Behavior on opacity { NumberAnimation { duration: 250 } }
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 250
+                            }
+                        }
                     }
                 }
                 Item {
@@ -644,18 +793,25 @@ Item {
                         fillMode: Image.PreserveAspectFit
                         source: "qrc:/FormulaDash/assets/sideslip_off.png"
                         opacity: (root.telemetry && root.telemetry.ssActive) ? 0.0 : 1.0
-                        Behavior on opacity { NumberAnimation { duration: 250 } }
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 250
+                            }
+                        }
                     }
                     Image {
                         anchors.fill: parent
                         fillMode: Image.PreserveAspectFit
                         source: "qrc:/FormulaDash/assets/sideslip_on.png"
                         opacity: (root.telemetry && root.telemetry.ssActive) ? 1.0 : 0.0
-                        Behavior on opacity { NumberAnimation { duration: 250 } }
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 250
+                            }
+                        }
                     }
                 }
             }
-
 
             // 2. TEXT ALERTS (Tightly stacked, right-aligned)
             ColumnLayout {
@@ -691,7 +847,11 @@ Item {
                     Layout.alignment: Qt.AlignRight // THIS WAS MISSING
                     Text {
                         property real animatedBias: (root.telemetry ? root.telemetry.brakeBias : 0.0) || 0.0
-                        Behavior on animatedBias { NumberAnimation { duration: 150 } }
+                        Behavior on animatedBias {
+                            NumberAnimation {
+                                duration: 150
+                            }
+                        }
                         text: animatedBias.toFixed(1)
                         color: "white"
                         font.pixelSize: 40
@@ -718,6 +878,30 @@ Item {
 
                 property real currentGx: root.telemetry ? root.telemetry.accelX : 0.0
                 property real currentGy: root.telemetry ? root.telemetry.accelY : 0.0
+
+                // The Memory for the Ghost Trail
+                property var trailHistory: []
+                property int maxTrailPoints: 20
+
+                // The Sampler: Records the G-Force 33 times a second (30ms)
+                Timer {
+                    interval: 30
+                    running: true
+                    repeat: true
+                    onTriggered: {
+                        // We copy the array, add the new point, and reassign it
+                        // so QML knows it needs to redraw the Repeater
+                        var newTrail = gMeterContainer.trailHistory.slice();
+                        newTrail.unshift({
+                            "gx": gMeterContainer.currentGx,
+                            "gy": gMeterContainer.currentGy
+                        });
+                        if (newTrail.length > gMeterContainer.maxTrailPoints) {
+                            newTrail.pop();
+                        }
+                        gMeterContainer.trailHistory = newTrail;
+                    }
+                }
 
                 // Smoothing the raw telemetry data
                 Behavior on currentGx {
@@ -833,6 +1017,124 @@ Item {
                         ctx.shadowBlur = 0
                     }
                 }*/
+
+                // ==========================================
+                // HARDWARE ACCELERATED G-METER TRAIL
+                // ==========================================
+                // ==========================================
+                // STATIC BACKGROUND (Rings & Crosshairs)
+                // ==========================================
+                // Crosshairs
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: parent.width - 20
+                    height: 1.5
+                    color: "#555555"
+                }
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: 1.5
+                    height: parent.height - 20
+                    color: "#555555"
+                }
+
+                // Outer 2G Ring
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: parent.width - 20
+                    height: parent.height - 20
+                    radius: width / 2
+                    color: "transparent"
+                    border.color: "#555555"
+                    border.width: 1.5
+                }
+
+                // Inner 1G Ring
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: (parent.width - 20) / 2
+                    height: (parent.height - 20) / 2
+                    radius: width / 2
+                    color: "transparent"
+                    border.color: "#555555"
+                    border.width: 1.5
+                }
+
+                // Labels
+                Text {
+                    x: parent.width / 2 + 4
+                    y: parent.height / 2 - ((parent.width - 20) / 4) + 2
+                    text: "1G"
+                    color: "#aaaaaa"
+                    font.pixelSize: 11
+                    font.bold: true
+                }
+                Text {
+                    x: parent.width / 2 + 4
+                    y: parent.height / 2 - ((parent.width - 20) / 2) + 2
+                    text: "2G"
+                    color: "#aaaaaa"
+                    font.pixelSize: 11
+                    font.bold: true
+                }
+
+                // 1. The Fading Historical Ghost Trail
+                Repeater {
+                    model: gMeterContainer.trailHistory.length
+
+                    Rectangle {
+                        // Fetch the historical X/Y from the array
+                        property real histX: gMeterContainer.trailHistory[index].gx
+                        property real histY: gMeterContainer.trailHistory[index].gy
+
+                        // Map the G-Force to the circle's radius
+                        x: (parent.width / 2) + (histX / 2.0) * ((parent.width - 20) / 2) - width / 2
+                        y: (parent.height / 2) - (histY / 2.0) * ((parent.height - 20) / 2) - height / 2
+
+                        width: 6
+                        height: 6
+                        radius: 3
+                        color: "#00ffcc"
+
+                        // Opacity fades out based on how old the point is in the array
+                        opacity: 0.4 * (1.0 - (index / gMeterContainer.maxTrailPoints))
+                    }
+                }
+
+                // 2. The Current Live G-Dot
+                Rectangle {
+                    id: liveGDot
+
+                    x: (parent.width / 2) + (gMeterContainer.currentGx / 2.0) * ((parent.width - 20) / 2) - width / 2
+                    y: (parent.height / 2) - (gMeterContainer.currentGy / 2.0) * ((parent.height - 20) / 2) - height / 2
+
+                    width: 12
+                    height: 12
+                    radius: 6
+                    color: "#ffcc00"
+
+                    // Native GPU Drop Shadow for the glow effect
+                    layer.enabled: true
+                    layer.effect: MultiEffect {
+                        shadowEnabled: true
+                        shadowColor: "#ffcc00"
+                        shadowBlur: 1.0
+                    }
+
+                    // Smooth hardware-accelerated movement
+                    Behavior on x {
+                        NumberAnimation {
+                            duration: 50
+                            easing.type: Easing.OutQuad
+                        }
+                    }
+                    Behavior on y {
+                        NumberAnimation {
+                            duration: 50
+                            easing.type: Easing.OutQuad
+                        }
+                    }
+                }
             }
         }
     }

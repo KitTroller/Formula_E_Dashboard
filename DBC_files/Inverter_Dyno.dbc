@@ -1,0 +1,421 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: VCU Inverter_DM Inverter_MUT
+
+
+BO_ 577 Inverter_DM_Tx: 5 VCU
+ SG_ Tx_Register : 0|8@1+ (1,0) [0|0] ""  Inverter_DM
+ SG_ Byte2 : 8|8@1+ (1,0) [0|0] ""  Inverter_DM
+ SG_ Byte3 : 16|8@1+ (1,0) [0|0] ""  Inverter_DM
+ SG_ Byte4 : 24|8@1+ (1,0) [0|0] ""  Inverter_DM
+ SG_ Byte5 : 32|8@1+ (1,0) [0|0] ""  Inverter_DM
+
+BO_ 385 Inverter_DM_Rx: 6 Inverter_DM
+ SG_ Rx_Register_DM M : 0|8@1+ (1,0) [0|0] ""  VCU
+ SG_ Irms_DM_Raw m32 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ RPM_DM_Raw m48 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Motor_Temp_DM_Raw m73 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ IGBT_Temp_DM_Raw m74 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Ipeak_DM_Raw m196 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Icont_DM_Raw m197 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Vout_DM m138 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ RPM_Limit_DM_Raw m200 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ BTB_DM_Raw m226 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Torque_Actual_DM m160 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ M_Pole_DM m79 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ FB_Pole_DM m167 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ FB_Offset_DM m68 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Tpeak_DM m240 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ I_red_TD_DM m88 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ I_red_TE_DM m76 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ I_red_TM_DM m162 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_R_Accel_DM m53 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ M_R_Accel_DM m53 : 24|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_R_Decel_DM m237 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ M_R_Decel_DM m237 : 24|16@1- (1,0) [0|0] ""  VCU
+ SG_ M_R_Rcp_DM m199 : 24|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_lim_DM m52 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_lim_plus_DM m63 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_lim_minus_DM m62 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Motor_N_Nom_DM m89 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Motor_F_Nom_DM m5 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Motor_V_Nom_DM m6 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Motor_Cos_Phi_DM m14 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Motor_I_max_eff_DM m77 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Motor_I_nom_eff_DM m78 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Brake_Delay_DM m241 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ M_Temp_DM m163 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Current_Kp_DM m28 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Current_Ti_DM m29 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Current_TiM_DM m43 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Current_xKp2_DM m201 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Current_Kf_DM m203 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Current_Ramp_DM m37 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ I_red_N_DM m60 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ I_lim_dig_DM m70 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Speed_Kp_DM m44 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Speed_Ti_DM m45 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Speed_Td_DM m46 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Speed_TiM_DM m59 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Speed_Kacc_DM m91 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Speed_Filter_DM m94 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ R_Lim_DM m199 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Ref_Speed_1_DM m118 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Ref_Speed_2_DM m119 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Type_DM m103 : 8|32@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Serial_Num_1_DM m98 : 8|32@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Serial_Num_2_DM m130 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Axis_DM m248 : 8|32@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Mains_DM m100 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Coast_Stop_DM m90 : 11|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Mains_sel_DM m90 : 27|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Regen_Resistor_DM m90 : 9|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_BTB_Power_DM m90 : 14|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FB_Type_DM m164 : 8|4@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_PWM_RIGHTeq_DM m90 : 28|3@1+ (1,0) [0|0] ""  VCU
+ SG_ N_set_dig_DM m49 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ M_set_dig_DM m144 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Cutoff_dig_DM m30 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ N_cmd_int_DM m93 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_cmd_ramp_DM m50 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_error_DM m51 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_act_filt_DM m168 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Id_set_dig_DM m33 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Iq_cmd_DM m38 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Iq_actual_DM m39 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Id_actual_DM m40 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ I_act_filt_DM m95 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ I_cmd_ramp_DM m34 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Iq_error_DM m56 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Id_error_DM m57 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Id_cmd_DM m35 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Vq_DM m41 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Vd_DM m42 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Vdc_bus_DM m235 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ FW_V_red_DM m139 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ FW_V_kp_DM m140 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ FW_V_Ti_DM m141 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ PWM_Ph1_DM m172 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ PWM_Ph2_DM m173 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ PWM_Ph3_DM m174 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ CAN_Timeout_DM m208 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Ixt_DM m69 : 24|16@1- (1,0) [0|0] ""  VCU
+ SG_ I_lim_inuse_DM m72 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Power_DM m246 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Regen_Power_DM m69 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ T_air_DM m75 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ I_device_DM m198 : 8|16@1+ (1,0) [0|0] "dA"  VCU
+ SG_ V_shunt_DM m238 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ I_200percent_DM m217 : 8|16@1+ (1,0) [0|0] "ADC"  VCU
+ SG_ Motor_Type_DM m90 : 20|2@1+ (1,0) [0|0] ""  VCU
+ SG_ FRG_DM m216 : 12|1@1+ (1,0) [0|0] ""  VCU
+ SG_ RFE_DM m216 : 13|1@1+ (1,0) [0|0] ""  VCU
+ SG_ BTB_Rdy_DM m216 : 18|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Int_Enable_GO_DM m216 : 19|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Ena_DM m64 : 8|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_NcR0_DM m64 : 9|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Lim_plus_DM m64 : 10|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Lim_minus_DM m64 : 11|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_OK_DM m64 : 12|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Icns_DM m64 : 13|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_T_Nlim_DM m64 : 14|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_P_N_DM m64 : 15|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_N_I_DM m64 : 16|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_lessN0_DM m64 : 17|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Rsw_DM m64 : 18|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Cal0_DM m64 : 19|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Cal_DM m64 : 20|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Tol_DM m64 : 21|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Rdy_DM m64 : 22|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Brk0_DM m64 : 23|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_SignMag_DM m64 : 24|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Nclip_DM m64 : 25|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Nclip_plus_DM m64 : 26|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Nclip_minus_DM m64 : 27|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Ird_Dig_DM m64 : 28|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Iuse_rchd_DM m64 : 29|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Ird_N_DM m64 : 30|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Ird_TI_DM m64 : 31|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Ird_TIR_DM m64 : 32|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_greater10Hz_DM m64 : 33|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Ird_TM_DM m64 : 34|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Ird_Ana_DM m64 : 35|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Iwcns_DM m64 : 36|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_RFEpulse_DM m64 : 37|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_MplusD_DM m64 : 38|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_HndWhl_DM m64 : 39|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_BADPARAS_DM m143 : 8|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_POWERFAULT_DM m143 : 9|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_RFE_DM m143 : 10|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_BUS_TIMEOUT_DM m143 : 11|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_FEEDBACK_DM m143 : 12|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_POWERVOLTAGE_DM m143 : 13|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_MOTORTEMP_DM m143 : 14|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_DEVICETEMP_DM m143 : 15|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_OVERVOLTAGE_DM m143 : 16|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_I_PEAK_DM m143 : 17|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_RACEAWAY_DM m143 : 18|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_USER_DM m143 : 19|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_HW_ERR_DM m143 : 22|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_BALLAST_DM m143 : 23|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_WARNING_0_DM m143 : 24|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_ILLEGAL_STATUS_DM m143 : 25|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_WARNING_2_DM m143 : 26|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_POWERVOLTAGE_DM m143 : 29|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_MOTORTEMP_DM m143 : 30|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_DEVICETEMP_DM m143 : 31|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_Vout_Sat_DM m143 : 32|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_I_PEAK_DM m143 : 33|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_RACEWAY_DM m143 : 34|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_BALLAST_DM m143 : 39|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Regen_P_DM m101 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Regen_R_DM m101 : 24|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_DC_Bus_min_DM m165 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_DC_Bus_max_DM m165 : 24|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Special_Function_DM m133 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ FW_IdMin_DM m181 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Idc_Actual_DM m184 : 8|16@1- (1,0) [0|0] "dA" Vector__XXX
+ SG_ Idc_Limit_Tractive_DM m154 : 8|16@1- (1,0) [0|0] "dA" Vector__XXX
+ SG_ Power_Limit_Tractive_DM m202 : 8|16@1- (1,0) [0|0] "100W" Vector__XXX
+ SG_ Power_Limit_Regen_DM m202 : 24|16@1- (1,0) [0|0] "100W" Vector__XXX
+ SG_ I_FAULT_DM m233 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 578 Inverter_MUT_Tx: 5 VCU
+ SG_ Tx_Register : 0|8@1+ (1,0) [0|0] ""  Inverter_DM
+ SG_ Byte2 : 8|8@1+ (1,0) [0|0] ""  Inverter_DM
+ SG_ Byte3 : 16|8@1+ (1,0) [0|0] ""  Inverter_DM
+ SG_ Byte4 : 24|8@1+ (1,0) [0|0] ""  Inverter_DM
+ SG_ Byte5 : 32|8@1+ (1,0) [0|0] ""  Inverter_DM
+
+BO_ 386 Inverter_MUT_Rx: 6 Inverter_MUT
+ SG_ Rx_Register_MUT M : 0|8@1+ (1,0) [0|0] ""  VCU
+ SG_ Irms_MUT_Raw m32 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ RPM_MUT_Raw m48 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Motor_Temp_MUT_Raw m73 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ IGBT_Temp_MUT_Raw m74 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Ipeak_MUT_Raw m196 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Icont_MUT_Raw m197 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Vout_MUT m138 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ RPM_Limit_MUT_Raw m200 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ BTB_MUT_Raw m226 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Torque_Actual_MUT m160 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ M_Pole_MUT m79 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ FB_Pole_MUT m167 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ FB_Offset_MUT m68 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Tpeak_MUT m240 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ I_red_TD_MUT m88 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ I_red_TE_MUT m76 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ I_red_TM_MUT m162 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_R_Accel_MUT m53 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ M_R_Accel_MUT m53 : 24|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_R_Decel_MUT m237 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ M_R_Decel_MUT m237 : 24|16@1- (1,0) [0|0] ""  VCU
+ SG_ M_R_Rcp_MUT m199 : 24|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_lim_MUT m52 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_lim_plus_MUT m63 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_lim_minus_MUT m62 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Motor_N_Nom_MUT m89 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Motor_F_Nom_MUT m5 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Motor_V_Nom_MUT m6 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Motor_Cos_Phi_MUT m14 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Motor_I_max_eff_MUT m77 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Motor_I_nom_eff_MUT m78 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Brake_Delay_MUT m241 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ M_Temp_MUT m163 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Current_Kp_MUT m28 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Current_Ti_MUT m29 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Current_TiM_MUT m43 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Current_xKp2_MUT m201 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Current_Kf_MUT m203 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Current_Ramp_MUT m37 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ I_red_N_MUT m60 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ I_lim_dig_MUT m70 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Speed_Kp_MUT m44 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Speed_Ti_MUT m45 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Speed_Td_MUT m46 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Speed_TiM_MUT m59 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Speed_Kacc_MUT m91 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Speed_Filter_MUT m94 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ R_Lim_MUT m199 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Ref_Speed_1_MUT m118 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Ref_Speed_2_MUT m119 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Type_MUT m103 : 8|32@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Serial_Num_1_MUT m98 : 8|32@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Serial_Num_2_MUT m130 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Axis_MUT m248 : 8|32@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Mains_MUT m100 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Coast_Stop_MUT m90 : 11|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Mains_sel_MUT m90 : 27|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Regen_Resistor_MUT m90 : 9|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_BTB_Power_MUT m90 : 14|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FB_Type_MUT m164 : 8|4@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_PWM_RIGHTeq_MUT m90 : 28|3@1+ (1,0) [0|0] ""  VCU
+ SG_ N_set_dig_MUT m49 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ M_set_dig_MUT m144 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Cutoff_dig_MUT m30 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ N_cmd_int_MUT m93 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_cmd_ramp_MUT m50 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_error_MUT m51 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ N_act_filt_MUT m168 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Id_set_dig_MUT m33 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Iq_cmd_MUT m38 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Iq_actual_MUT m39 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Id_actual_MUT m40 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ I_act_filt_MUT m95 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ I_cmd_ramp_MUT m34 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Iq_error_MUT m56 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Id_error_MUT m57 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Id_cmd_MUT m35 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Vq_MUT m41 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Vd_MUT m42 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Vdc_bus_MUT m235 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ FW_V_red_MUT m139 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ FW_V_kp_MUT m140 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ FW_V_Ti_MUT m141 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ PWM_Ph1_MUT m172 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ PWM_Ph2_MUT m173 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ PWM_Ph3_MUT m174 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ CAN_Timeout_MUT m208 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Ixt_MUT m69 : 24|16@1- (1,0) [0|0] ""  VCU
+ SG_ I_lim_inuse_MUT m72 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Power_MUT m246 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ Regen_Power_MUT m69 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ T_air_MUT m75 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ I_device_MUT m198 : 8|16@1+ (1,0) [0|0] "dA"  VCU
+ SG_ V_shunt_MUT m238 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ I_200percent_MUT m217 : 8|16@1+ (1,0) [0|0] "ADC"  VCU
+ SG_ Motor_Type_MUT m90 : 20|2@1+ (1,0) [0|0] ""  VCU
+ SG_ FRG_MUT m216 : 12|1@1+ (1,0) [0|0] ""  VCU
+ SG_ RFE_MUT m216 : 13|1@1+ (1,0) [0|0] ""  VCU
+ SG_ BTB_Rdy_MUT m216 : 18|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Int_Enable_GO_MUT m216 : 19|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Ena_MUT m64 : 8|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_NcR0_MUT m64 : 9|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Lim_plus_MUT m64 : 10|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Lim_minus_MUT m64 : 11|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_OK_MUT m64 : 12|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Icns_MUT m64 : 13|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_T_Nlim_MUT m64 : 14|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_P_N_MUT m64 : 15|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_N_I_MUT m64 : 16|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_lessN0_MUT m64 : 17|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Rsw_MUT m64 : 18|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Cal0_MUT m64 : 19|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Cal_MUT m64 : 20|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Tol_MUT m64 : 21|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Rdy_MUT m64 : 22|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Brk0_MUT m64 : 23|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_SignMag_MUT m64 : 24|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Nclip_MUT m64 : 25|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Nclip_plus_MUT m64 : 26|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Nclip_minus_MUT m64 : 27|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Ird_Dig_MUT m64 : 28|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Iuse_rchd_MUT m64 : 29|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Ird_N_MUT m64 : 30|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Ird_TI_MUT m64 : 31|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Ird_TIR_MUT m64 : 32|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_greater10Hz_MUT m64 : 33|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Ird_TM_MUT m64 : 34|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Ird_Ana_MUT m64 : 35|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_Iwcns_MUT m64 : 36|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_RFEpulse_MUT m64 : 37|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_MplusD_MUT m64 : 38|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_HndWhl_MUT m64 : 39|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_BADPARAS_MUT m143 : 8|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_POWERFAULT_MUT m143 : 9|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_RFE_MUT m143 : 10|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_BUS_TIMEOUT_MUT m143 : 11|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_FEEDBACK_MUT m143 : 12|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_POWERVOLTAGE_MUT m143 : 13|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_MOTORTEMP_MUT m143 : 14|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_DEVICETEMP_MUT m143 : 15|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_OVERVOLTAGE_MUT m143 : 16|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_I_PEAK_MUT m143 : 17|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_RACEAWAY_MUT m143 : 18|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_USER_MUT m143 : 19|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_HW_ERR_MUT m143 : 22|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Error_BALLAST_MUT m143 : 23|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_WARNING_0_MUT m143 : 24|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_ILLEGAL_STATUS_MUT m143 : 25|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_WARNING_2_MUT m143 : 26|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_POWERVOLTAGE_MUT m143 : 29|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_MOTORTEMP_MUT m143 : 30|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_DEVICETEMP_MUT m143 : 31|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_Vout_Sat_MUT m143 : 32|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_I_PEAK_MUT m143 : 33|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_RACEWAY_MUT m143 : 34|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Warning_BALLAST_MUT m143 : 39|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Regen_P_MUT m101 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_Regen_R_MUT m101 : 24|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_DC_Bus_min_MUT m165 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Servo_DC_Bus_max_MUT m165 : 24|16@1+ (1,0) [0|0] ""  VCU
+ SG_ Special_Function_MUT m133 : 8|16@1+ (1,0) [0|0] ""  VCU
+ SG_ FW_IdMin_MUT m181 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Idc_Actual_MUT m184 : 8|16@1- (1,0) [0|0] "dA" Vector__XXX
+ SG_ Idc_Limit_Tractive_MUT m154 : 8|16@1- (1,0) [0|0] "dA" Vector__XXX
+ SG_ Power_Limit_Tractive_MUT m202 : 8|16@1- (1,0) [0|0] "100W" Vector__XXX
+ SG_ Power_Limit_Regen_MUT m202 : 24|16@1- (1,0) [0|0] "100W" Vector__XXX
+ SG_ I_FAULT_MUT m233 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+
+
+
+CM_ BU_ VCU "Custom VCU or dSPACE MicroAutoBox II DS1401/1513";
+CM_ BU_ Inverter_DM "Dynamometer Machine (Speed Controlled Inverter). 
+Unitek Bamocar D3 700/160.";
+CM_ BU_ Inverter_MUT "Machine Under Test (Torque Controlled Inverter). 
+Unitek Bamocar D3 700/160.";
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BO_  "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN";
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","Event","CyclicIfActive","SpontanWithDelay","CyclicAndSpontan","CyclicAndSpontanWithDelay";
+BA_DEF_ BO_  "GenMsgCycleTime" FLOAT 0 0;
+BA_DEF_ BO_  "GenMsgDelayTime" FLOAT 0 0;
+BA_DEF_ SG_  "GenSigStartValue" FLOAT 0 0;
+BA_DEF_DEF_  "DBName" "Cluster";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "VFrameFormat" "StandardCAN";
+BA_DEF_DEF_  "GenMsgSendType" "Cyclic";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_ "VFrameFormat" BO_ 577 0;
+BA_ "GenMsgCycleTime" BO_ 577 1;
+BA_ "VFrameFormat" BO_ 577 0;
+BA_ "GenMsgCycleTime" BO_ 577 1;
+BA_ "VFrameFormat" BO_ 385 0;
+BA_ "VFrameFormat" BO_ 385 0;
+BA_ "GenMsgCycleTime" BO_ 578 1;
+

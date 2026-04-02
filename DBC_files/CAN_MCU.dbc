@@ -1,0 +1,957 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Dashboard VCU ADU APU BLDC ASB Isabellen RES SBG SensoricSolutionsOMSRace FS_Datalogger RL_Thermal_Camera RR_Thermal_Camera
+
+
+BO_ 803 VCU_SUSP_R: 4 VCU
+ SG_ Susp_Pot_RL : 0|16@1+ (1,0) [0|0] "V"  VCU
+ SG_ Susp_Pot_RR : 16|16@1+ (1,0) [0|0] "V"  VCU
+
+BO_ 100 DASH_APPS: 5 Dashboard
+ SG_ APPS1_Raw : 0|16@1+ (1,0) [0|1] "ADC"  VCU
+ SG_ APPS2_Raw : 16|16@1+ (1,0) [0|1] "ADC"  VCU
+ SG_ APPS_SC_Signals : 32|1@1+ (1,0) [0|1] "Boolean"  VCU
+ SG_ APPS_SC_Sup : 33|1@1+ (1,0) [0|1] "Boolean"  VCU
+ SG_ APPS_SC_GND : 34|1@1+ (1,0) [0|1] "Boolean"  VCU
+ SG_ APPS_Out_Of_Range : 35|1@1+ (1,0) [0|0] "Boolean"  VCU
+
+BO_ 800 VCU_BOOLS: 1 VCU
+ SG_ Buzzer : 0|1@1+ (1,0) [0|0] "Boolean"  Dashboard
+ SG_ Enable : 1|1@1+ (1,0) [0|0] "Boolean"  Dashboard
+ SG_ SafeState_OK : 2|1@1+ (1,0) [0|0] "Boolean"  Dashboard
+ SG_ AMS_Error_Latched : 3|1@1+ (1,0) [0|0] "Boolean" Vector__XXX
+ SG_ IMD_Error_Latched : 4|1@1+ (1,0) [0|0] "Boolean" Vector__XXX
+ SG_ Mode : 5|1@1+ (1,0) [0|0] "Boolean" Vector__XXX
+ SG_ AUX_AIR_Plus : 6|1@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 102 DASH_STEERING: 6 Dashboard
+ SG_ Steering : 0|32@1- (1,0) [0|0] "rad"  VCU
+ SG_ Steering_Voltage : 32|16@1- (0.001,0) [0|0] "V" Vector__XXX
+
+BO_ 103 DASH_BOOLS: 4 Dashboard
+ SG_ Start : 0|1@1+ (1,0) [0|0] "Boolean"  VCU
+ SG_ AddAct : 1|1@1+ (1,0) [0|0] "Boolean"  VCU
+ SG_ Rotary_Active_Mode : 6|2@1+ (1,0) [0|15] "Boolean"  VCU
+ SG_ Steering_Implausibility : 2|1@1+ (1,0) [0|0] "Boolean"  VCU
+ SG_ Setup : 8|4@1+ (1,0) [0|0] "Boolean" Vector__XXX
+ SG_ Main_menu : 12|4@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ Sub_menu : 16|4@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ Monitor : 3|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ Cooling_status : 4|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ Screen : 20|4@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ TS_Off : 5|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ Reset_SDC : 24|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ SD_Before_ASB_OK : 25|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ SD_After_BSPD_OK : 26|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ SD_Before_Inertia_OK : 27|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ SD_Before_TSMS_OK : 28|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+
+BO_ 105 DASH_SUSP_F: 4 Dashboard
+ SG_ Susp_Pot_FL : 0|16@1+ (1,0) [0|0] "ADC"  VCU
+ SG_ Susp_Pot_FR : 16|16@1+ (1,0) [0|0] "ADC"  VCU
+
+BO_ 801 VCU_ADU: 8 VCU
+ SG_ Power_kW : 0|8@1- (1,0) [0|0] "kW"  ADU
+ SG_ Vicor_Thermistor : 8|8@1+ (1,0) [0|0] "캜" Vector__XXX
+ SG_ Velocity : 24|16@1- (0.01,0) [0|0] "km/h"  ADU
+ SG_ Recom_Thermistor : 16|8@1+ (1,0) [0|0] "캜" Vector__XXX
+ SG_ Sensor_Error : 40|8@1+ (1,0) [0|0] "bitfield" Vector__XXX
+ SG_ TV_ON : 56|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ REGEN_ON : 57|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ TC_ON : 58|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ SoC : 48|8@1- (1,0) [0|0] "%" Vector__XXX
+
+BO_ 701 VCU_RL_Info: 8 VCU
+ SG_ IGBT_RL : 0|8@1+ (1,0) [0|0] "캜"  ADU
+ SG_ Motor_Temp_RL : 8|8@1+ (1,0) [0|0] "캜"  ADU
+ SG_ RPM_RL : 16|16@1- (1,0) [0|0] "RPM"  ADU
+ SG_ Torque_Commanded_RL : 32|16@1- (0.01,0) [0|0] "Nm"  ADU
+ SG_ Torque_Actual_RL : 48|16@1- (0.01,0) [0|0] "Nm" Vector__XXX
+
+BO_ 702 VCU_RR_Info: 8 VCU
+ SG_ IGBT_RR : 0|8@1+ (1,0) [0|0] "캜"  ADU
+ SG_ Motor_Temp_RR : 8|8@1+ (1,0) [0|0] "캜"  ADU
+ SG_ RPM_RR : 16|16@1- (1,0) [0|0] "RPM"  ADU
+ SG_ Torque_Commanded_RR : 32|16@1- (0.01,0) [0|0] "Nm"  ADU
+ SG_ Torque_Actual_RR : 48|16@1- (0.01,0) [0|0] "Nm" Vector__XXX
+
+BO_ 35 ASB: 5 ASB
+ SG_ ASMS_State : 0|1@1+ (1,0) [0|0] "Boolean" Vector__XXX
+ SG_ TSMS_Out : 1|1@1+ (1,0) [0|0] "Boolean"  VCU
+ SG_ ASB_LED : 2|1@1+ (1,0) [0|0] "Boolean" Vector__XXX
+ SG_ Initial_Checked : 3|1@1+ (1,0) [0|0] "Boolean" Vector__XXX
+ SG_ Service_Brake_Status : 16|4@1+ (1,0) [0|0] "enum"  VCU
+ SG_ EBS_Status : 20|4@1+ (1,0) [0|0] "enum" Vector__XXX
+ SG_ Initial_Check_Step : 8|8@1- (1,0) [0|0] "int8" Vector__XXX
+ SG_ Monitor_Tank_Pressure : 4|1@1+ (1,0) [0|0] "Boolean" Vector__XXX
+ SG_ Monitor_Brake_Pressure : 5|1@1+ (1,0) [0|0] "Boolean" Vector__XXX
+ SG_ Monitor_Servo_Check : 6|1@1+ (1,0) [0|0] "Boolean" Vector__XXX
+ SG_ Monitor_APU : 7|1@1+ (1,0) [0|0] "bool" Vector__XXX
+ SG_ EBS_Tank_Pressure : 24|16@1- (0.01,0) [0|0] "bar"  VCU
+
+BO_ 11 APU_COMMAND: 2 APU
+ SG_ Treq_DV : 0|16@1- (0.01,0) [0|0] "Nm"  VCU
+
+BO_ 10 APU_STATE_MISSION: 1 APU
+ SG_ AS_Mission : 0|3@1+ (1,0) [0|0] "enum"  VCU
+ SG_ AS_State : 3|3@1+ (1,0) [0|0] "enum"  VCU
+ SG_ AS_Set_Finished : 6|1@1+ (1,0) [0|0] "bool" Vector__XXX
+
+BO_ 109 DASH_AMI: 1 Dashboard
+ SG_ AMI : 0|8@1+ (1,0) [0|0] "enum"  VCU
+
+BO_ 1313 ISABELLEN_IDC: 6 Isabellen
+ SG_ Idc : 16|32@1- (0.001,0) [0|0] "A"  VCU
+ SG_ Idc_Measurement_Error : 13|1@1+ (1,0) [0|0] ""  VCU
+ SG_ System_Error : 15|1@1+ (7,0) [0|0] ""  VCU
+
+BO_ 1314 ISABELLEN_VDC: 6 Isabellen
+ SG_ Vdc : 16|32@1- (0.001,0) [0|0] "V"  VCU
+ SG_ Vdc_Measurement_error : 13|1@1+ (1,0) [0|0] ""  VCU
+
+BO_ 1318 ISABELLEN_PDC: 6 Isabellen
+ SG_ Pdc : 16|32@1- (1,0) [0|0] "W"  VCU
+ SG_ Pdc_Measurement_Error : 13|1@1+ (1,0) [0|0] ""  VCU
+
+BO_ 1320 ISABELLEN_ENERGY: 6 Isabellen
+ SG_ Energy : 16|32@1- (1,0) [0|0] "Wh"  VCU
+ SG_ Energy_Measurement_Error : 13|1@1+ (1,0) [0|0] ""  VCU
+
+BO_ 512 BLDC_TX_1: 3 BLDC
+ SG_ StatusWord : 0|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ ModesOfOperation_Display : 16|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 639 BLDC_RX_1: 7 APU
+ SG_ Controlword : 0|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ ModeOfOperation : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MotorDriveSubmodeSelect : 24|32@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 895 BLDC_RX_2: 8 APU
+ SG_ Target_Position : 0|32@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Profile_Velocity : 32|32@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 767 BLDC_TX_2: 4 BLDC
+ SG_ Position_Actual_Value : 0|32@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 1023 BLDC_TX_3: 2 BLDC
+ SG_ Velocity_Actual_Value : 0|16@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 1151 BLDC_RX_3: 2 APU
+ SG_ Target_Velocity : 0|16@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 1279 BLDC_TX_4: 4 BLDC
+ SG_ Digital_Input : 0|32@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 1407 BLDC_RX_4: 4 APU
+ SG_ Digital_Output : 0|32@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 12 APU_Tuning_VCU: 4 APU
+ SG_ Inverter_RPM_Limit_Percent : 0|8@1+ (1,0) [0|0] "%" Vector__XXX
+ SG_ Servo_Start_Speed : 8|8@1+ (1,0) [0|0] "m/s" Vector__XXX
+ SG_ Regen_Min_Speed : 16|8@1+ (1,0) [0|0] "m/s" Vector__XXX
+ SG_ TC_ON : 24|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ TV_ON : 25|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ REGEN_ON : 26|1@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 1600 BMS_MIN_MAX_S1_S2: 8 VCU
+ SG_ S1_Min : 0|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S1_Max : 16|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S2_Min : 32|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S2_Max : 48|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+
+BO_ 1601 BMS_MIN_MAX_S3_S4: 8 VCU
+ SG_ S3_Min : 0|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S3_Max : 16|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S4_Min : 32|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S4_Max : 48|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+
+BO_ 1602 BMS_MIN_MAX_S5_S6: 8 VCU
+ SG_ S5_Min : 0|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S5_Max : 16|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S6_Min : 32|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S6_Max : 48|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+
+BO_ 1603 BMS_MIN_MAX_S7_S8: 8 VCU
+ SG_ S7_Min : 0|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S7_Max : 16|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S8_Min : 32|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S8_Max : 48|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+
+BO_ 1604 BMS_MIN_MAX_S9_S10: 8 VCU
+ SG_ S9_Min : 0|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S9_Max : 16|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S10_Min : 32|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S10_Max : 48|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+
+BO_ 1605 BMS_MIN_MAX_S11_S12: 8 VCU
+ SG_ S11_Min : 0|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S11_Max : 16|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S12_Min : 32|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ S12_Max : 48|16@1+ (0.001,0) [0|0] "V" Vector__XXX
+
+BO_ 1606 BMS_Max_Temp_S1_S4: 8 VCU
+ SG_ S1_Max_Temp : 0|16@1+ (0.01,0) [0|0] "캜" Vector__XXX
+ SG_ S2_Max_Temp : 16|16@1+ (0.01,0) [0|0] "캜" Vector__XXX
+ SG_ S3_Max_Temp : 32|16@1+ (0.01,0) [0|0] "캜" Vector__XXX
+ SG_ S4_Max_Temp : 48|16@1+ (0.01,0) [0|0] "캜" Vector__XXX
+
+BO_ 1607 BMS_Max_Temp_S5_S8: 8 VCU
+ SG_ S5_Max_Temp : 0|16@1+ (0.01,0) [0|0] "캜" Vector__XXX
+ SG_ S6_Max_Temp : 16|16@1+ (0.01,0) [0|0] "캜" Vector__XXX
+ SG_ S7_Max_Temp : 32|16@1+ (0.01,0) [0|0] "캜" Vector__XXX
+ SG_ S8_Max_Temp : 48|16@1+ (0.01,0) [0|0] "캜" Vector__XXX
+
+BO_ 1608 BMS_Max_Temp_S9_S12: 8 VCU
+ SG_ S9_Max_Temp : 0|16@1+ (0.01,0) [0|0] "캜" Vector__XXX
+ SG_ S10_Max_Temp : 16|16@1+ (0.01,0) [0|0] "캜" Vector__XXX
+ SG_ S11_Max_Temp : 32|16@1+ (0.01,0) [0|0] "캜" Vector__XXX
+ SG_ S12_Max_Temp : 48|16@1+ (0.01,0) [0|0] "캜" Vector__XXX
+
+BO_ 13 APU_TEMP_THA_ENHMERWTHEI: 4 APU
+ SG_ CPU_Temp : 0|16@1+ (1,0) [0|0] "캜" Vector__XXX
+ SG_ GPU_Temp : 16|16@1+ (1,0) [0|0] "캜" Vector__XXX
+
+BO_ 101 DASH_BRAKE: 5 Dashboard
+ SG_ BRAKE_Pressure_Front : 0|16@1+ (0.01,0) [0|20000] "bar"  VCU
+ SG_ BRAKE_Pressure_Rear : 16|16@1+ (0.01,0) [0|20000] "bar"  VCU
+ SG_ BRAKE_SC_GND : 32|1@1+ (1,0) [0|0] ""  VCU
+ SG_ BRAKE_SC_Sup : 33|1@1+ (1,0) [0|0] ""  VCU
+ SG_ BRAKE_Out_of_Range : 34|1@1+ (1,0) [0|0] ""  VCU
+
+BO_ 1315 ISABELLEN_16_bit: 8 Dashboard
+ SG_ Vdc_16_bit : 0|16@1- (0.1,0) [0|0] "V"  Dashboard
+ SG_ Pdc_16_bit : 16|16@1- (1,0) [0|0] "kW"  Dashboard
+ SG_ Idc_16_bit : 32|16@1- (0.01,0) [0|0] "A"  Dashboard
+
+BO_ 798 VCU_APPS: 2 VCU
+ SG_ APPS : 0|16@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 401 RES_STATUS: 8 RES
+ SG_ Stop : 0|1@1+ (1,0) [0|1] ""  APU
+ SG_ Toggle : 1|1@1+ (1,0) [0|1] ""  APU
+ SG_ Button : 2|1@1+ (1,0) [0|1] ""  APU
+ SG_ Signal_Strength : 48|8@1+ (1,0) [0|100] "%"  APU
+
+BO_ 0 APU_RES_INIT: 2 APU
+ SG_ Requested_State : 0|8@1+ (1,0) [0|0] ""  RES
+ SG_ Addresed_Node : 8|8@1+ (1,0) [0|0] ""  RES
+
+BO_ 106 DASH_Tuning_VCU: 5 Dashboard
+ SG_ Index : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Value : 8|32@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 108 DASH_ADU: 2 Dashboard
+ SG_ Steering_16bit : 0|16@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 703 VCU_FL_Info: 8 VCU
+ SG_ IGBT_FL : 0|8@1+ (1,0) [0|0] "캜" Vector__XXX
+ SG_ Motor_Temp_FL : 8|8@1+ (1,0) [0|0] "캜" Vector__XXX
+ SG_ RPM_FL : 16|16@1- (1,0) [0|0] "RPM" Vector__XXX
+ SG_ Torque_Commanded_FL : 32|16@1- (0.01,0) [0|0] "Nm" Vector__XXX
+ SG_ Torque_Actual_FL : 48|16@1- (0.01,0) [0|0] "Nm" Vector__XXX
+
+BO_ 704 VCU_FR_Info: 8 VCU
+ SG_ IGBT_FR : 0|8@1+ (1,0) [0|0] "캜" Vector__XXX
+ SG_ Motor_Temp_FR : 8|8@1+ (1,0) [0|0] "캜" Vector__XXX
+ SG_ RPM_FR : 16|16@1- (1,0) [0|0] "RPM" Vector__XXX
+ SG_ Torque_Commanded_FR : 32|16@1- (0.01,0) [0|0] "Nm" Vector__XXX
+ SG_ Torque_Actual_FR : 48|16@1- (0.01,0) [0|0] "Nm" Vector__XXX
+
+BO_ 804 VCU_Servo_Control: 1 VCU
+ SG_ Servo_control : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 805 VCU_APPS_Raw: 8 VCU
+ SG_ APPS1_Raw_Min : 0|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ APPS2_Raw_Min : 16|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ APPS1_Raw_Max : 32|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ APPS2_Raw_Max : 48|16@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 799 VCU_Steering_Calibrated: 6 VCU
+ SG_ Steering_Angle_Calibrated : 0|32@1- (1,0) [0|0] "rad" Vector__XXX
+ SG_ Steering_Offset : 32|16@1- (0.0001,0) [0|0] "rad" Vector__XXX
+
+BO_ 1282 DV_SYSTEM_STATUS: 5 APU
+ SG_ AS_STATE : 0|3@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ ASB_EBS_STATE : 3|2@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ AMI_STATE : 5|3@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ STEERING_STATE : 8|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ ASB_REDUNDANCY_STATE : 9|2@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ LAP_COUNTER : 11|4@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CONES_COUNT_ACTUAL : 15|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CONES_COUNT_ALL : 23|17@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 1280 DV_Driving_Dynamics_1: 8 APU
+ SG_ Speed_actual : 0|8@1+ (1,0) [0|0] "km/h" Vector__XXX
+ SG_ Speed_target : 8|8@1+ (1,0) [0|0] "km/h" Vector__XXX
+ SG_ Steering_angle_actual : 16|8@1- (0.5,0) [0|0] " �" Vector__XXX
+ SG_ Steering_angle_target : 24|8@1- (0.5,0) [0|0] " �" Vector__XXX
+ SG_ Brake_hydr_actual : 32|8@1+ (1,0) [0|0] "%" Vector__XXX
+ SG_ Brake_hydr_target : 40|8@1+ (1,0) [0|0] "%" Vector__XXX
+ SG_ Motor_moment_actual : 48|8@1- (1,0) [0|0] "%" Vector__XXX
+ SG_ Motor_moment_target : 56|8@1- (1,0) [0|0] "%" Vector__XXX
+
+BO_ 1281 DV_Driving_Dynamics_2: 6 APU
+ SG_ Acceleration_longitudinal : 0|16@1- (0.00195313,0) [0|0] "m/s^2" Vector__XXX
+ SG_ Acceleration_lateral : 16|16@1- (0.00195313,0) [0|0] "m/s^2" Vector__XXX
+ SG_ Yaw_Rate : 32|16@1- (0.0078125,0) [0|0] " �/s" Vector__XXX
+
+BO_ 1297 ASB_DATALOGGER: 5 ASB
+ SG_ EBS_Pneumatic_Pressure : 0|8@1+ (1,0) [0|0] "bar" Vector__XXX
+ SG_ Brake_Pressure_Rear : 8|8@1+ (1,0) [0|0] "bar" Vector__XXX
+ SG_ Brake_Pressure_Front : 16|8@1+ (1,0) [0|0] "bar" Vector__XXX
+ SG_ EBSstate_unavailable : 24|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ EBSstate_armed : 25|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ EBSstate_activated : 26|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ Servicebrakestate_disengaged : 27|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ Servicebrakestate_engaged : 28|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ Servicebrakestate_available : 29|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ Watchdog_OK : 30|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ ValveInterlock_OK : 31|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ ServoInterlock_OK : 32|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ AS_State : 33|3@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ ASMS_Out : 36|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+
+BO_ 377 SBG_ECAN_MSG_GPS1_HDT: 8 SBG
+ SG_ PITCH_ACC : 48|16@1+ (0.01,0) [0|655.35] "�" Vector__XXX
+ SG_ PITCH : 32|16@1- (0.01,0) [-327.68|327.67] "�" Vector__XXX
+ SG_ TRUE_HEADING_ACC : 16|16@1+ (0.01,0) [0|655.35] "�" Vector__XXX
+ SG_ TRUE_HEADING : 0|16@1+ (0.01,0) [0|655.35] "�" Vector__XXX
+
+BO_ 376 SBG_ECAN_MSG_GPS1_HDT_INFO: 6 SBG
+ SG_ STATUS : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ TIME_STAMP : 0|32@1+ (1,0) [0|2704] "탎" Vector__XXX
+
+BO_ 375 SBG_ECAN_MSG_GPS1_POS_ACC: 8 SBG
+ SG_ BASE_STATION_ID : 48|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ ALTITUDE_ACC : 32|16@1+ (0.01,0) [0|655.35] "m" Vector__XXX
+ SG_ LONGITUDE_ACC : 16|16@1+ (0.01,0) [0|655.35] "m" Vector__XXX
+ SG_ LATITUDE_ACC : 0|16@1+ (0.01,0) [0|655.35] "m" Vector__XXX
+
+BO_ 374 SBG_ECAN_MSG_GPS1_POS_ALT: 8 SBG
+ SG_ DIFF_CORR_AGE : 56|8@1+ (1,0) [0|255] "s" Vector__XXX
+ SG_ NUM_SV : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ UNDULATION : 32|16@1- (0.005,0) [-163.84|163.835] "m" Vector__XXX
+ SG_ ALTITUDE : 0|32@1- (0.001,0) [-2147480|2147480] "m" Vector__XXX
+
+BO_ 373 SBG_ECAN_MSG_GPS1_POS: 8 SBG
+ SG_ LONGITUDE : 32|32@1- (1e-07,0) [-214.7483648|214.7483647] "�" Vector__XXX
+ SG_ LATITUDE : 0|32@1- (1e-07,0) [-214.7483648|214.7483647] "�" Vector__XXX
+
+BO_ 372 SBG_ECAN_MSG_GPS1_POS_INFO: 8 SBG
+ SG_ STATUS : 32|32@1+ (1,0) [0|2704] "" Vector__XXX
+ SG_ TIME_STAMP : 0|32@1+ (1,0) [0|2704] "탎" Vector__XXX
+
+BO_ 371 SBG_ECAN_MSG_GPS1_VEL_COURSE: 4 SBG
+ SG_ COURSE_ACC : 16|16@1+ (0.01,0) [0|655.35] "�" Vector__XXX
+ SG_ COURSE : 0|16@1+ (0.01,0) [0|655.35] "�" Vector__XXX
+
+BO_ 370 SBG_ECAN_MSG_GPS1_VEL_ACC: 6 SBG
+ SG_ VELOCITY_ACC_D : 32|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+ SG_ VELOCITY_ACC_E : 16|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+ SG_ VELOCITY_ACC_N : 0|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+
+BO_ 369 SBG_ECAN_MSG_GPS1_VEL: 6 SBG
+ SG_ VELOCITY_D : 32|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+ SG_ VELOCITY_E : 16|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+ SG_ VELOCITY_N : 0|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+
+BO_ 368 SBG_ECAN_MSG_GPS1_VEL_INFO: 8 SBG
+ SG_ STATUS : 32|32@1+ (1,0) [0|2704] "" Vector__XXX
+ SG_ TIME_STAMP : 0|32@1+ (1,0) [0|2704] "탎" Vector__XXX
+
+BO_ 356 SBG_ECAN_MSG_ODO_VEL: 2 SBG
+ SG_ VELOCITY : 0|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+
+BO_ 355 SBG_ECAN_MSG_ODO_INFO: 6 SBG
+ SG_ ODO_STATUS : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ TIME_STAMP : 0|32@1+ (1,0) [0|2704] "탎" Vector__XXX
+
+BO_ 338 SBG_ECAN_MSG_MAG_2: 6 SBG
+ SG_ ACCEL_Z : 32|16@1- (0.01,0) [-327.68|327.67] "m.s-2" Vector__XXX
+ SG_ ACCEL_Y : 16|16@1- (0.01,0) [-327.68|327.67] "m.s-2" Vector__XXX
+ SG_ ACCEL_X : 0|16@1- (0.01,0) [-327.68|327.67] "m.s-2" Vector__XXX
+
+BO_ 337 SBG_ECAN_MSG_MAG_1: 6 SBG
+ SG_ MAG_Z : 32|16@1- (0.001,0) [-32.768|32.767] "a.u." Vector__XXX
+ SG_ MAG_Y : 16|16@1- (0.001,0) [-32.768|32.767] "a.u." Vector__XXX
+ SG_ MAG_X : 0|16@1- (0.001,0) [-32.768|32.767] "a.u." Vector__XXX
+
+BO_ 336 SBG_ECAN_MSG_MAG_0: 6 SBG
+ SG_ STATUS : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ TIME_STAMP : 0|32@1+ (1,0) [0|2704] "탎" Vector__XXX
+
+BO_ 313 SBG_ECAN_MSG_EKF_VEL_BODY: 6 SBG
+ SG_ VELOCITY_Z : 32|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+ SG_ VELOCITY_Y : 16|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+ SG_ VELOCITY_X : 0|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+
+BO_ 312 SBG_ECAN_MSG_EKF_VEL_NED_ACC: 6 SBG
+ SG_ VELOCITY_ACC_D : 32|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+ SG_ VELOCITY_ACC_E : 16|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+ SG_ VELOCITY_ACC_N : 0|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+
+BO_ 311 SBG_ECAN_MSG_EKF_VEL_NED: 6 SBG
+ SG_ VELOCITY_D : 32|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+ SG_ VELOCITY_E : 16|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+ SG_ VELOCITY_N : 0|16@1- (0.01,0) [-327.68|327.67] "m.s-1" Vector__XXX
+
+BO_ 310 SBG_ECAN_MSG_EKF_POS_ACC: 6 SBG
+ SG_ ALTITUDE_ACC : 32|16@1+ (0.01,0) [0|655.35] "m" Vector__XXX
+ SG_ LONGITUDE_ACC : 16|16@1+ (0.01,0) [0|655.35] "m" Vector__XXX
+ SG_ LATITUDE_ACC : 0|16@1+ (0.01,0) [0|655.35] "m" Vector__XXX
+
+BO_ 309 SBG_ECAN_MSG_EKF_ALTITUDE: 6 SBG
+ SG_ UNDULATION : 32|16@1- (0.005,0) [-163.84|163.835] "m" Vector__XXX
+ SG_ ALTITUDE : 0|32@1- (0.001,0) [-2147480|2147480] "m" Vector__XXX
+
+BO_ 308 SBG_ECAN_MSG_EKF_POS: 8 SBG
+ SG_ LONGITUDE : 32|32@1- (1e-07,0) [-214.7483648|214.7483647] "�" Vector__XXX
+ SG_ LATITUDE : 0|32@1- (1e-07,0) [-214.7483648|214.7483647] "�" Vector__XXX
+
+BO_ 307 SBG_ECAN_MSG_EKF_ORIENTATION_ACC: 6 SBG
+ SG_ YAW_ACC : 32|16@1+ (0.0001,0) [0|6.5535] "rad" Vector__XXX
+ SG_ PITCH_ACC : 16|16@1+ (0.0001,0) [0|6.5535] "rad" Vector__XXX
+ SG_ ROLL_ACC : 0|16@1+ (0.0001,0) [0|6.5535] "rad" Vector__XXX
+
+BO_ 306 SBG_ECAN_MSG_EKF_EULER: 6 SBG
+ SG_ YAW : 32|16@1- (0.0001,0) [-3.2768|3.2767] "rad" Vector__XXX
+ SG_ PITCH : 16|16@1- (0.0001,0) [-3.2768|3.2767] "rad" Vector__XXX
+ SG_ ROLL : 0|16@1- (0.0001,0) [-3.2768|3.2767] "rad" Vector__XXX
+
+BO_ 290 SBG_ECAN_MSG_IMU_GYRO: 6 SBG
+ SG_ GYRO_Z : 32|16@1- (0.001,0) [-32.768|32.767] "rad.s-1" Vector__XXX
+ SG_ GYRO_Y : 16|16@1- (0.001,0) [-32.768|32.767] "rad.s-1" Vector__XXX
+ SG_ GYRO_X : 0|16@1- (0.001,0) [-32.768|32.767] "rad.s-1" Vector__XXX
+
+BO_ 289 SBG_ECAN_MSG_IMU_ACCEL: 6 SBG
+ SG_ ACCEL_Z : 32|16@1- (0.01,0) [-327.68|327.67] "m.s-2" Vector__XXX
+ SG_ ACCEL_Y : 16|16@1- (0.01,0) [-327.68|327.67] "m.s-2" Vector__XXX
+ SG_ ACCEL_X : 0|16@1- (0.01,0) [-327.68|327.67] "m.s-2" Vector__XXX
+
+BO_ 288 SBG_ECAN_MSG_IMU_INFO: 8 SBG
+ SG_ TEMPERATURE : 48|16@1- (0.01,0) [-327.68|327.67] "캜" Vector__XXX
+ SG_ STATUS : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ TIME_STAMP : 0|32@1+ (1,0) [0|2704] "탎" Vector__XXX
+
+BO_ 276 SBG_ECAN_MSG_UTC_1: 8 SBG
+ SG_ MICRO_SEC : 48|16@1+ (100,0) [0|6553500] "us" Vector__XXX
+ SG_ SEC : 40|8@1+ (1,0) [0|255] "s" Vector__XXX
+ SG_ MIN : 32|8@1+ (1,0) [0|255] "min" Vector__XXX
+ SG_ HOUR : 24|8@1+ (1,0) [0|255] "h" Vector__XXX
+ SG_ DAY : 16|8@1+ (1,0) [0|255] "d" Vector__XXX
+ SG_ MONTH : 8|8@1+ (1,0) [0|255] "month" Vector__XXX
+ SG_ YEAR : 0|8@1+ (1,2000) [2000|2255] "year" Vector__XXX
+
+BO_ 275 SBG_ECAN_MSG_UTC_0: 8 SBG
+ SG_ GPS_TOW : 32|32@1+ (1,0) [0|2704] "ms" Vector__XXX
+ SG_ TIME_STAMP : 0|32@1+ (1,0) [0|2704] "탎" Vector__XXX
+
+BO_ 274 SBG_ECAN_MSG_STATUS_03: 6 SBG
+ SG_ HEAVE_STATUS : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ SOLUTION : 0|32@1+ (1,0) [0|2704] "" Vector__XXX
+
+BO_ 273 SBG_ECAN_MSG_STATUS_02: 8 SBG
+ SG_ AIDING : 32|32@1+ (1,0) [0|2704] "" Vector__XXX
+ SG_ COM : 0|32@1+ (1,0) [0|2704] "" Vector__XXX
+
+BO_ 272 SBG_ECAN_MSG_STATUS_01: 8 SBG
+ SG_ CLOCK : 48|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ GENERAL : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ TIME_STAMP : 0|32@1+ (1,0) [0|2704] "탎" Vector__XXX
+
+BO_ 110 Dash_Poweroff: 1 Dashboard
+ SG_ Poweroff : 0|4@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Reboot : 4|4@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 25 APU_ESTIMATION: 6 ADU
+ SG_ VelX_Estimation : 0|16@1+ (0.01,0) [0|0] "m/s" Vector__XXX
+ SG_ VelY_Estimation : 16|16@1+ (0.01,0) [0|0] "m/s" Vector__XXX
+ SG_ YawRate_Estimation : 32|16@1+ (0.01,0) [0|0] "rad/s" Vector__XXX
+
+BO_ 806 VCU_APU_Info: 8 VCU
+ SG_ Inverter_RPM_Limit_Percent : 0|7@1+ (1,0) [0|0] "%" Vector__XXX
+ SG_ Tmax_Rear_Motor : 7|6@1+ (1,0) [0|0] "Nm" Vector__XXX
+ SG_ Tmax_Front_Motor : 13|6@1+ (1,0) [0|0] "Nm" Vector__XXX
+ SG_ Power_Target_kW : 19|10@1+ (0.1,0) [0|0] "kW" Vector__XXX
+ SG_ Servo_Start_Speed : 29|4@1+ (1,0) [0|0] "kph" Vector__XXX
+ SG_ Regen_Min_Speed : 33|4@1+ (1,0) [0|0] "kph" Vector__XXX
+ SG_ Inverter_RPM_Max : 37|14@1+ (1,0) [0|0] "rpm" Vector__XXX
+ SG_ Tmax_Final : 51|13@1+ (0.1,0) [0|0] "Nm" Vector__XXX
+
+BO_ 802 VCU_ADU_ROTARY: 5 VCU
+ SG_ TV_Aggressiveness_Factor : 0|8@1+ (0.1,0) [0|0] "" Vector__XXX
+ SG_ K_u : 8|16@1- (0.001,0) [0|0] "" Vector__XXX
+ SG_ TC_Aggressiveness_Factor : 24|8@1+ (0.1,0) [0|0] "" Vector__XXX
+ SG_ Mu_Road : 32|8@1+ (0.01,0) [0|0] "" Vector__XXX
+
+BO_ 1792 VelAndAngPOI: 8 SensoricSolutionsOMSRace
+ SG_ VelXPoi : 0|16@1- (0.02,0) [-450|450] "km/h"  SensoricSolutionsOMSRace
+ SG_ VelYPoi : 16|16@1- (0.02,0) [-100|100] "km/h"  SensoricSolutionsOMSRace
+ SG_ VelAPoi : 32|16@1- (0.02,0) [0|450] "km/h"  SensoricSolutionsOMSRace
+ SG_ AngSPoi : 48|16@1- (0.003,0) [-40|40] "�"  SensoricSolutionsOMSRace
+
+BO_ 1793 DistPOI: 8 SensoricSolutionsOMSRace
+ SG_ DistAPoi : 0|32@1- (0.001,0) [-2000000|2000000] "m"  SensoricSolutionsOMSRace
+ SG_ RadiusPoi : 32|16@1- (0.01,0) [-327.68|327.67] "m"  SensoricSolutionsOMSRace
+ SG_ AccCPoi : 48|16@1- (0.02,0) [-40|40] "m/s^2"  SensoricSolutionsOMSRace
+
+BO_ 1794 PitchAndRoll: 4 SensoricSolutionsOMSRace
+ SG_ Roll : 0|16@1- (0.003,0) [-90|90] "�"  SensoricSolutionsOMSRace
+ SG_ Pitch : 16|16@1- (0.003,0) [-90|90] "�"  SensoricSolutionsOMSRace
+
+BO_ 1799 Acc: 6 SensoricSolutionsOMSRace
+ SG_ AccX : 0|16@1- (0.02,0) [-655.36|655.34] "m/s^2"  SensoricSolutionsOMSRace
+ SG_ AccY : 16|16@1- (0.02,0) [-655.36|655.34] "m/s^2"  SensoricSolutionsOMSRace
+ SG_ AccZ : 32|16@1- (0.02,0) [-655.36|655.34] "m/s^2"  SensoricSolutionsOMSRace
+
+BO_ 1800 Rate: 6 SensoricSolutionsOMSRace
+ SG_ RateX : 0|16@1- (0.02,0) [-655.36|655.34] "�/s"  SensoricSolutionsOMSRace
+ SG_ RateY : 16|16@1- (0.02,0) [-655.36|655.34] "�/s"  SensoricSolutionsOMSRace
+ SG_ RateZ : 32|16@1- (0.02,0) [-655.36|655.34] "�/s"  SensoricSolutionsOMSRace
+
+BO_ 1803 Status: 7 SensoricSolutionsOMSRace
+ SG_ Standstill : 0|1@1+ (1,0) [0|1] ""  SensoricSolutionsOMSRace
+ SG_ DirectionNeg : 1|1@1+ (1,0) [0|1] ""  SensoricSolutionsOMSRace
+ SG_ RateAdjustActive : 2|1@1+ (1,0) [0|1] ""  SensoricSolutionsOMSRace
+ SG_ Trigger : 4|1@1+ (1,0) [0|1] ""  SensoricSolutionsOMSRace
+ SG_ BrakeAccStatus : 5|3@1+ (1,0) [0|5] "" Vector__XXX
+ SG_ IlluOn : 8|1@1+ (1,0) [0|1] ""  SensoricSolutionsOMSRace
+ SG_ IlluOk : 9|1@1+ (1,0) [0|1] ""  SensoricSolutionsOMSRace
+ SG_ SensorConnected : 10|1@1+ (1,0) [0|1] ""  SensoricSolutionsOMSRace
+ SG_ AdjustmentActive : 12|1@1+ (1,0) [0|1] ""  SensoricSolutionsOMSRace
+ SG_ CanAngAdjFailed : 13|1@1+ (1,0) [0|1] ""  SensoricSolutionsOMSRace
+ SG_ StatusOk : 15|1@1+ (1,0) [0|1] ""  SensoricSolutionsOMSRace
+ SG_ TempSensor : 16|16@1- (0.1,0) [-20|85] "캜"  SensoricSolutionsOMSRace
+ SG_ SampleTime : 32|24@1+ (0.001,0) [0|16777.215] "s"  SensoricSolutionsOMSRace
+
+BO_ 1797 VelAndAng: 8 SensoricSolutionsOMSRace
+ SG_ VelX : 0|16@1- (0.02,0) [-450|450] "km/h"  SensoricSolutionsOMSRace
+ SG_ VelY : 16|16@1- (0.02,0) [-100|100] "km/h"  SensoricSolutionsOMSRace
+ SG_ VelA : 32|16@1- (0.02,0) [0|450] "km/h"  SensoricSolutionsOMSRace
+ SG_ AngS : 48|16@1- (0.003,0) [-40|40] "�"  SensoricSolutionsOMSRace
+
+BO_ 1801 VelAndAngSp: 8 SensoricSolutionsOMSRace
+ SG_ VelASp : 0|16@1- (0.02,0) [0|450] "km/h"  SensoricSolutionsOMSRace
+ SG_ AngSSp : 16|16@1- (0.003,0) [-40|40] "�"  SensoricSolutionsOMSRace
+ SG_ QualityCh0 : 32|16@1+ (1,0) [0|65535] ""  SensoricSolutionsOMSRace
+ SG_ QualityCh1 : 48|16@1+ (1,0) [0|65535] ""  SensoricSolutionsOMSRace
+
+BO_ 1877 FS_Datalogger_Reserved_6: 8 Vector__XXX
+
+BO_ 1876 FS_Datalogger_Reserved_5: 8 Vector__XXX
+
+BO_ 1875 FS_Datalogger_Reserved_4: 8 Vector__XXX
+
+BO_ 1874 FS_Datalogger_Reserved_3: 8 Vector__XXX
+
+BO_ 1873 FS_Datalogger_Reserved_2: 8 Vector__XXX
+
+BO_ 1872 FS_Datalogger_Reserved_1: 8 Vector__XXX
+
+BO_ 1072 FS_Datalogger_Status: 6 FS_Datalogger
+ SG_ Current : 32|16@1+ (64,0) [0|4194240] "mA" Vector__XXX
+ SG_ Voltage : 16|16@1+ (16,0) [0|1048560] "mV" Vector__XXX
+ SG_ Status_Triggered_Current : 11|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Triggered_Voltage : 10|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Logging : 9|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ready : 8|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MsgCnt : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 255 BLDC_Emergency: 8 BLDC
+ SG_ EMCY_Error_Code : 0|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_Register : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_Number : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 714 TireTemp_RearLeft_Part1: 8 RL_Thermal_Camera
+ SG_ RL_Temp_1 : 0|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+ SG_ RL_Temp_2 : 8|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+ SG_ RL_Temp_3 : 16|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+ SG_ RL_Temp_4 : 24|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+ SG_ RL_Temp_5 : 32|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+ SG_ RL_Temp_6 : 40|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+ SG_ RL_Temp_7 : 48|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+ SG_ RL_Temp_8 : 56|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+
+BO_ 716 TireTemp_RearRight_Part1: 8 RR_Thermal_Camera
+ SG_ RR_Temp_1 : 0|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+ SG_ RR_Temp_2 : 8|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+ SG_ RR_Temp_3 : 16|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+ SG_ RR_Temp_4 : 24|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+ SG_ RR_Temp_5 : 32|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+ SG_ RR_Temp_6 : 40|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+ SG_ RR_Temp_7 : 48|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+ SG_ RR_Temp_8 : 56|8@1+ (1,0) [0|0] "캜
+" Vector__XXX
+
+BO_ 717 TireTemp_RearRight_Part2: 8 RR_Thermal_Camera
+ SG_ RR_Temp_9 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RR_Temp_10 : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RR_Temp_11 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RR_Temp_12 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RR_Temp_13 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RR_Temp_14 : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RR_Temp_15 : 48|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RR_Temp_16 : 56|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 715 TireTemp_RearLeft_Part2: 8 RL_Thermal_Camera
+ SG_ RL_Temp_9 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RL_Temp_10 : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RL_Temp_11 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RL_Temp_12 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RL_Temp_13 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RL_Temp_14 : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RL_Temp_15 : 48|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RL_Temp_16 : 56|8@1+ (1,0) [0|0] "" Vector__XXX
+
+
+
+CM_ BU_ Dashboard "TMSturtle";
+CM_ BU_ VCU "Vehicle Control Unit";
+CM_ BU_ ADU "ECU Master Advanced Display Unit";
+CM_ BU_ APU "Autonomous Processing Unit
+";
+CM_ BU_ BLDC "Steering Actuator Controller
+";
+CM_ BU_ ASB "Autonomous System Brake
+";
+CM_ BU_ Isabellen "IVT measurement unit
+";
+CM_ BO_ 803 "The measurements for rear suspension
+";
+CM_ SG_ 803 Susp_Pot_RL "Suspension Potentiometers Rear Left";
+CM_ SG_ 803 Susp_Pot_RR "Suspension Potentiometers Rear Right";
+CM_ BO_ 100 "APPS Raw Values & SCS states, Brake Pressure & SCS states";
+CM_ SG_ 100 APPS_SC_Signals "checks if APPSs's signals are short circuited ";
+CM_ SG_ 100 APPS_SC_Sup "checks if any of the APPS signal is short circuited to supply";
+CM_ SG_ 100 APPS_SC_GND "checks if any of the APPS signal is short circuited to GND";
+CM_ SG_ 100 APPS_Out_Of_Range "checks if any of APPSs' signals is out of range";
+CM_ BO_ 800 "LEDs to Dashboard and bools from ECU to ASB and AUX";
+CM_ SG_ 800 Buzzer "Signal to trigger Buzzer";
+CM_ SG_ 800 Enable "Enable ON (R2D sequence done)";
+CM_ SG_ 800 SafeState_OK "SafeState_OK == 1 means no SafeState error present. Sent by Fusebox.";
+CM_ SG_ 800 AMS_Error_Latched "AMS Error Latched on Fusebox. If there is no AMS Error, Reset button must be pressed to delatch";
+CM_ SG_ 800 IMD_Error_Latched "IMD Error Latched on Fusebox. If there is no IMD Error, Reset button must be pressed to delatch";
+CM_ SG_ 800 Mode "Mode == 1: Manual. Mode == 0: Driverless.";
+CM_ SG_ 800 AUX_AIR_Plus "AUX_AIR_Plus == 1 -> AIR+ is open.";
+CM_ BO_ 102 "Steering Sensor";
+CM_ SG_ 102 Steering "Steering Angle Sensor value in rad";
+CM_ SG_ 102 Steering_Voltage "Steering sensor measured voltage
+";
+CM_ BO_ 103 "Dashboard buttons and toggle switches";
+CM_ SG_ 103 Start "Start Button on Dashboard. Start == 1 if button pressed.";
+CM_ SG_ 103 AddAct "AddAct Button signal, either from dashboard or external button, depending on vehicle Mode. AddAct == 1 if correct button pressed.";
+CM_ SG_ 103 Setup "";
+CM_ SG_ 103 Main_menu "Which place is chosen";
+CM_ SG_ 103 Sub_menu "The current place at the secont column of the menu";
+CM_ SG_ 103 Monitor "Monitor place";
+CM_ SG_ 103 Cooling_status "Cooling enable";
+CM_ SG_ 103 TS_Off "TS_Off analog signal received from Fusebox";
+CM_ SG_ 103 Reset_SDC "External Reset button for SDC. Reset_SDC == 1 if button pressed.";
+CM_ SG_ 103 SD_Before_ASB_OK "== 1 if SDC 24V present before ASB";
+CM_ SG_ 103 SD_After_BSPD_OK "== 1 if SDC 24V present after BSPD";
+CM_ SG_ 103 SD_Before_Inertia_OK "== 1 if SDC 24V present before Inertia switch";
+CM_ SG_ 103 SD_Before_TSMS_OK "== 1 if SDC 24V present before TSMS";
+CM_ BO_ 105 "Front Suspension Strain Gauges";
+CM_ SG_ 105 Susp_Pot_FL "Suspension Potentiometers Front Left";
+CM_ SG_ 105 Susp_Pot_FR "Suspension Potentiometers Front Right";
+CM_ BO_ 801 "Signals for use by the dashboard display
+";
+CM_ SG_ 801 Power_kW "Final Power Target computed by VCU";
+CM_ SG_ 801 Vicor_Thermistor "DCDC Vicor Thermistor Temperature";
+CM_ SG_ 801 Velocity "Vehicle Longitudinal Velocity in km/h";
+CM_ SG_ 801 Recom_Thermistor "DCDC Recom Thermistor Temperature";
+CM_ SG_ 801 Sensor_Error "Error detected in sensor necessary for Control Systems. Bitfield values still to be decided.";
+CM_ SG_ 801 TV_ON "Torque Vectoring ON";
+CM_ SG_ 801 REGEN_ON "Regenerative Braking ON";
+CM_ SG_ 801 TC_ON "Traction Control ON";
+CM_ SG_ 801 SoC "State of Charge";
+CM_ BO_ 701 "RL Inverter and Motor Info";
+CM_ SG_ 701 IGBT_RL "RL Inverter IGBT Temperature";
+CM_ SG_ 701 Motor_Temp_RL "RL Motor Temperature
+";
+CM_ SG_ 701 RPM_RL "RL Motor RPM
+";
+CM_ SG_ 701 Torque_Commanded_RL "RL Motor Commanded Torque by Control";
+CM_ SG_ 701 Torque_Actual_RL "RL Motor Actual Torque";
+CM_ BO_ 702 "RR Inverter and Motor Info";
+CM_ SG_ 702 IGBT_RR "RR Inverter IGBT Temperature";
+CM_ SG_ 702 Motor_Temp_RR "RR Motor Temperature
+";
+CM_ SG_ 702 RPM_RR "RR Motor RPM";
+CM_ SG_ 702 Torque_Commanded_RR "RR Motor Commanded Torque by Control";
+CM_ SG_ 702 Torque_Actual_RR "RR Motor Actual Torque";
+CM_ SG_ 35 ASMS_State "It's the actual state of TSMS";
+CM_ SG_ 35 TSMS_Out "It's the actual state of TSMS";
+CM_ SG_ 35 ASB_LED "For visible check when EBS is activated";
+CM_ SG_ 35 EBS_Status "Mechanical EBS' actual state";
+CM_ SG_ 11 Treq_DV "Throttle/Brake command [-Tmax_Final, Tmax_Final]";
+CM_ BO_ 109 "Autonomous Mission Indicator ";
+CM_ BO_ 895 "Message for Target Position";
+CM_ BO_ 1600 "Min Max Voltages for Segment 1,2";
+CM_ SG_ 1600 S1_Min "Segment 1 Min Voltage";
+CM_ SG_ 1600 S1_Max "Segment 1 Max Voltage";
+CM_ SG_ 1600 S2_Min "Segment 2 Min Voltage";
+CM_ SG_ 1600 S2_Max "Segment 2 Max Voltage";
+CM_ BO_ 1601 "Min Max Voltages for Segment 3, 4";
+CM_ SG_ 1601 S3_Min "Segment 3 Min Voltage";
+CM_ SG_ 1601 S3_Max "Segment 3 Max Voltage";
+CM_ SG_ 1601 S4_Min "Segment 4 Min Voltage";
+CM_ SG_ 1601 S4_Max "Segment 4 Max Voltage";
+CM_ BO_ 1602 "Min Max Voltages for Segment 5, 6";
+CM_ SG_ 1602 S5_Min "Segment 5 Min Voltage";
+CM_ SG_ 1602 S5_Max "Segment 5 Max Voltage";
+CM_ SG_ 1602 S6_Min "Segment 6 Min Voltage";
+CM_ SG_ 1602 S6_Max "Segment 6 Max Voltage";
+CM_ BO_ 1603 "Min Max Voltages for Segment 7, 8";
+CM_ SG_ 1603 S7_Min "Segment 7 Min Voltage";
+CM_ SG_ 1603 S7_Max "Segment 7 Max Voltage";
+CM_ SG_ 1603 S8_Min "Segment 8 Min Voltage";
+CM_ SG_ 1603 S8_Max "Segment 8 Max Voltage";
+CM_ BO_ 1604 "Min Max Voltages for Segment 9, 10";
+CM_ SG_ 1604 S9_Min "Segment 9 Min Voltage";
+CM_ SG_ 1604 S9_Max "Segment 9 Max Voltage";
+CM_ SG_ 1604 S10_Min "Segment 10 Min Voltage";
+CM_ SG_ 1604 S10_Max "Segment 10 Max Voltage";
+CM_ BO_ 1605 "Min Max Voltages for Segment 11, 12";
+CM_ SG_ 1605 S11_Min "Segment 11 Min Voltage";
+CM_ SG_ 1605 S11_Max "Segment 11 Max Voltage";
+CM_ SG_ 1605 S12_Min "Segment 12 Min Voltage";
+CM_ SG_ 1605 S12_Max "Segment 12 Max Voltage";
+CM_ BO_ 1606 "Max Temperature for Segments 1, 2, 3, 4";
+CM_ SG_ 1606 S3_Max_Temp "Segment 3 Max Temperature";
+CM_ SG_ 1606 S4_Max_Temp "Segment 4 Max Temperature";
+CM_ BO_ 1607 "Max Temperature for Segments 5, 6, 7, 8";
+CM_ SG_ 1607 S6_Max_Temp "Segment 6 Max Temperature";
+CM_ SG_ 1607 S7_Max_Temp "Segment 7 Max Temperature";
+CM_ SG_ 1607 S8_Max_Temp "Segment 8 Max Temperature";
+CM_ BO_ 1608 "Max Temperature for Segments 9, 10, 11, 12
+";
+CM_ SG_ 1608 S9_Max_Temp "Segment 9 Max Temperature
+";
+CM_ SG_ 1608 S10_Max_Temp "Segment 10 Max Temperature
+";
+CM_ SG_ 1608 S11_Max_Temp "Segment 11 Max Temperature
+";
+CM_ SG_ 1608 S12_Max_Temp "Segment 12 Max Temperature
+";
+CM_ BO_ 1315 "Convert Isabellen's values from 32 bit to 16 bit";
+CM_ BO_ 798 "APPS final value for display";
+CM_ SG_ 798 APPS "APPS Value (0-1000)
+";
+CM_ BO_ 401 "RES Status";
+CM_ BO_ 0 "A \"CAN MASTER\" sends this message in order to set RES CAN into operating mode";
+CM_ SG_ 0 Addresed_Node "ID of addressed device. 0x11 in RES's case";
+CM_ BO_ 106 "VCU Parameter tuning from dashboard display";
+CM_ BO_ 703 "FL Inverter and Motor Info";
+CM_ SG_ 703 IGBT_FL "FL Inverter IGBT Temperature
+";
+CM_ SG_ 703 Motor_Temp_FL "FL Moror Temperature";
+CM_ SG_ 703 RPM_FL "FL Motor RPM";
+CM_ SG_ 703 Torque_Commanded_FL "FL Motor Commanded Torque by Control
+";
+CM_ SG_ 703 Torque_Actual_FL "FL Motor Actual Torque";
+CM_ BO_ 704 "FR Inverter and Motor Info";
+CM_ SG_ 704 IGBT_FR "FR Inverter IGBT Temperature";
+CM_ SG_ 704 Motor_Temp_FR "FR Motor Temperature";
+CM_ SG_ 704 RPM_FR "FR Motor RPM";
+CM_ SG_ 704 Torque_Commanded_FR "FR Motor Commanded Torque by Control
+";
+CM_ SG_ 704 Torque_Actual_FR "FR Motor Actual Torque";
+CM_ BO_ 805 "Inverters Current Info";
+CM_ BO_ 799 "Steering Calibration values for Display
+";
+CM_ SG_ 799 Steering_Angle_Calibrated "Steering Angle calibrated by VCU";
+CM_ SG_ 799 Steering_Offset "Steering Sensor offset set in VCU
+";
+CM_ BO_ 1282 "FOR DATALOGGER";
+CM_ BO_ 1280 "FOR DATALOGGER";
+CM_ BO_ 1281 "FOR DATALOGGER";
+CM_ BO_ 1297 "ASB messages mentioned in ASF, for FSG Datalogger";
+CM_ SG_ 1297 ASMS_Out "ASMS status. 1: Closed, 0: Open";
+CM_ BO_ 25 "Estimation of velocities and yaw rate by APU State Estimation
+";
+CM_ BO_ 806 "VCU variables needed by APU";
+CM_ SG_ 806 Inverter_RPM_Limit_Percent "Percentage of RPM_Max set in Inverter";
+CM_ SG_ 806 Tmax_Rear_Motor "Maximum torque a rear motor can produce";
+CM_ SG_ 806 Tmax_Front_Motor "Maximum torque a front motor can produce";
+CM_ SG_ 806 Power_Target_kW "Final power target in VCU
+";
+CM_ SG_ 806 Servo_Start_Speed "Speed below which Servo is activated
+";
+CM_ SG_ 806 Regen_Min_Speed "Speed below which Regen is deactivated";
+CM_ SG_ 806 Inverter_RPM_Max "Max Motor RPM set in Inverter";
+CM_ SG_ 806 Tmax_Final "Maximum possible requested torque at any moment, according to Motor Power Limits, Total Power Limit, Traction Control";
+CM_ BO_ 802 "Signal feedback for Rotary Switch manipulated variables";
+CM_ SG_ 802 TV_Aggressiveness_Factor "Factor to apply to TV PI Gains. Recommended values from 0 to 2, step 0.2";
+CM_ SG_ 802 K_u "TV Understeer Gradient. Default 0.001. Recommended values from -0.01 to 0.01 in steps of 0.001.
+Positive means understeer reference yaw rate, negative means oversteer reference yaw rate.";
+CM_ SG_ 802 TC_Aggressiveness_Factor "Factor to apply to TC PI Gains. Recommended values from 0 to 2, step 0.2";
+CM_ SG_ 802 Mu_Road "Road-tire friction coefficient scaling factor. Recommended values 0.7 to 1, step of 0.05";
+CM_ BO_ 255 "Shows faults of BLDC";
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BO_  "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN","reserved","J1939PG","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","StandardCAN_FD","ExtendedCAN_FD";
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "StandardCAN","ExtendedCAN","reserved","J1939PG","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","StandardCAN_FD","ExtendedCAN_FD","Cyclic","Event","CyclicIfActive","SpontanWithDelay","CyclicAndSpontan","CyclicAndSpontanWithDelay";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 0;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 0;
+BA_DEF_ SG_  "GenSigStartValue" FLOAT 0 0;
+BA_DEF_ BO_  "GenMsgBackgroundColor" STRING ;
+BA_DEF_ BO_  "GenMsgForegroundColor" STRING ;
+BA_DEF_DEF_  "DBName" "Cluster";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "VFrameFormat" "StandardCAN";
+BA_DEF_DEF_  "GenMsgSendType" "Cyclic";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenMsgBackgroundColor" "#ffffff";
+BA_DEF_DEF_  "GenMsgForegroundColor" "#000000";
+BA_ "VFrameFormat" BO_ 803 0;
+BA_ "GenMsgSendType" BO_ 803 0;
+BA_ "GenMsgCycleTime" BO_ 803 100;
+BA_ "VFrameFormat" BO_ 100 0;
+BA_ "GenMsgSendType" BO_ 100 0;
+BA_ "GenMsgCycleTime" BO_ 100 10;
+BA_ "VFrameFormat" BO_ 800 0;
+BA_ "GenMsgSendType" BO_ 800 0;
+BA_ "GenMsgCycleTime" BO_ 800 50;
+BA_ "GenMsgCycleTime" BO_ 800 100;
+BA_ "VFrameFormat" BO_ 102 0;
+BA_ "GenMsgSendType" BO_ 102 0;
+BA_ "GenMsgCycleTime" BO_ 102 5;
+BA_ "GenMsgCycleTime" BO_ 103 100;
+BA_ "GenMsgCycleTime" BO_ 105 0;
+BA_ "GenMsgCycleTime" BO_ 801 100;
+BA_ "GenMsgCycleTime" BO_ 701 10;
+BA_ "GenMsgCycleTime" BO_ 702 10;
+BA_ "GenMsgCycleTime" BO_ 35 50;
+BA_ "GenMsgCycleTime" BO_ 11 10;
+BA_ "GenMsgCycleTime" BO_ 10 125;
+BA_ "GenMsgCycleTime" BO_ 109 100;
+BA_ "GenMsgCycleTime" BO_ 895 10;
+BA_ "GenMsgSendType" BO_ 1600 0;
+BA_ "GenMsgCycleTime" BO_ 1600 5000;
+BA_ "GenMsgCycleTime" BO_ 1601 5000;
+BA_ "GenMsgCycleTime" BO_ 1602 5000;
+BA_ "GenMsgCycleTime" BO_ 1603 5000;
+BA_ "GenMsgCycleTime" BO_ 1604 5000;
+BA_ "GenMsgSendType" BO_ 1605 0;
+BA_ "GenMsgCycleTime" BO_ 1605 5000;
+BA_ "GenMsgCycleTime" BO_ 1606 5000;
+BA_ "GenMsgCycleTime" BO_ 1607 5000;
+BA_ "GenMsgCycleTime" BO_ 1608 5000;
+BA_ "GenMsgCycleTime" BO_ 101 5;
+BA_ "GenMsgCycleTime" BO_ 1315 100;
+BA_ "GenMsgCycleTime" BO_ 798 20;
+BA_ "GenMsgCycleTime" BO_ 401 30;
+BA_ "GenMsgCycleTime" BO_ 0 1000;
+BA_ "GenMsgCycleTime" BO_ 108 100;
+BA_ "GenMsgCycleTime" BO_ 703 10;
+BA_ "GenMsgDelayTime" BO_ 703 0;
+BA_ "GenMsgCycleTime" BO_ 704 10;
+BA_ "GenMsgDelayTime" BO_ 704 0;
+BA_ "GenMsgSendType" BO_ 804 0;
+BA_ "GenMsgCycleTime" BO_ 804 10;
+BA_ "GenMsgCycleTime" BO_ 805 0;
+BA_ "GenMsgCycleTime" BO_ 805 100;
+BA_ "GenMsgCycleTime" BO_ 799 100;
+BA_ "GenMsgCycleTime" BO_ 1282 100;
+BA_ "GenMsgCycleTime" BO_ 1280 100;
+BA_ "GenMsgCycleTime" BO_ 1281 100;
+BA_ "GenMsgCycleTime" BO_ 1297 100;
+BA_ "GenMsgCycleTime" BO_ 25 10;
+BA_ "GenMsgCycleTime" BO_ 806 100;
+BA_ "GenMsgCycleTime" BO_ 802 100;
+BA_ "GenMsgCycleTime" BO_ 1792 10;
+BA_ "GenMsgCycleTime" BO_ 1793 10;
+BA_ "GenMsgCycleTime" BO_ 1794 10;
+BA_ "GenMsgCycleTime" BO_ 1799 10;
+BA_ "GenMsgCycleTime" BO_ 1800 10;
+BA_ "GenMsgCycleTime" BO_ 1803 10;
+BA_ "GenMsgCycleTime" BO_ 1797 10;
+BA_ "GenMsgCycleTime" BO_ 1801 10;
+VAL_ 100 APPS1_Raw 0 "lower" 4095 "higher" ;
+VAL_ 100 APPS2_Raw 0 "lower" 4095 "higher" ;
+VAL_ 100 APPS_SC_Signals 1 "Error" 0 "OK" ;
+VAL_ 100 APPS_SC_Sup 1 "Error" 0 "OK" ;
+VAL_ 100 APPS_SC_GND 1 "Error" 0 "OK" ;
+VAL_ 100 APPS_Out_Of_Range 1 "Error" 0 "OK" ;
+VAL_ 103 Cooling_status 1 "Cooling enable" 0 "Cooling disable" ;
+VAL_ 35 ASMS_State 0 "ASMS opened" 1 "ASMS closed" ;
+VAL_ 35 TSMS_Out 0 "TSMS opened" 1 "TSMS closed" ;
+VAL_ 35 ASB_LED 0 "ASB LED off" 1 "ASB LED on" ;
+VAL_ 35 Initial_Checked 0 "Initial check failed" 1 "Initial check successful" ;
+VAL_ 35 Service_Brake_Status 1 "Disengaged" 2 "Engaged" 3 "Available" ;
+VAL_ 35 EBS_Status 1 "Unavailable" 2 "Armed" 3 "Triggered" ;
+VAL_ 35 Initial_Check_Step 1 "Not in initial check" 0 "Close RES relais and SDC before AS relay" 2 "Re-enable watchdog" 3 "Check tank & brake pressure" 4 "Close SDC" 5 "EBS arming" 6 "De-energize EBS electric valve" 7 "Check service brake" 8 "Check communication with APU" ;
+VAL_ 35 Monitor_Tank_Pressure 0 "Error" 1 "OK" ;
+VAL_ 35 Monitor_Brake_Pressure 0 "Error" 1 "OK" ;
+VAL_ 35 Monitor_Servo_Check 0 "Error" 1 "OK" ;
+VAL_ 35 Monitor_APU 0 "Error" 1 "OK" ;
+VAL_ 10 AS_Mission 0 "NO_MISSION" 1 "ACCELERATION" 2 "SKIDPAD" 3 "AUTOCROSS" 4 "TRACKDRIVE" 5 "EBSTEST" 6 "INSPECTION" 7 "MANUAL DRIVING" ;
+VAL_ 10 AS_State 0 "MANUAL_DRIVING" 1 "AS_OFF" 2 "AS_READY" 3 "AS_DRIVING" 4 "AS_FINISHED" 5 "AS_EMERGENCY" ;
+VAL_ 10 AS_Set_Finished 1 "Set Finished True" 0 "Set Finished False" ;
+VAL_ 109 AMI 0 "No Mission" 1 "Acceleration" 2 "Skidpad" 3 "Autocross" 4 "Trackdrive" 5 "EBS Test " 6 "Inspection" 7 "Manual Mission" ;
+VAL_ 401 Stop 1 "OFF" 0 "ON" ;
+VAL_ 401 Toggle 0 "OFF" 1 "ON" ;
+VAL_ 401 Button 0 "OFF" 1 "ON" ;
+VAL_ 0 Requested_State 1 "OPERATIONAL" 2 "STOPPED" 128 "PRE-OPERATIONAL" 129 "RESET_NODE" 130 "RESET_COMM" ;
+VAL_ 0 Addresed_Node 17 "RES_Address" ;
+VAL_ 106 Index 1 "APPS1_Raw_Max" 2 "APPS1_Raw_Min" 3 "APPS2_Raw_Max" 4 "APPS2_Raw_Min" 5 "Steering_Offset" 6 "TV_Enable" 7 "TC_Enable" 8 "Regen_Enable" 9 "Inverter_RPM_Limit_Percent" 10 "Power_Target_kW" 11 "Reset_Vehicle_Mode" ;
+VAL_ 1282 AS_STATE 1 "OFF" 2 "READY" 3 "DRIVING" 4 "EMERGENCY" 5 "FINISH" ;
+VAL_ 1282 ASB_EBS_STATE 1 "DEACTIVATED" 2 "INITIAL_CHECKUP_PASSED" 3 "ACTIVATED" ;
+VAL_ 1282 AMI_STATE 1 "ACCELERATION" 2 "SKIDPAD" 3 "TRACKDRIVE" 4 "BRAKETEST" 5 "INSPECTION" 6 "AUTOCROSS" ;
+VAL_ 1282 ASB_REDUNDANCY_STATE 1 "DEACTIVATED" 2 "ENGAGED" 3 "INITIAL_CHECKUP_PASSED" ;
+VAL_ 1297 AS_State 1 "OFF" 2 "READY" 3 "DRIVING" 4 "EMERGENCY" 5 "FINISHED" ;
+SIG_VALTYPE_ 102 Steering : 1;
+SIG_VALTYPE_ 106 Value : 1;
+SIG_VALTYPE_ 799 Steering_Angle_Calibrated : 1;
+

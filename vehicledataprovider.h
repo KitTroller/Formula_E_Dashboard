@@ -18,7 +18,7 @@ class VehicleDataProvider : public QObject{
     Q_PROPERTY(int lapCount READ lapCount NOTIFY lapCountChanged)
     Q_PROPERTY(double throttleVal READ throttleVal NOTIFY throttleValChanged)
     Q_PROPERTY(double brakePress READ brakePress NOTIFY brakePressChanged)
-    Q_PROPERTY(double timeDelta READ timeDelta NOTIFY timeDeltaChanged) // <--- ADD THIS LINE
+    Q_PROPERTY(double timeDelta READ timeDelta NOTIFY timeDeltaChanged) // Added this
 
     //Status indicators
     Q_PROPERTY(bool coolingActive READ coolingActive NOTIFY coolingActiveChanged)
@@ -177,7 +177,6 @@ private slots:
     void parseUartData();
 
 private:
-
     // Internal Memory (The actual C++ variables)
     int m_speed; double m_lapTime; double m_timeDelta; int m_lapCount;
     double m_accelX; double m_accelY; double m_throttleVal;
@@ -199,12 +198,32 @@ private:
     double m_motorTempFL, m_motorTempFR, m_motorTempRL, m_motorTempRR;
     double m_igbtTempFL, m_igbtTempFR, m_igbtTempRL, m_igbtTempRR;
 
-    //Accumulator Variables
+    // Accumulator Variables
     double m_cell1MinV, m_cell2MinV, m_cell3MinV, m_cell4MinV, m_cell5MinV, m_cell6MinV, m_cell7MinV, m_cell8MinV, m_cell9MinV, m_cell10MinV, m_cell11MinV, m_cell12MinV;
     double m_cell1MaxV, m_cell2MaxV, m_cell3MaxV, m_cell4MaxV, m_cell5MaxV, m_cell6MaxV, m_cell7MaxV, m_cell8MaxV, m_cell9MaxV, m_cell10MaxV, m_cell11MaxV, m_cell12MaxV;
     double m_cell1Temp, m_cell2Temp, m_cell3Temp, m_cell4Temp, m_cell5Temp, m_cell6Temp, m_cell7Temp, m_cell8Temp, m_cell9Temp, m_cell10Temp, m_cell11Temp, m_cell12Temp;
 
     QSerialPort *m_serial;
-    QByteArray m_serialBuffer; // A temporary buffer to hold incomplete UART strings
+
+    // ==========================================
+    // NEW: UART BINARY STATE MACHINE DEFINITIONS
+    // ==========================================
+    enum RxState {
+        WAIT_SYNC,
+        READ_ID,
+        READ_DLC,
+        READ_DATA,
+        READ_CHECKSUM
+    };
+
+    RxState m_rxState = WAIT_SYNC;
+
+    uint32_t m_currentId = 0;
+    uint8_t m_currentDlc = 0;
+    QByteArray m_payloadBuffer;
+    int m_bytesRead = 0;
+
+    void processIncomingByte(uint8_t byte);
+    void parseCanMessage(uint32_t canId, uint8_t dlc, const QByteArray& data);
 
 };

@@ -1,0 +1,418 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: VCU Inverter
+
+
+BO_ 578 Inverter_RL_Tx: 5 VCU
+ SG_ Tx_Register : 0|8@1+ (1,0) [0|0] ""  Inverter
+ SG_ Byte2 : 8|8@1+ (1,0) [0|0] ""  Inverter
+ SG_ Byte3 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Byte4 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Byte5 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 386 Inverter_RL_Rx: 6 Inverter
+ SG_ Irms_RL_Raw m32 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ RPM_RL_Raw m48 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Motor_Temp_RL_Raw m73 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ IGBT_Temp_RL_Raw m74 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Ipeak_RL_Raw m196 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Icont_RL_Raw m197 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Vout_RL m138 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ RPM_Limit_RL_Raw m200 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ BTB_RL_Raw m226 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Torque_Actual_RL m160 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ M_Pole_RL m79 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FB_Pole_RL m167 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FB_Offset_RL m68 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Tpeak_RL m240 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ I_red_TD_RL m88 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ I_red_TE_RL m76 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ I_red_TM_RL m162 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_R_Accel_RL m53 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ M_R_Accel_RL m53 : 24|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_R_Decel_RL m237 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ M_R_Decel_RL m237 : 24|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ M_R_Rcp_RL m199 : 24|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_lim_RL m52 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_lim_plus_RL m63 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_lim_minus_RL m62 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Motor_N_Nom_RL m89 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Motor_F_Nom_RL m5 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Motor_V_Nom_RL m6 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Motor_Cos_Phi_RL m14 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Motor_I_max_eff_RL m77 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Motor_I_nom_eff_RL m78 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Brake_Delay_RL m241 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ M_Temp_RL m163 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Current_Kp_RL m28 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Current_Ti_RL m29 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Current_TiM_RL m43 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Current_xKp2_RL m201 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Current_Kf_RL m203 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Current_Ramp_RL m37 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ I_red_N_RL m60 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ I_lim_dig_RL m70 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Speed_Kp_RL m44 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Speed_Ti_RL m45 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Speed_Td_RL m46 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Speed_TiM_RL m59 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Speed_Kacc_RL m91 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Speed_Filter_RL m94 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ R_Lim_RL m199 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Ref_Speed_1_RL m118 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Ref_Speed_2_RL m119 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Type_RL m103 : 8|32@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Serial_Num_1_RL m98 : 8|32@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Serial_Num_2_RL m130 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Axis_RL m248 : 8|32@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Mains_RL m100 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Coast_Stop_RL m90 : 11|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Mains_sel_RL m90 : 27|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Regen_Resistor_RL m90 : 9|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_BTB_Power_RL m90 : 14|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FB_Type_RL m164 : 8|4@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_PWM_Freq_RL m90 : 28|3@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ N_set_dig_RL m49 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ M_set_dig_RL m144 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Cutoff_dig_RL m30 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ N_cmd_int_RL m93 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_cmd_ramp_RL m50 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_error_RL m51 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_act_filt_RL m168 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Id_set_dig_RL m33 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Iq_cmd_RL m38 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Iq_actual_RL m39 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Id_actual_RL m40 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ I_act_filt_RL m95 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ I_cmd_ramp_RL m34 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Iq_error_RL m56 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Id_error_RL m57 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Id_cmd_RL m35 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Vq_RL m41 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Vd_RL m42 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Vdc_bus_RL m235 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FW_V_red_RL m139 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ FW_V_kp_RL m140 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ FW_V_Ti_RL m141 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ PWM_Ph1_RL m172 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ PWM_Ph2_RL m173 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ PWM_Ph3_RL m174 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ CAN_Timeout_RL m208 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Ixt_RL m69 : 24|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ I_lim_inuse_RL m72 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Power_RL m246 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Regen_Power_RL m69 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ T_air_RL m75 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ I_device_RL m198 : 8|16@1+ (1,0) [0|0] "dA" Vector__XXX
+ SG_ V_shunt_RL m238 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ I_200percent_RL m217 : 8|16@1+ (1,0) [0|0] "ADC" Vector__XXX
+ SG_ Motor_Type_RL m90 : 20|2@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FRG_RL m216 : 12|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RFE_RL m216 : 13|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BTB_Rdy_RL m216 : 18|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Int_Enable_GO_RL m216 : 19|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ena_RL m64 : 8|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_NcR0_RL m64 : 9|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Lim_plus_RL m64 : 10|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Lim_minus_RL m64 : 11|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_OK_RL m64 : 12|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Icns_RL m64 : 13|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_T_Nlim_RL m64 : 14|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_P_N_RL m64 : 15|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_N_I_RL m64 : 16|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_lessN0_RL m64 : 17|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Rsw_RL m64 : 18|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Cal0_RL m64 : 19|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Cal_RL m64 : 20|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Tol_RL m64 : 21|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Rdy_RL m64 : 22|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Brk0_RL m64 : 23|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_SignMag_RL m64 : 24|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Nclip_RL m64 : 25|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Nclip_plus_RL m64 : 26|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Nclip_minus_RL m64 : 27|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ird_Dig_RL m64 : 28|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Iuse_rchd_RL m64 : 29|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ird_N_RL m64 : 30|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ird_TI_RL m64 : 31|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ird_TIR_RL m64 : 32|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_greater10Hz_RL m64 : 33|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ird_TM_RL m64 : 34|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ird_Ana_RL m64 : 35|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Iwcns_RL m64 : 36|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_RFEpulse_RL m64 : 37|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_MplusD_RL m64 : 38|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_HndWhl_RL m64 : 39|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_BADPARAS_RL m143 : 8|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_POWERFAULT_RL m143 : 9|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_RFE_RL m143 : 10|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_BUS_TIMEOUT_RL m143 : 11|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_FEEDBACK_RL m143 : 12|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_POWERVOLTAGE_RL m143 : 13|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_MOTORTEMP_RL m143 : 14|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_DEVICETEMP_RL m143 : 15|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_OVERVOLTAGE_RL m143 : 16|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_I_PEAK_RL m143 : 17|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_RACEAWAY_RL m143 : 18|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_USER_RL m143 : 19|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_HW_ERR_RL m143 : 22|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_BALLAST_RL m143 : 23|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_WARNING_0_RL m143 : 24|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_ILLEGAL_STATUS_RL m143 : 25|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_WARNING_2_RL m143 : 26|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_POWERVOLTAGE_RL m143 : 29|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_MOTORTEMP_RL m143 : 30|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_DEVICETEMP_RL m143 : 31|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_Vout_Sat_RL m143 : 32|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_I_PEAK_RL m143 : 33|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_RACEWAY_RL m143 : 34|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_BALLAST_RL m143 : 39|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Regen_P_RL m101 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Regen_R_RL m101 : 24|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_DC_Bus_min_RL m165 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_DC_Bus_max_RL m165 : 24|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Special_Function_RL m133 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Rx_Register_RL M : 0|8@1+ (1,0) [0|0] ""  VCU
+ SG_ FW_IdMin_RL m181 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Idc_Actual_RL m184 : 8|16@1- (1,0) [0|0] "dA" Vector__XXX
+ SG_ Idc_Limit_Tractive_RL m154 : 8|16@1- (1,0) [0|0] "dA" Vector__XXX
+ SG_ Power_Limit_Tractive_RL m202 : 8|16@1- (1,0) [0|0] "100W" Vector__XXX
+ SG_ Power_Limit_Regen_RL m202 : 24|16@1- (1,0) [0|0] "100W" Vector__XXX
+ SG_ I_FAULT_RL m233 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 577 Inverter_RR_Tx: 5 VCU
+ SG_ Tx_Register : 0|8@1+ (1,0) [0|0] ""  Inverter
+ SG_ Byte2 : 8|8@1+ (1,0) [0|0] ""  Inverter
+ SG_ Byte3 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Byte4 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Byte5 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 385 Inverter_RR_Rx: 6 Inverter
+ SG_ Irms_RR_Raw m32 : 8|16@1- (1,0) [0|0] ""  VCU
+ SG_ RPM_RR_Raw m48 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Motor_Temp_RR_Raw m73 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ IGBT_Temp_RR_Raw m74 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Ipeak_RR_Raw m196 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Icont_RR_Raw m197 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Vout_RR m138 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ RPM_Limit_RR_Raw m200 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ BTB_RR_Raw m226 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Torque_Actual_RR m160 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ M_Pole_RR m79 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FB_Pole_RR m167 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FB_Offset_RR m68 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Tpeak_RR m240 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ I_red_TD_RR m88 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ I_red_TE_RR m76 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ I_red_TM_RR m162 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_R_Accel_RR m53 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ M_R_Accel_RR m53 : 24|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_R_Decel_RR m237 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ M_R_Decel_RR m237 : 24|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ M_R_Rcp_RR m199 : 24|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_lim_RR m52 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_lim_plus_RR m63 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_lim_minus_RR m62 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Motor_N_Nom_RR m89 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Motor_F_Nom_RR m5 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Motor_V_Nom_RR m6 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Motor_Cos_Phi_RR m14 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Motor_I_max_eff_RR m77 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Motor_I_nom_eff_RR m78 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Brake_Delay_RR m241 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ M_Temp_RR m163 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Current_Kp_RR m28 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Current_Ti_RR m29 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Current_TiM_RR m43 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Current_xKp2_RR m201 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Current_Kf_RR m203 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Current_Ramp_RR m37 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ I_red_N_RR m60 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ I_lim_dig_RR m70 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Speed_Kp_RR m44 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Speed_Ti_RR m45 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Speed_Td_RR m46 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Speed_TiM_RR m59 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Speed_Kacc_RR m91 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Speed_Filter_RR m94 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ R_Lim_RR m199 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Ref_Speed_1_RR m118 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Ref_Speed_2_RR m119 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Type_RR m103 : 8|32@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Serial_Num_1_RR m98 : 8|32@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Serial_Num_2_RR m130 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Axis_RR m248 : 8|32@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Mains_RR m100 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Coast_Stop_RR m90 : 11|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Mains_sel_RR m90 : 27|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Regen_Resistor_RR m90 : 9|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_BTB_Power_RR m90 : 14|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FB_Type_RR m164 : 8|4@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_PWM_Freq_RR m90 : 28|3@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ N_set_dig_RR m49 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ M_set_dig_RR m144 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Cutoff_dig_RR m30 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ N_cmd_int_RR m93 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_cmd_ramp_RR m50 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_error_RR m51 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ N_act_filt_RR m168 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Id_set_dig_RR m33 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Iq_cmd_RR m38 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Iq_actual_RR m39 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Id_actual_RR m40 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ I_act_filt_RR m95 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ I_cmd_ramp_RR m34 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Iq_error_RR m56 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Id_error_RR m57 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Id_cmd_RR m35 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Vq_RR m41 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Vd_RR m42 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Vdc_bus_RR m235 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FW_V_red_RR m139 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ FW_V_kp_RR m140 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ FW_V_Ti_RR m141 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ PWM_Ph1_RR m172 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ PWM_Ph2_RR m173 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ PWM_Ph3_RR m174 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ CAN_Timeout_RR m208 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Ixt_RR m69 : 24|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ I_lim_inuse_RR m72 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Power_RR m246 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Regen_Power_RR m69 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ T_air_RR m75 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ I_device_RR m198 : 8|16@1+ (1,0) [0|0] "dA" Vector__XXX
+ SG_ V_shunt_RR m238 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ I_200percent_RR m217 : 8|16@1+ (1,0) [0|0] "ADC" Vector__XXX
+ SG_ Motor_Type_RR m90 : 20|2@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FRG_RR m216 : 12|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RFE_RR m216 : 13|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BTB_Rdy_RR m216 : 18|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Int_Enable_GO_RR m216 : 19|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ena_RR m64 : 8|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_NcR0_RR m64 : 9|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Lim_plus_RR m64 : 10|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Lim_minus_RR m64 : 11|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_OK_RR m64 : 12|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Icns_RR m64 : 13|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_T_Nlim_RR m64 : 14|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_P_N_RR m64 : 15|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_N_I_RR m64 : 16|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_lessN0_RR m64 : 17|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Rsw_RR m64 : 18|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Cal0_RR m64 : 19|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Cal_RR m64 : 20|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Tol_RR m64 : 21|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Rdy_RR m64 : 22|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Brk0_RR m64 : 23|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_SignMag_RR m64 : 24|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Nclip_RR m64 : 25|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Nclip_plus_RR m64 : 26|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Nclip_minus_RR m64 : 27|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ird_Dig_RR m64 : 28|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Iuse_rchd_RR m64 : 29|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ird_N_RR m64 : 30|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ird_TI_RR m64 : 31|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ird_TIR_RR m64 : 32|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_greater10Hz_RR m64 : 33|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ird_TM_RR m64 : 34|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Ird_Ana_RR m64 : 35|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Iwcns_RR m64 : 36|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_RFEpulse_RR m64 : 37|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_MplusD_RR m64 : 38|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_HndWhl_RR m64 : 39|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_BADPARAS_RR m143 : 8|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_POWERFAULT_RR m143 : 9|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_RFE_RR m143 : 10|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_BUS_TIMEOUT_RR m143 : 11|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_FEEDBACK_RR m143 : 12|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_POWERVOLTAGE_RR m143 : 13|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_MOTORTEMP_RR m143 : 14|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_DEVICETEMP_RR m143 : 15|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_OVERVOLTAGE_RR m143 : 16|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_I_PEAK_RR m143 : 17|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_RACEAWAY_RR m143 : 18|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_USER_RR m143 : 19|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_HW_ERR_RR m143 : 22|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Error_BALLAST_RR m143 : 23|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_WARNING_0_RR m143 : 24|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_ILLEGAL_STATUS_RR m143 : 25|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_WARNING_2_RR m143 : 26|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_POWERVOLTAGE_RR m143 : 29|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_MOTORTEMP_RR m143 : 30|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_DEVICETEMP_RR m143 : 31|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_Vout_Sat_RR m143 : 32|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_I_PEAK_RR m143 : 33|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_RACEWAY_RR m143 : 34|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Warning_BALLAST_RR m143 : 39|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Regen_P_RR m101 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_Regen_R_RR m101 : 24|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_DC_Bus_min_RR m165 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Servo_DC_Bus_max_RR m165 : 24|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Special_Function_RR m133 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Rx_Register_RR M : 0|8@1+ (1,0) [0|0] ""  VCU
+ SG_ FW_IdMin_RR m181 : 8|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Idc_Actual_RR m184 : 8|16@1- (1,0) [0|0] "dA" Vector__XXX
+ SG_ Idc_Limit_Tractive_RR m154 : 8|16@1- (1,0) [0|0] "dA" Vector__XXX
+ SG_ Power_Limit_Tractive_RR m202 : 8|16@1- (1,0) [0|0] "100W" Vector__XXX
+ SG_ Power_Limit_Regen_RR m202 : 24|16@1- (1,0) [0|0] "100W" Vector__XXX
+ SG_ I_FAULT_RR m233 : 8|16@1+ (1,0) [0|0] "" Vector__XXX
+
+
+
+CM_ BU_ VCU "Custom VCU or dSPACE MicroAutoBox II DS1401/1513";
+CM_ BU_ Inverter "Unitek Bamocar D3 700/160";
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BO_  "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN";
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","Event","CyclicIfActive","SpontanWithDelay","CyclicAndSpontan","CyclicAndSpontanWithDelay";
+BA_DEF_ BO_  "GenMsgCycleTime" FLOAT 0 0;
+BA_DEF_ BO_  "GenMsgDelayTime" FLOAT 0 0;
+BA_DEF_ SG_  "GenSigStartValue" FLOAT 0 0;
+BA_DEF_DEF_  "DBName" "Cluster";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "VFrameFormat" "StandardCAN";
+BA_DEF_DEF_  "GenMsgSendType" "Cyclic";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_ "VFrameFormat" BO_ 578 0;
+BA_ "GenMsgCycleTime" BO_ 578 1;
+BA_ "VFrameFormat" BO_ 578 0;
+BA_ "GenMsgCycleTime" BO_ 578 1;
+BA_ "VFrameFormat" BO_ 386 0;
+BA_ "VFrameFormat" BO_ 386 0;
+BA_ "GenMsgCycleTime" BO_ 577 1;
+

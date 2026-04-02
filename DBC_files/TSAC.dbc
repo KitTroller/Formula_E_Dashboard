@@ -1,0 +1,618 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: BMS_Master VCU ISABELLEN ElconCharger Charger_PCB
+
+
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ NewSignal_0008 : 56|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Idc : 16|32@1- (0.001,0) [0|0] ""  BMS_Master,VCU
+ SG_ Idc_Measurement_Error : 13|1@1+ (1,0) [0|0] ""  BMS_Master,VCU
+ SG_ System_Error : 15|1@1+ (7,0) [0|0] ""  BMS_Master,VCU
+ SG_ Vdc : 16|32@1- (0.001,0) [0|0] ""  BMS_Master,VCU
+ SG_ Vdc_Measurement_Error : 13|1@1+ (1,0) [0|0] ""  BMS_Master,VCU
+ SG_ Pdc : 16|32@1- (1,0) [0|0] "Watt"  VCU
+ SG_ Pdc_Measurement_Error : 13|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Energy : 16|32@1- (1000,0) [0|0] ""  VCU
+ SG_ Energy_Measurement_Error : 13|1@1+ (1,0) [0|0] ""  VCU
+ SG_ NewSignal_0009 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ NewSignal_0005 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Fans_PWM : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ HALL_PWM : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Fan_PWM : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ V_Battery : 0|16@1+ (0.01,0) [0|60000] "" Vector__XXX
+ SG_ V_AIRs : 16|16@1+ (0.01,0) [0|60000] "" Vector__XXX
+ SG_ AS_Driving_Mode : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ NewSignal_0003 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ IMD_State : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ AMS_State : 7|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 512 BMS_S1_C1_C4: 8 BMS_Master
+ SG_ S1_C1 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S1_C2 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S1_C3 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S1_C4 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 513 BMS_S1_C5_C8: 8 BMS_Master
+ SG_ S1_C5 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S1_C6 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S1_C7 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S1_C8 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 514 BMS_S1_C9_C12: 8 BMS_Master
+ SG_ S1_C9 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S1_C10 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S1_C11 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S1_C12 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 515 BMS_S2_C1_C4: 8 BMS_Master
+ SG_ S2_C1 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S2_C2 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S2_C3 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S2_C4 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 516 BMS_S2_C5_C8: 8 BMS_Master
+ SG_ S2_C5 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S2_C6 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S2_C7 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S2_C8 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 517 BMS_S2_C9_C12: 8 BMS_Master
+ SG_ S2_C9 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S2_C10 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S2_C11 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S2_C12 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 518 BMS_S3_C1_C4: 8 BMS_Master
+ SG_ S3_C1 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S3_C2 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S3_C3 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S3_C4 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 519 BMS_S3_C5_C8: 8 BMS_Master
+ SG_ S3_C5 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S3_C6 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S3_C7 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S3_C8 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 520 BMS_S3_C9_C12: 8 BMS_Master
+ SG_ S3_C9 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S3_C10 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S3_C11 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S3_C12 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 521 BMS_S4_C1_C4: 8 BMS_Master
+ SG_ S4_C1 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S4_C2 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S4_C3 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S4_C4 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 522 BMS_S4_C5_C8: 8 BMS_Master
+ SG_ S4_C5 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S4_C6 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S4_C7 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S4_C8 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 523 BMS_S4_C9_C12: 8 BMS_Master
+ SG_ S4_C9 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S4_C10 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S4_C11 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S4_C12 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 524 BMS_S5_C1_C4: 8 BMS_Master
+ SG_ S5_C1 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S5_C2 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S5_C3 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S5_C4 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 525 BMS_S5_C5_C8: 8 BMS_Master
+ SG_ S5_C5 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S5_C6 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S5_C7 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S5_C8 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 526 BMS_S5_C9_C12: 8 BMS_Master
+ SG_ S5_C9 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S5_C10 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S5_C11 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S5_C12 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 527 BMS_S6_C1_C4: 8 BMS_Master
+ SG_ S6_C1 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S6_C2 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S6_C3 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S6_C4 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 528 BMS_S6_C5_C8: 8 BMS_Master
+ SG_ S6_C5 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S6_C6 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S6_C7 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S6_C8 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 529 BMS_S6_C9_C12: 8 BMS_Master
+ SG_ S6_C9 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S6_C10 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S6_C11 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S6_C12 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 530 BMS_S7_C1_C4: 8 BMS_Master
+ SG_ S7_C1 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S7_C2 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S7_C3 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S7_C4 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 531 BMS_S7_C5_C8: 8 BMS_Master
+ SG_ S7_C5 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S7_C6 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S7_C7 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S7_C8 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 532 BMS_S7_C9_C12: 8 BMS_Master
+ SG_ S7_C9 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S7_C10 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S7_C11 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S7_C12 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 533 BMS_S8_C1_C4: 8 BMS_Master
+ SG_ S8_C1 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S8_C2 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S8_C3 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S8_C4 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 534 BMS_S8_C5_C8: 8 BMS_Master
+ SG_ S8_C5 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S8_C6 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S8_C7 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S8_C8 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 535 BMS_S8_C9_C12: 8 BMS_Master
+ SG_ S8_C9 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S8_C10 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S8_C11 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S8_C12 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 536 BMS_S9_C1_C4: 8 BMS_Master
+ SG_ S9_C1 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S9_C2 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S9_C3 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S9_C4 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 537 BMS_S9_C5_C8: 8 BMS_Master
+ SG_ S9_C5 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S9_C6 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S9_C7 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S9_C8 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 538 BMS_S9_C9_C12: 8 BMS_Master
+ SG_ S9_C9 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S9_C10 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S9_C11 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S9_C12 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 539 BMS_S10_C1_C4: 8 BMS_Master
+ SG_ S10_C1 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S10_C2 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S10_C3 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S10_C4 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 540 BMS_S10_C5_C8: 8 BMS_Master
+ SG_ S10_C5 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S10_C6 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S10_C7 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S10_C8 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 541 BMS_S10_C9_C12: 8 BMS_Master
+ SG_ S10_C9 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S10_C10 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S10_C11 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S10_C12 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 542 BMS_S11_C1_C4: 8 BMS_Master
+ SG_ S11_C1 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S11_C2 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S11_C3 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S11_C4 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 543 BMS_S11_C5_C8: 8 BMS_Master
+ SG_ S11_C5 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S11_C6 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S11_C7 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S11_C8 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 544 BMS_S11_C9_C12: 8 BMS_Master
+ SG_ S11_C9 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S11_C10 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S11_C11 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S11_C12 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 545 BMS_S12_C1_C4: 8 BMS_Master
+ SG_ S12_C1 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S12_C2 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S12_C3 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S12_C4 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 546 BMS_S12_C5_C8: 8 BMS_Master
+ SG_ S12_C5 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S12_C6 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S12_C7 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S12_C8 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 547 BMS_S12_C9_C12: 8 BMS_Master
+ SG_ S12_C9 : 0|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S12_C10 : 16|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S12_C11 : 32|16@1+ (0.0001,0) [0|0] ""  VCU
+ SG_ S12_C12 : 48|16@1+ (0.0001,0) [0|0] ""  VCU
+
+BO_ 768 BMS_S1_T1_T4: 8 BMS_Master
+ SG_ S1_T1 : 0|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S1_T2 : 16|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S1_T3 : 32|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S1_T4 : 48|16@1+ (0.01,0) [0|0] ""  VCU
+
+BO_ 769 BMS_S2_T1_T4: 8 BMS_Master
+ SG_ S2_T1 : 0|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S2_T2 : 16|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S2_T3 : 32|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S2_T4 : 48|16@1+ (0.01,0) [0|0] ""  VCU
+
+BO_ 770 BMS_S3_T1_T4: 8 BMS_Master
+ SG_ S3_T1 : 0|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S3_T2 : 16|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S3_T3 : 32|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S3_T4 : 48|16@1+ (0.01,0) [0|0] ""  VCU
+
+BO_ 771 BMS_S4_T1_T4: 8 BMS_Master
+ SG_ S4_T1 : 0|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S4_T2 : 16|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S4_T3 : 32|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S4_T4 : 48|16@1+ (0.01,0) [0|0] ""  VCU
+
+BO_ 772 BMS_S5_T1_T4: 8 BMS_Master
+ SG_ S5_T1 : 0|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S5_T2 : 16|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S5_T3 : 32|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S5_T4 : 48|16@1+ (0.01,0) [0|0] ""  VCU
+
+BO_ 773 BMS_S6_T1_T4: 8 BMS_Master
+ SG_ S6_T1 : 0|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S6_T2 : 16|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S6_T3 : 32|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S6_T4 : 48|16@1+ (0.01,0) [0|0] ""  VCU
+
+BO_ 774 BMS_S7_T1_T4: 8 BMS_Master
+ SG_ S7_T1 : 0|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S7_T2 : 16|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S7_T3 : 32|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S7_T4 : 48|16@1+ (0.01,0) [0|0] ""  VCU
+
+BO_ 775 BMS_S8_T1_T4: 8 BMS_Master
+ SG_ S8_T1 : 0|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S8_T2 : 16|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S8_T3 : 32|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S8_T4 : 48|16@1+ (0.01,0) [0|0] ""  VCU
+
+BO_ 776 BMS_S9_T1_T4: 8 BMS_Master
+ SG_ S9_T1 : 0|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S9_T2 : 16|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S9_T3 : 32|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S9_T4 : 48|16@1+ (0.01,0) [0|0] ""  VCU
+
+BO_ 777 BMS_S10_T1_T4: 8 BMS_Master
+ SG_ S10_T1 : 0|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S10_T2 : 16|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S10_T3 : 32|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S10_T4 : 48|16@1+ (0.01,0) [0|0] ""  VCU
+
+BO_ 778 BMS_S11_T1_T4: 8 BMS_Master
+ SG_ S11_T1 : 0|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S11_T2 : 16|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S11_T3 : 32|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S11_T4 : 48|16@1+ (0.01,0) [0|0] ""  VCU
+
+BO_ 779 BMS_S12_T1_T4: 8 BMS_Master
+ SG_ S12_T1 : 0|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S12_T2 : 16|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S12_T3 : 32|16@1+ (0.01,0) [0|0] ""  VCU
+ SG_ S12_T4 : 48|16@1+ (0.01,0) [0|0] ""  VCU
+
+BO_ 255 Fusebox_SDC_Signals: 2 BMS_Master
+ SG_ AMS_OK : 0|1@1+ (1,0) [0|1] "boolean" Vector__XXX
+ SG_ IMD_ERROR : 1|1@1+ (1,0) [0|1] "boolean" Vector__XXX
+ SG_ Pre_Complete : 2|1@1+ (1,0) [0|1] "boolean" Vector__XXX
+ SG_ Over_60V : 3|1@1+ (1,0) [0|1] "boolean" Vector__XXX
+ SG_ SDC_OK : 4|1@1+ (1,0) [0|1] "boolean" Vector__XXX
+ SG_ AUX_AIR_Minus : 5|1@1+ (1,0) [0|1] "boolean" Vector__XXX
+ SG_ AUX_AIR_Plus : 6|1@1+ (1,0) [0|1] "boolean" Vector__XXX
+ SG_ Pre_Relay_State : 7|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ AMS_ERROR_Latched : 8|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ IMD_ERROR_Latched : 9|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+
+BO_ 780 DCDC_Measurements: 6 BMS_Master
+ SG_ DCDC_Vicor_Temperature : 0|16@1+ (0.01,0) [0|0] "" Vector__XXX
+ SG_ DCDC_RECOM_Temperature : 16|16@1+ (0.01,0) [0|0] "" Vector__XXX
+ SG_ DCDC_LV_Current : 32|16@1+ (0.01,0) [0|0] "" Vector__XXX
+
+BO_ 258 HV_Measurements: 4 BMS_Master
+ SG_ I_DC_LEM : 0|16@1+ (0.01,0) [0|60000] "" Vector__XXX
+ SG_ Accumulator_Voltage : 16|16@1+ (0.01,0) [0|60000] "" Vector__XXX
+
+BO_ 384 BMS_Min_Max_S1_S2: 8 BMS_Master
+ SG_ S1_Min : 0|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S1_Max : 16|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S2_Min : 32|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S2_Max : 48|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+
+BO_ 385 BMS_Min_Max_S3_S4: 8 BMS_Master
+ SG_ S3_Min : 0|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S3_Max : 16|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S4_Min : 32|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S4_Max : 48|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+
+BO_ 386 BMS_Min_Max_S5_S6: 8 BMS_Master
+ SG_ S5_Min : 0|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S5_Max : 16|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S6_Min : 32|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S6_Max : 48|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+
+BO_ 387 BMS_Min_Max_S7_S8: 8 BMS_Master
+ SG_ S7_Min : 0|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S7_Max : 16|6@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S8_Min : 32|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S8_Max : 48|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+
+BO_ 388 BMS_Min_Max_S9_S10: 8 BMS_Master
+ SG_ S9_Min : 0|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S9_Max : 16|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S10_Min : 32|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S10_Max : 48|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+
+BO_ 389 BMS_Min_Max_S11_S12: 8 BMS_Master
+ SG_ S11_Min : 0|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S11_Max : 16|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S12_Min : 32|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ S12_Max : 48|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+
+BO_ 390 BMS_Max_Temp_S1_S4: 8 BMS_Master
+ SG_ S1_Max_Temp : 0|16@1+ (0.01,0) [0|0] "" Vector__XXX
+ SG_ S2_Max_Temp : 16|16@1+ (0.01,0) [0|0] "" Vector__XXX
+ SG_ S3_Max_Temp : 32|16@1+ (0.01,0) [0|0] "" Vector__XXX
+ SG_ S4_Max_Temp : 48|16@1+ (0.01,0) [0|0] "" Vector__XXX
+
+BO_ 391 BMS_Max_Temp_S5_S8: 8 BMS_Master
+ SG_ S5_Max_Temp : 0|16@1+ (0.01,0) [0|0] "" Vector__XXX
+ SG_ S6_Max_Temp : 16|16@1+ (0.01,0) [0|0] "" Vector__XXX
+ SG_ S7_Max_Temp : 32|16@1+ (0.01,0) [0|0] "" Vector__XXX
+ SG_ S8_Max_Temp : 48|16@1+ (0.01,0) [0|0] "" Vector__XXX
+
+BO_ 392 BMS_Max_Temp_S9_S12: 8 BMS_Master
+ SG_ S9_Max_Temp : 0|16@1+ (0.01,0) [0|0] "" Vector__XXX
+ SG_ S10_Max_Temp : 16|16@1+ (0.01,0) [0|0] "" Vector__XXX
+ SG_ S11_Max_Temp : 32|16@1+ (0.01,0) [0|0] "" Vector__XXX
+ SG_ S12_Max_Temp : 48|16@1+ (0.01,0) [0|0] "" Vector__XXX
+
+BO_ 2 Thresholds: 6 VCU
+ SG_ Overvoltage : 0|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ Undervoltage : 16|16@1+ (0.0001,0) [0|0] "" Vector__XXX
+ SG_ Overtemperature : 32|16@1+ (0.01,0) [0|0] "" Vector__XXX
+
+BO_ 1026 BMS_Fans: 2 VCU
+ SG_ Charging : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FANS_PWM : 1|7@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Hall_PWM : 9|7@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 25 SDC_Buttons: 1 VCU
+ SG_ AddAct : 0|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ RESET_SDC : 1|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+
+BO_ 256 Fusebox_TSAL_GREEN_Signals: 1 BMS_Master
+ SG_ TSAL_GREEN : 0|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ GREEN_Checks : 1|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ SafeState_ERROR : 2|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ SafeState_OK : 3|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ Voltage_OK : 4|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ Pre_OK : 5|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ AIR_PLUS_OK : 6|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+ SG_ AIR_MINUS_OK : 7|1@1+ (1,0) [0|0] "boolean" Vector__XXX
+
+BO_ 2566869221 Status: 8 ElconCharger
+ SG_ OutputVoltage : 7|16@0+ (0.1,0) [0|0] "V" Vector__XXX
+ SG_ OutputCurrent : 23|16@0+ (0.1,0) [0|0] "A" Vector__XXX
+ SG_ HWStatus : 32|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Temperature : 33|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ InputVoltage : 34|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ State : 35|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CommunicationState : 36|1@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2550588916 ChargingLimits: 8 Charger_PCB
+ SG_ MaxVoltage : 7|16@0+ (0.1,0) [0|0] "V" Vector__XXX
+ SG_ MaxCurrent : 23|16@0+ (0.1,0) [0|0] "A" Vector__XXX
+ SG_ Control : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+
+
+
+CM_ BU_ Charger_PCB "";
+CM_ SG_ 3221225472 Energy "Sent in Wh. Factor to kWh.";
+CM_ SG_ 3221225472 HALL_PWM "The PWM signal for the HALL Fan 0-100
+";
+CM_ SG_ 3221225472 Fan_PWM "The PWM signal for Fan PWM ";
+CM_ SG_ 3221225472 V_Battery "The Voltage Measurement on the Accumulator side of AIRs
+";
+CM_ SG_ 3221225472 V_AIRs "The voltage measurement on the Vehicle side of AIRs
+";
+CM_ SG_ 3221225472 AS_Driving_Mode "Manual Driving =1, AS Driving = 0
+";
+CM_ SG_ 3221225472 IMD_State "Actual Error of IMD, IMD_State = 1 -> Error
+\t         IMD_State = 0 -> No Error
+";
+CM_ SG_ 3221225472 AMS_State "Actual Error os AMS, AMS_State = 1 -> Error
+\t           AMS_State = 0 -> No Error
+Signal before the Latching Circuit Logic";
+CM_ BO_ 512 "Multiply the uint16_t with 0.0001uV
+";
+CM_ SG_ 771 S4_T1 "These values needs to be multiplied with 0.0001uV in order to get the correct value.
+";
+CM_ BO_ 255 "Signals pertaining to the SDC that the Fusebox MCU gets";
+CM_ SG_ 255 AMS_OK "Boolean indicating status of AMS. AMS_OK == 1 means AMS closed.";
+CM_ SG_ 255 IMD_ERROR "Boolean indicating status of IMD. IMD_ERROR == 1 means IMD OPEN.";
+CM_ SG_ 255 Pre_Complete "Pre_Complete == 1 means precharge complete.";
+CM_ SG_ 255 Over_60V "Over_60V == 1 -> Over 60V present after AIRs";
+CM_ SG_ 255 SDC_OK "SDC debug variable for Fusebox person. Doesn't indicate SDC closed!";
+CM_ SG_ 255 AUX_AIR_Minus "AUX_AIR_Minus == 1 -> AIR- is open.";
+CM_ SG_ 255 AUX_AIR_Plus "AUX_AIR_Plus == 1 -> AIR+ is open.";
+CM_ SG_ 255 Pre_Relay_State "Pre_Relay_State == 0 -> Precharge relay closed";
+CM_ SG_ 255 AMS_ERROR_Latched "AMS_ERROR_Latched indicates the state of AMS on SDC. If AMS_OK and AMS_ERROR_Latched, the Reset_SDC button needs to be pressed to clear the error.";
+CM_ SG_ 255 IMD_ERROR_Latched "IMD_ERROR_Latched indicates the state of IMD on SDC. If (NOT)IMD_ERROR and IMD_ERROR_Latched, the Reset_SDC button needs to be pressed to clear the error.";
+CM_ BO_ 780 "Temperatures of DCDC thermistors and LV Current";
+CM_ SG_ 780 DCDC_Vicor_Temperature "Vicor (Fixed Ratio) temperature in Celsius";
+CM_ SG_ 780 DCDC_RECOM_Temperature "RECOM (Step down) temperature in Celsius";
+CM_ SG_ 780 DCDC_LV_Current "LV Current measurement by TI Hall Effect Sensor on DCDC PCB";
+CM_ BO_ 258 "Voltage and Current High Voltage Mesurements ";
+CM_ SG_ 258 I_DC_LEM "The DC current that measures the LEM";
+CM_ SG_ 258 Accumulator_Voltage "The total accumulator voltage";
+CM_ BO_ 384 "Min Max Voltages for Segment 1,2";
+CM_ SG_ 384 S1_Min "Segment 1 Minimum Cell Voltage";
+CM_ SG_ 384 S1_Max "Segment 1, Maximu Cell Voltage ";
+CM_ SG_ 384 S2_Min "Segment 2 Minimum Cell Voltage";
+CM_ SG_ 384 S2_Max "Segment 2, Maximum Cell Voltage";
+CM_ BO_ 385 "Min Max Voltages for Segment 3,4
+";
+CM_ SG_ 385 S3_Min "Segment 3 Minimum Cell Voltage";
+CM_ SG_ 385 S3_Max "Segment 3 Maximun
+ Cell Voltage
+";
+CM_ SG_ 385 S4_Min "Segment 4 Minimum Cell Voltage";
+CM_ SG_ 385 S4_Max "Segment 4 Maximum Cell Voltage";
+CM_ BO_ 386 "Min Max Voltages for Segment 5,6";
+CM_ SG_ 386 S5_Min "Segment 5, Minimum Cell Voltage";
+CM_ SG_ 386 S5_Max "Segment 5, Maximum Cell Voltage";
+CM_ SG_ 386 S6_Min "Segment 6, Minimum Cell Voltage";
+CM_ SG_ 386 S6_Max "Segment 6, Maximum Cell Voltage";
+CM_ BO_ 387 "Min Max Voltages for Segment 7,8";
+CM_ SG_ 387 S7_Min "Segment 7, Minimum Cell Voltage";
+CM_ SG_ 387 S7_Max "Segment 7, Maximum Cell Voltage";
+CM_ SG_ 387 S8_Min "Segment 8, Minimum Cell Voltage";
+CM_ SG_ 387 S8_Max "Segment 8, Maximum Cell Voltage";
+CM_ BO_ 388 "Min Max Voltages for Segment 9,10";
+CM_ SG_ 388 S9_Min "Segment 9, Minimum Cell Voltage";
+CM_ SG_ 388 S9_Max "Segment 9, Maximum Cell Voltage";
+CM_ SG_ 388 S10_Min "Segment 10, Minimum Cell Voltage";
+CM_ SG_ 388 S10_Max "Segment 10, Maximum Cell Voltage";
+CM_ BO_ 389 "Min Max Voltages for Segment 11,12";
+CM_ SG_ 389 S11_Min "Segment 11, Minimum Cell Voltage";
+CM_ SG_ 389 S11_Max "Segment 11, Maximum Cell Voltage";
+CM_ SG_ 389 S12_Min "Segment 12, Minimum Cell Voltage";
+CM_ SG_ 389 S12_Max "Segment 12, Maximum Cell Voltage";
+CM_ BO_ 390 "Max Temperature for Segments 1,2,3,4";
+CM_ SG_ 390 S1_Max_Temp "Segment 1 Max Temperature";
+CM_ SG_ 390 S2_Max_Temp "Segment 2 Max Temperature";
+CM_ SG_ 390 S3_Max_Temp "Segment 3 Max Temperature";
+CM_ SG_ 390 S4_Max_Temp "Segment 4 Max Temperature";
+CM_ BO_ 391 "Max Temperature for Segments 5,6,7,8";
+CM_ SG_ 391 S5_Max_Temp "Segment 5 Max Temperature";
+CM_ SG_ 391 S6_Max_Temp "Segment 6 Max Temperature";
+CM_ SG_ 391 S7_Max_Temp "Segment 7 Max Temperature";
+CM_ SG_ 391 S8_Max_Temp "Segment 8 Max Temperature";
+CM_ BO_ 392 "Max Temperature for Segments 9,10,11,12";
+CM_ SG_ 392 S9_Max_Temp "Segment 9 Max Temperature";
+CM_ SG_ 392 S10_Max_Temp "Segment 10 Max Temperature";
+CM_ SG_ 392 S11_Max_Temp "Segment 11 Max Temperature";
+CM_ SG_ 392 S12_Max_Temp "Segment 12 Max Temperature";
+CM_ BO_ 2 "Voltage and Temperature Thressholds for the BMS from VCU";
+CM_ SG_ 2 Overvoltage "The overvoltage threshold (4.2 * 10000 typical)
+";
+CM_ SG_ 2 Undervoltage "The undervoltage threshold (typical 3.2 * 10000)";
+CM_ SG_ 2 Overtemperature "The overtemperature threshold (60 * 100 typical)";
+CM_ BO_ 1026 "Charging Flag and PWM Values for the Fans";
+CM_ SG_ 1026 Charging "Charging Flag, becomes one when the charger sends this value in case of charging";
+CM_ SG_ 1026 FANS_PWM "PWM signal for the TSAC Fans, from 0 up to 100
+";
+CM_ SG_ 1026 Hall_PWM "PWM Signal for the Hall Fan, from 0 up to 100
+";
+CM_ BO_ 25 "Message containing booleans for AddAct and SDC Reset buttons, for Fusebox";
+CM_ SG_ 25 AddAct "AddAct button. It is the internal (dashboard) button if Mode == 1 (Manual), and the external button if Mode == 0 (Driverless)";
+CM_ SG_ 25 RESET_SDC "Reset SDC button near master switches";
+CM_ BO_ 256 "Signals pertaining to TSAL_GREEN checks that the Fusebox MCU gets
+";
+CM_ SG_ 256 TSAL_GREEN "TSAL_GREEN == 1 -> Signal for TSAL to light green (GREEN_checks passed and no SafeState_ERROR)";
+CM_ SG_ 256 GREEN_Checks "GREEN_Checks == 1 -> Rules' conditions for TSAL_GREEN to light are true";
+CM_ SG_ 256 SafeState_ERROR "SafeState_ERROR == 1 -> SafeState error latched";
+CM_ SG_ 256 SafeState_OK "SafeState_OK == 0 -> SafeState error detection. SafeState_ERROR must persist for ~250ms for SafeState_OK to latch to 0";
+CM_ SG_ 256 Voltage_OK "Voltage_OK == 0 -> SafeState error by voltage measurement";
+CM_ SG_ 256 Pre_OK "PRE_OK == 0 -> SafeState error by precharge";
+CM_ SG_ 256 AIR_PLUS_OK "AIR_PLUS_OK == 0 -> SafeState error by AIR+";
+CM_ SG_ 256 AIR_MINUS_OK "AIR_MINUS_OK == 0 -> SafeState error by AIR-";
+CM_ BO_ 2566869221 "Signals sent back by Elcon UHF 6.6kW (HK-J-H650-12) ";
+CM_ SG_ 2566869221 OutputVoltage "Output Voltage";
+CM_ SG_ 2566869221 OutputCurrent "Output Current";
+CM_ SG_ 2566869221 HWStatus "Charger status";
+CM_ SG_ 2566869221 Temperature "Charger temperature";
+CM_ SG_ 2566869221 InputVoltage "Charger input voltage";
+CM_ SG_ 2566869221 State "Charger starting state";
+CM_ SG_ 2566869221 CommunicationState "Charger communication state";
+CM_ BO_ 2550588916 "Signals sent by Charger PCB MCU to Elcon Charger";
+CM_ SG_ 2550588916 MaxVoltage "Max Allowable Charging Terminal Voltage";
+CM_ SG_ 2550588916 MaxCurrent "Max Allowable Charging Current";
+CM_ SG_ 2550588916 Control "Toggle charging";
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BO_  "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN","reserved","J1939PG","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","StandardCAN_FD","ExtendedCAN_FD";
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","Event","CyclicIfActive","SpontanWithDelay","CyclicAndSpontan","CyclicAndSpontanWithDelay";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 0;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 0;
+BA_DEF_ SG_  "GenSigStartValue" FLOAT 0 0;
+BA_DEF_DEF_  "DBName" "Cluster";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "VFrameFormat" "StandardCAN";
+BA_DEF_DEF_  "GenMsgSendType" "Cyclic";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_ "GenMsgCycleTime" BO_ 255 10;
+BA_ "GenMsgCycleTime" BO_ 780 10;
+BA_ "GenMsgCycleTime" BO_ 2 100;
+BA_ "VFrameFormat" BO_ 1026 0;
+BA_ "GenMsgCycleTime" BO_ 1026 50;
+BA_ "GenMsgCycleTime" BO_ 25 10;
+BA_ "GenMsgCycleTime" BO_ 256 10;
+BA_ "GenMsgCycleTime" BO_ 2566869221 1000;
+BA_ "GenMsgCycleTime" BO_ 2550588916 1000;
+VAL_ 1026 Charging 1 "Charging" 0 "Not charging" ;
+VAL_ 2566869221 HWStatus 0 "HW_STATUS_OK" 1 "HW_STATUS_FAIL" ;
+VAL_ 2566869221 Temperature 0 "TEMP_OK" 1 "TEMP_FAULT" ;
+VAL_ 2566869221 InputVoltage 0 "INPUT_VOLTAGE_OK" 1 "INPUT_VOLTAGE_FAULT" ;
+VAL_ 2566869221 State 0 "STATE_CHARGING" 1 "STATE_OFF" ;
+VAL_ 2566869221 CommunicationState 0 "COMM_STATE_OK" 1 "COMM_STATE_TIMEOUT" ;
+VAL_ 2550588916 Control 1 "CHARGING_STOP" 0 "CHARGING_START" ;
+
