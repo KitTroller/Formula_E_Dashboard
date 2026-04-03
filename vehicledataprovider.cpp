@@ -370,7 +370,7 @@ void VehicleDataProvider::parseCanMessage(uint32_t canId, uint8_t dlc, const QBy
         if (dlc >= 2) UPDATE_VAL(m_throttleVal, extractU16(data, 0) * 0.001, throttleValChanged);
         break;
     case 101: // Brake Pressure
-        if (dlc >= 2) UPDATE_VAL(m_brakePress, std::min((extractU16(data, 0) * 0.01) / 100.0, 1.0), brakePressChanged);
+        if (dlc >= 2) UPDATE_VAL(m_brakePress, std::min((extractU16(data, 0) * 0.01) / 200.0, 1.0), brakePressChanged);
         break;
     case 1799: // SensoricSolutions Accel
         if (dlc >= 4) {
