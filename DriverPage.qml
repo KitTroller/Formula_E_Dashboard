@@ -2,7 +2,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Shapes    // Required for GPU-accelerated geometry
-import QtQuick.Effects   // Required for MultiEffect (Drop shadows/glows)
+
+//import QtQuick.Effects   // Required for MultiEffect (Drop shadows/glows)
 
 Item {
     id: root
@@ -1114,12 +1115,12 @@ Item {
                     color: "#ffcc00"
 
                     // Native GPU Drop Shadow for the glow effect
-                    layer.enabled: true
+                    /*layer.enabled: true
                     layer.effect: MultiEffect {
                         shadowEnabled: true
                         shadowColor: "#ffcc00"
                         shadowBlur: 1.0
-                    }
+                    }*/
 
                     // Smooth hardware-accelerated movement
                     Behavior on x {
