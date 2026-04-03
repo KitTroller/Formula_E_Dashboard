@@ -121,7 +121,7 @@ VehicleDataProvider::VehicleDataProvider(QObject *parent)
     m_serial = new QSerialPort(this);
 
     // Virtual port for testing. On the Raspberry Pi, this will be "/dev/ttyAMA0" or "/dev/ttyUSB0"
-    m_serial->setPortName("/tmp/ttyV0");
+    m_serial->setPortName("/dev/serial0");
     m_serial->setBaudRate(QSerialPort::Baud115200);
 
     // Wire the hardware interrupt (readyRead) to our software slot (parseUartData)
