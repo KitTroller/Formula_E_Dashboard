@@ -15,6 +15,36 @@ Window {
     VehicleDataProvider {
         id: telemetryProvider
     }
+
+    Connections {
+        target: telemetryProvider
+
+        function onNavigateNextPage() {
+            // If on Driver page, push the Diagnostics page
+            if (stackView.depth === 1) {
+                stackView.push(Qt.resolvedUrl("DiagnosticPage.qml"), {
+                                   "telemetry": telemetryProvider
+                               })
+            } 
+            // If on Diagnostics page, try to swipe to the next tab
+            else if (stackView.currentItem && stackView.currentItem.objectName === "diagnosticPage") {
+                // We'll add an increment function to DiagnosticPage in the next step
+                stackView.currentItem.nextTab()
+            }
+        }
+
+        function onNavigatePrevPage() {
+            // If on Diagnostics page, try to swipe left. If on first tab, pop out.
+            if (stackView.currentItem && stackView.currentItem.objectName === "diagnosticPage") {
+                if (!stackView.currentItem.prevTab()) {
+                    stackView.pop()
+                }
+            } else if (stackView.depth > 1) {
+                stackView.pop()
+            }
+        }
+    }
+
     Shortcut {
         sequence: "Escape"
         onActivated: Qt.quit()

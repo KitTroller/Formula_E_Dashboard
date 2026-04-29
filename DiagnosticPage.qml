@@ -4,9 +4,27 @@ import QtQuick.Layouts
 
 Item {
     id: root
+    objectName: "diagnosticPage"
     width: 800
     height: 480
     property var telemetry
+
+    // Navigation Functions for hardware rotary dial
+    function nextTab() {
+        if (swipeView.currentIndex < swipeView.count - 1) {
+            swipeView.currentIndex++
+            return true
+        }
+        return false // Max tab reached
+    }
+
+    function prevTab() {
+        if (swipeView.currentIndex > 0) {
+            swipeView.currentIndex--
+            return true
+        }
+        return false // At first tab, tells main window to pop
+    }
 
     // Diagnostic Background (Slightly different from Driver page)
     Rectangle {

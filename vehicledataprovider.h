@@ -21,12 +21,12 @@ class VehicleDataProvider : public QObject{
     Q_PROPERTY(double timeDelta READ timeDelta NOTIFY timeDeltaChanged) // Added this
 
     //Status indicators
-    Q_PROPERTY(bool coolingActive READ coolingActive NOTIFY coolingActiveChanged)
-    Q_PROPERTY(bool tvActive READ tvActive NOTIFY tvActiveChanged)
-    Q_PROPERTY(bool regenActive READ regenActive NOTIFY regenActiveChanged)
-    Q_PROPERTY(bool ssActive READ ssActive NOTIFY ssActiveChanged)
-    Q_PROPERTY(bool tcWarning READ tcWarning NOTIFY tcWarningChanged)
-    Q_PROPERTY(bool radioActive READ radioActive NOTIFY radioActiveChanged)
+    Q_PROPERTY(bool coolingActive READ coolingActive WRITE setCoolingActive NOTIFY coolingActiveChanged)
+    Q_PROPERTY(bool tvActive READ tvActive WRITE setTvActive NOTIFY tvActiveChanged)
+    Q_PROPERTY(bool regenActive READ regenActive WRITE setRegenActive NOTIFY regenActiveChanged)
+    Q_PROPERTY(bool ssActive READ ssActive WRITE setSsActive NOTIFY ssActiveChanged)
+    Q_PROPERTY(bool tcWarning READ tcWarning WRITE setTcWarning NOTIFY tcWarningChanged)
+    Q_PROPERTY(bool radioActive READ radioActive WRITE setRadioActive NOTIFY radioActiveChanged)
 
     //Accumulator dignostics
     Q_PROPERTY(double minCellVoltage READ minCellVoltage NOTIFY minCellVoltageChanged)
@@ -121,6 +121,20 @@ class VehicleDataProvider : public QObject{
 public:
     explicit VehicleDataProvider(QObject *parent = nullptr);
 
+    // Setters
+    void setCoolingActive(bool active);
+    void setTvActive(bool active);
+    void setRegenActive(bool active);
+    void setSsActive(bool active);
+    void setTcWarning(bool active);
+    void setRadioActive(bool active);
+
+    // Call these directly from your QML buttons/sliders
+    Q_INVOKABLE void toggleTractionControl(bool enable);
+    Q_INVOKABLE void toggleTorqueVectoring(bool enable);
+    Q_INVOKABLE void toggleRegen(bool enable);
+    Q_INVOKABLE void setKnobValue(int index, float value);
+
     // Get Functions
     int speed() const; double lapTime() const; double timeDelta() const; int lapCount() const;
     double accelX() const; double accelY() const; double throttleVal() const;
@@ -147,6 +161,12 @@ public:
     double cell1MaxV() const; double cell2MaxV() const; double cell3MaxV() const; double cell4MaxV() const; double cell5MaxV() const; double cell6MaxV() const; double cell7MaxV() const; double cell8MaxV() const; double cell9MaxV() const; double cell10MaxV() const; double cell11MaxV() const; double cell12MaxV() const;
     double cell1Temp() const; double cell2Temp() const; double cell3Temp() const; double cell4Temp() const; double cell5Temp() const; double cell6Temp() const; double cell7Temp() const; double cell8Temp() const; double cell9Temp() const; double cell10Temp() const; double cell11Temp() const; double cell12Temp() const;
 signals:
+    // Navigation Signals for QML
+    void navigateNextPage();
+    void navigatePrevPage();
+    void selectMission();
+    void toggleDiagnosticTab();
+
     // Hardware Interrupt Triggers
     void speedChanged(); void lapTimeChanged(); void timeDeltaChanged(); void lapCountChanged();
     void accelXChanged(); void accelYChanged(); void throttleValChanged();
@@ -225,5 +245,9 @@ private:
 
     void processIncomingByte(uint8_t byte);
     void parseCanMessage(uint32_t canId, uint8_t dlc, const QByteArray& data);
+    
+    // Transmission and Steering Wheel Handler
+    void sendUartCanMessage(uint32_t canId, uint8_t dlc, const QByteArray& payload);
+    void handleSteeringWheelInput(uint8_t buttonId, uint8_t action);
 
 };

@@ -136,7 +136,14 @@ VehicleDataProvider::VehicleDataProvider(QObject *parent)
 }
 
 
-//THE READ BUFFERS (Getters)
+//THE READ/WRITE BUFFERS (Getters & Setters)
+void VehicleDataProvider::setCoolingActive(bool active) { if(m_coolingActive != active) { m_coolingActive = active; emit coolingActiveChanged(); } }
+void VehicleDataProvider::setTvActive(bool active) { if(m_tvActive != active) { m_tvActive = active; emit tvActiveChanged(); } }
+void VehicleDataProvider::setRegenActive(bool active) { if(m_regenActive != active) { m_regenActive = active; emit regenActiveChanged(); } }
+void VehicleDataProvider::setSsActive(bool active) { if(m_ssActive != active) { m_ssActive = active; emit ssActiveChanged(); } }
+void VehicleDataProvider::setTcWarning(bool active) { if(m_tcWarning != active) { m_tcWarning = active; emit tcWarningChanged(); } }
+void VehicleDataProvider::setRadioActive(bool active) { if(m_radioActive != active) { m_radioActive = active; emit radioActiveChanged(); } }
+
 int VehicleDataProvider::speed() const { return m_speed; }
 double VehicleDataProvider::lapTime() const { return m_lapTime; }
 double VehicleDataProvider::timeDelta() const { return m_timeDelta; }
@@ -199,6 +206,92 @@ double VehicleDataProvider::cell1MinV() const { return m_cell1MinV; } double Veh
 double VehicleDataProvider::cell1MaxV() const { return m_cell1MaxV; } double VehicleDataProvider::cell2MaxV() const { return m_cell2MaxV; } double VehicleDataProvider::cell3MaxV() const { return m_cell3MaxV; } double VehicleDataProvider::cell4MaxV() const { return m_cell4MaxV; } double VehicleDataProvider::cell5MaxV() const { return m_cell5MaxV; } double VehicleDataProvider::cell6MaxV() const { return m_cell6MaxV; } double VehicleDataProvider::cell7MaxV() const { return m_cell7MaxV; } double VehicleDataProvider::cell8MaxV() const { return m_cell8MaxV; } double VehicleDataProvider::cell9MaxV() const { return m_cell9MaxV; } double VehicleDataProvider::cell10MaxV() const { return m_cell10MaxV; } double VehicleDataProvider::cell11MaxV() const { return m_cell11MaxV; } double VehicleDataProvider::cell12MaxV() const { return m_cell12MaxV; }
 double VehicleDataProvider::cell1Temp() const { return m_cell1Temp; } double VehicleDataProvider::cell2Temp() const { return m_cell2Temp; } double VehicleDataProvider::cell3Temp() const { return m_cell3Temp; } double VehicleDataProvider::cell4Temp() const { return m_cell4Temp; } double VehicleDataProvider::cell5Temp() const { return m_cell5Temp; } double VehicleDataProvider::cell6Temp() const { return m_cell6Temp; } double VehicleDataProvider::cell7Temp() const { return m_cell7Temp; } double VehicleDataProvider::cell8Temp() const { return m_cell8Temp; } double VehicleDataProvider::cell9Temp() const { return m_cell9Temp; } double VehicleDataProvider::cell10Temp() const { return m_cell10Temp; } double VehicleDataProvider::cell11Temp() const { return m_cell11Temp; } double VehicleDataProvider::cell12Temp() const { return m_cell12Temp; }
 
+// Q_INVOKABLE UI INTERACTION
+void VehicleDataProvider::toggleTractionControl(bool enable) {
+    setTcWarning(enable);
+    setKnobValue(9, enable ? 1.0f : 0.0f); // TCON = 9
+}
+
+void VehicleDataProvider::toggleTorqueVectoring(bool enable) {
+    setTvActive(enable);
+    setKnobValue(8, enable ? 1.0f : 0.0f); // TVON = 8
+}
+
+void VehicleDataProvider::toggleRegen(bool enable) {
+    setRegenActive(enable);
+    setKnobValue(7, enable ? 1.0f : 0.0f); // REGENON = 7
+}
+
+void VehicleDataProvider::setKnobValue(int index, float value) {
+    QByteArray payload;
+    payload.resize(5); // DLC is 5 for DASH_TUNING_VCU
+    payload[0] = static_cast<uint8_t>(index);
+    memcpy(payload.data() + 1, &value, sizeof(float));
+
+    // Send CAN ID 106 (0x6A), DLC 5
+    sendUartCanMessage(106, 5, payload);
+}
+
+// UART TRANSMITTER
+void VehicleDataProvider::sendUartCanMessage(uint32_t canId, uint8_t dlc, const QByteArray& data) {
+    if (!m_serial || !m_serial->isOpen()) return;
+
+    QByteArray uartPacket;
+    uartPacket.append(static_cast<char>(0xAA)); // Sync byte
+
+    // 32-bit CAN ID (Little-Endian to match your receiver FSM)
+    uartPacket.append(static_cast<char>(canId & 0xFF));
+    uartPacket.append(static_cast<char>((canId >> 8) & 0xFF));
+    uartPacket.append(static_cast<char>((canId >> 16) & 0xFF));
+    uartPacket.append(static_cast<char>((canId >> 24) & 0xFF));
+
+    uartPacket.append(static_cast<char>(dlc));  // DLC
+    uartPacket.append(data);                    // Payload
+
+    // Calculate Checksum (XOR logic matches your receiver)
+    uint8_t checksum = dlc;
+    for (int i = 0; i < data.size(); i++) {
+        checksum ^= static_cast<uint8_t>(data[i]);
+    }
+    uartPacket.append(static_cast<char>(checksum));
+
+    // Dispatch to hardware
+    m_serial->write(uartPacket);
+}
+
+// STEERING WHEEL INPUT HANDLER
+void VehicleDataProvider::handleSteeringWheelInput(uint8_t buttonId, uint8_t action) {
+    // 1. NAVIGATION: Rotary Encoder 1 Turned Clockwise (EN1_ID / S1_ID)
+    if (buttonId == 0x06 && action == 0x01) { // 0x01 = CWRot
+        emit navigateNextPage();
+    }
+    // Rotary Encoder 1 Turned Counter-Clockwise
+    else if (buttonId == 0x06 && action == 0x02) { // 0x02 = CCWRot
+        emit navigatePrevPage();
+    }
+    
+    // 2. CAR CONTROLS: Right Button (REGEN)
+    else if (buttonId == 0x08 && action == 0x01) { // RB_ID
+        bool newState = !m_regenActive;
+        setRegenActive(newState);
+        setKnobValue(7, newState ? 1.0f : 0.0f);
+    }
+    
+    // 3. CAR CONTROLS: Left Button (TRACTION CONTROL)
+    else if (buttonId == 0x09 && action == 0x01) { // LB_ID
+        bool newState = !m_tcWarning;
+        setTcWarning(newState);
+        setKnobValue(9, newState ? 1.0f : 0.0f);
+    }
+
+    // 4. CAR CONTROLS: Inner Left Button (TORQUE VECTORING)
+    else if (buttonId == 0x0E && action == 0x01) { // IL_ID
+        bool newState = !m_tvActive;
+        setTvActive(newState);
+        setKnobValue(8, newState ? 1.0f : 0.0f);
+    }
+}
+
 //THE UART INTERRUPT SERVICE ROUTINE
 // ==========================================
 // THE NEW UART INGESTION LOOP
@@ -232,6 +325,21 @@ void VehicleDataProvider::processIncomingByte(uint8_t byte) {
         // Reconstruct the 32-bit CAN ID (Little-Endian)
         m_currentId |= (static_cast<uint32_t>(byte) << (m_bytesRead * 8));
         m_bytesRead++;
+        
+        // INTERCEPT STEERING WHEEL 4-BYTE PACKET [0xAA, MSG_ID, VALUE, CHECKSUM]
+        if (m_bytesRead == 3) {
+            uint8_t msgId = m_currentId & 0xFF;
+            uint8_t value = (m_currentId >> 8) & 0xFF;
+            uint8_t expectedChecksum = 0xAA ^ msgId ^ value;
+            
+            if (msgId >= 0x06 && msgId <= 0x0E && byte == expectedChecksum) {
+                // SUCCESS! It's a physical button press, not a CAN packet header
+                handleSteeringWheelInput(msgId, value);
+                m_rxState = WAIT_SYNC; // Reset the FSM
+                break;
+            }
+        }
+
         if (m_bytesRead == 4) {
             m_rxState = READ_DLC;
         }

@@ -39,3 +39,10 @@ FormulaDash
 .DS_Store
 .AppleDouble
 .LSOverride
+# ==========================================
+# 5. Other Niggas
+# ==========================================
+TELEMETRY_AUDIT.md
+PIPELINE_ENGINEERING.md
+WHEEL_INTEGRATION_AUDIT.md
+MASTERCLASS.md
