@@ -26,9 +26,9 @@ qt_add_qml_module(appFormulaDash
         vehicledataprovider.cpp
     RESOURCES
         assets/aristurtle_logo.png
-        assets/background_3.png
+
         assets/team_logo_right.png
-        assets/background_bold_3.png
+
         assets/background_bold_1.png
         assets/radio_off.png
         assets/radio_on.png

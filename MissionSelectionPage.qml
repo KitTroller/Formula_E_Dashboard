@@ -6,13 +6,47 @@ Item {
     width: 800
     height: 480
     id: missionRoot
+
+    // Backend handle injected from Main.qml's stackView.push(). Used to transmit
+    // the selected mission code (1..6) out the UART on confirm.
+    property var telemetry
+
+    // ---- Steering-wheel hooks (called from Main.qml) ----
+    // Encoder 3 scroll moves the highlight; encoder push confirms.
+    function wheelScrollDown() {
+        if (missionList.currentIndex < missionList.count - 1)
+            missionList.currentIndex++;
+    }
+    function wheelScrollUp() {
+        if (missionList.currentIndex > 0)
+            missionList.currentIndex--;
+    }
+    function wheelSelect() {
+        confirmMission();
+    }
+
+    // Single source of truth for confirming a mission (touch CONFIRM + encoder push).
+    function confirmMission() {
+        var selectedMission = missionList.model[missionList.currentIndex];
+        console.log("Mission Locked: " + selectedMission);
+
+        // Transmit the mission code (1..6) over the serial port.
+        // currentIndex 0..5 maps directly to MANUAL..EBS, so +1.
+        if (missionRoot.telemetry)
+            missionRoot.telemetry.selectMissionMode(missionList.currentIndex + 1);
+
+        missionRoot.StackView.view.push(Qt.resolvedUrl("ActiveMissionPage.qml"), {
+            "missionName": selectedMission
+        });
+    }
+
     // Premium dark engineering background
     Rectangle {
         anchors.fill: parent
         color: "#050a15"
 
         // Subtle grid background
-        Canvas {
+        /*Canvas {
             anchors.fill: parent
             onPaint: {
                 var ctx = getContext("2d")
@@ -31,7 +65,7 @@ Item {
                     ctx.stroke()
                 }
             }
-        }
+        }*/
     }
 
     ColumnLayout {
@@ -58,9 +92,9 @@ Item {
             clip: true
             spacing: 10
 
-            // FIX: Removed snapMode for smooth scrolling, added boundsBehavior
+            // Removed snapMode for smooth scrolling, added boundsBehavior
             boundsBehavior: Flickable.StopAtBounds
-            bottomMargin: 20 // FIX: Gives "EBS TEST" room to breathe at the bottom!
+            bottomMargin: 20 // Gives "EBS TEST" room to breathe at the bottom!
 
             model: ["MANUAL DRIVING", "ACCELERATION", "SKIDPAD", "AUTOCROSS", "TRACKDRIVE", "EBS TEST"]
 
@@ -125,15 +159,7 @@ Item {
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: {
-                    var selectedMission = missionList.model[missionList.currentIndex]
-                    console.log("Mission Locked: " + selectedMission)
-
-                    missionRoot.StackView.view.push(
-                                Qt.resolvedUrl("ActiveMissionPage.qml"), {
-                                    "missionName": selectedMission
-                                })
-                }
+                onClicked: missionRoot.confirmMission()
 
                 onPressed: parent.opacity = 0.7
                 onReleased: parent.opacity = 1.0

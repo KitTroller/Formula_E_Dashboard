@@ -18,15 +18,15 @@ class VehicleDataProvider : public QObject{
     Q_PROPERTY(int lapCount READ lapCount NOTIFY lapCountChanged)
     Q_PROPERTY(double throttleVal READ throttleVal NOTIFY throttleValChanged)
     Q_PROPERTY(double brakePress READ brakePress NOTIFY brakePressChanged)
-    Q_PROPERTY(double timeDelta READ timeDelta NOTIFY timeDeltaChanged) // <--- ADD THIS LINE
+    Q_PROPERTY(double timeDelta READ timeDelta NOTIFY timeDeltaChanged) // Added this
 
     //Status indicators
-    Q_PROPERTY(bool coolingActive READ coolingActive NOTIFY coolingActiveChanged)
-    Q_PROPERTY(bool tvActive READ tvActive NOTIFY tvActiveChanged)
-    Q_PROPERTY(bool regenActive READ regenActive NOTIFY regenActiveChanged)
-    Q_PROPERTY(bool ssActive READ ssActive NOTIFY ssActiveChanged)
-    Q_PROPERTY(bool tcWarning READ tcWarning NOTIFY tcWarningChanged)
-    Q_PROPERTY(bool radioActive READ radioActive NOTIFY radioActiveChanged)
+    Q_PROPERTY(bool coolingActive READ coolingActive WRITE setCoolingActive NOTIFY coolingActiveChanged)
+    Q_PROPERTY(bool tvActive READ tvActive WRITE setTvActive NOTIFY tvActiveChanged)
+    Q_PROPERTY(bool regenActive READ regenActive WRITE setRegenActive NOTIFY regenActiveChanged)
+    Q_PROPERTY(bool ssActive READ ssActive WRITE setSsActive NOTIFY ssActiveChanged)
+    Q_PROPERTY(bool tcWarning READ tcWarning WRITE setTcWarning NOTIFY tcWarningChanged)
+    Q_PROPERTY(bool radioActive READ radioActive WRITE setRadioActive NOTIFY radioActiveChanged)
 
     //Accumulator dignostics
     Q_PROPERTY(double minCellVoltage READ minCellVoltage NOTIFY minCellVoltageChanged)
@@ -35,7 +35,7 @@ class VehicleDataProvider : public QObject{
     Q_PROPERTY(double power READ power NOTIFY powerChanged)
     Q_PROPERTY(double powerTarget READ powerTarget NOTIFY powerTargetChanged)
     Q_PROPERTY(int soc READ soc NOTIFY socChanged)
-    Q_PROPERTY(double voltage READ voltage NOTIFY voltageChanged)
+    Q_PROPERTY(double voltage READ voltage NOTIFY voltageChanged)//----------
     Q_PROPERTY(double minCellTemp READ minCellTemp NOTIFY minCellTempChanged)
     Q_PROPERTY(double maxCellTemp READ maxCellTemp NOTIFY maxCellTempChanged)
 
@@ -121,6 +121,25 @@ class VehicleDataProvider : public QObject{
 public:
     explicit VehicleDataProvider(QObject *parent = nullptr);
 
+    // Setters
+    void setCoolingActive(bool active);
+    void setTvActive(bool active);
+    void setRegenActive(bool active);
+    void setSsActive(bool active);
+    void setTcWarning(bool active);
+    void setRadioActive(bool active);
+
+    // Call these directly from your QML buttons/sliders
+    Q_INVOKABLE void toggleTractionControl(bool enable);
+    Q_INVOKABLE void toggleTorqueVectoring(bool enable);
+    Q_INVOKABLE void toggleRegen(bool enable);
+    Q_INVOKABLE void setKnobValue(int index, float value);
+
+    // Mission selection — sends the FSD mission code (1..6) out the UART when the
+    // driver confirms a mission on the MissionSelectionPage.
+    // 1=Manual  2=Acceleration  3=Skidpad  4=Autocross  5=Trackdrive  6=EBS Test
+    Q_INVOKABLE void selectMissionMode(int missionCode);
+
     // Get Functions
     int speed() const; double lapTime() const; double timeDelta() const; int lapCount() const;
     double accelX() const; double accelY() const; double throttleVal() const;
@@ -147,6 +166,15 @@ public:
     double cell1MaxV() const; double cell2MaxV() const; double cell3MaxV() const; double cell4MaxV() const; double cell5MaxV() const; double cell6MaxV() const; double cell7MaxV() const; double cell8MaxV() const; double cell9MaxV() const; double cell10MaxV() const; double cell11MaxV() const; double cell12MaxV() const;
     double cell1Temp() const; double cell2Temp() const; double cell3Temp() const; double cell4Temp() const; double cell5Temp() const; double cell6Temp() const; double cell7Temp() const; double cell8Temp() const; double cell9Temp() const; double cell10Temp() const; double cell11Temp() const; double cell12Temp() const;
 signals:
+    // Navigation signals for QML, driven by the steering-wheel encoders/buttons
+    void navigateNextPage();   // central encoder 1, CW  -> page forward
+    void navigatePrevPage();   // central encoder 1, CCW -> page backward
+    void scrollNext();         // central encoder 3, CW  -> scroll within page
+    void scrollPrev();         // central encoder 3, CCW -> scroll within page
+    void selectPressed();      // encoder push (S1 or S3) -> confirm / enter
+    void navigateBack();       // Back button -> pop to previous page
+    void openMissionSelect();  // Inner-Right button -> open mission-selection page
+
     // Hardware Interrupt Triggers
     void speedChanged(); void lapTimeChanged(); void timeDeltaChanged(); void lapCountChanged();
     void accelXChanged(); void accelYChanged(); void throttleValChanged();
@@ -177,7 +205,6 @@ private slots:
     void parseUartData();
 
 private:
-
     // Internal Memory (The actual C++ variables)
     int m_speed; double m_lapTime; double m_timeDelta; int m_lapCount;
     double m_accelX; double m_accelY; double m_throttleVal;
@@ -199,12 +226,40 @@ private:
     double m_motorTempFL, m_motorTempFR, m_motorTempRL, m_motorTempRR;
     double m_igbtTempFL, m_igbtTempFR, m_igbtTempRL, m_igbtTempRR;
 
-    //Accumulator Variables
+    // Accumulator Variables
     double m_cell1MinV, m_cell2MinV, m_cell3MinV, m_cell4MinV, m_cell5MinV, m_cell6MinV, m_cell7MinV, m_cell8MinV, m_cell9MinV, m_cell10MinV, m_cell11MinV, m_cell12MinV;
     double m_cell1MaxV, m_cell2MaxV, m_cell3MaxV, m_cell4MaxV, m_cell5MaxV, m_cell6MaxV, m_cell7MaxV, m_cell8MaxV, m_cell9MaxV, m_cell10MaxV, m_cell11MaxV, m_cell12MaxV;
     double m_cell1Temp, m_cell2Temp, m_cell3Temp, m_cell4Temp, m_cell5Temp, m_cell6Temp, m_cell7Temp, m_cell8Temp, m_cell9Temp, m_cell10Temp, m_cell11Temp, m_cell12Temp;
 
     QSerialPort *m_serial;
-    QByteArray m_serialBuffer; // A temporary buffer to hold incomplete UART strings
+
+    // ==========================================
+    // NEW: UART BINARY STATE MACHINE DEFINITIONS
+    // ==========================================
+    enum RxState {
+        WAIT_SYNC,
+        READ_ID,
+        READ_DLC,
+        READ_DATA,
+        READ_CHECKSUM
+    };
+
+    RxState m_rxState = WAIT_SYNC;
+
+    uint32_t m_currentId = 0;
+    uint8_t m_currentDlc = 0;
+    QByteArray m_payloadBuffer;
+    int m_bytesRead = 0;
+
+    void processIncomingByte(uint8_t byte);
+    void parseCanMessage(uint32_t canId, uint8_t dlc, const QByteArray& data);
+    
+    // Transmission and Steering Wheel Handler
+    void sendUartCanMessage(uint32_t canId, uint8_t dlc, const QByteArray& payload);
+    void handleSteeringWheelInput(uint8_t buttonId, uint8_t action);
+
+    // Steering-wheel debounce state (one detent / one press = one action)
+    qint64  m_lastRotMs = 0;   uint8_t m_lastRotId = 0;
+    qint64  m_lastBtnMs = 0;   uint8_t m_lastBtnId = 0;
 
 };

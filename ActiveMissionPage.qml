@@ -14,7 +14,7 @@ Item {
         anchors.fill: parent
         color: "#050a15"
 
-        Canvas {
+        /*Canvas {
             anchors.fill: parent
             onPaint: {
                 var ctx = getContext("2d")
@@ -33,7 +33,7 @@ Item {
                     ctx.stroke()
                 }
             }
-        }
+        }*/
     }
 
     ColumnLayout {

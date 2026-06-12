@@ -7,7 +7,7 @@ Window {
     height: 480
     visible: true
     title: "Formula Student Dashboard"
-    visibility: Window.FullScreen
+    visibility:  Window.FullScreen
     color: "black"
 
     //We instantiate the C++ backend here once.
@@ -15,6 +15,70 @@ Window {
     VehicleDataProvider {
         id: telemetryProvider
     }
+
+    Connections {
+        target: telemetryProvider
+
+        function onNavigateNextPage() {
+            // If on Driver page, push the Diagnostics page
+            if (stackView.depth === 1) {
+                stackView.push(Qt.resolvedUrl("DiagnosticPage.qml"), {
+                    "telemetry": telemetryProvider
+                });
+            } else
+            // If on Diagnostics page, try to swipe to the next tab
+            if (stackView.currentItem && stackView.currentItem.objectName === "diagnosticPage") {
+                // We'll add an increment function to DiagnosticPage in the next step
+                stackView.currentItem.nextTab();
+            }
+        }
+
+        function onNavigatePrevPage() {
+            // If on Diagnostics page, try to swipe left. If on first tab, pop out.
+            if (stackView.currentItem && stackView.currentItem.objectName === "diagnosticPage") {
+                if (!stackView.currentItem.prevTab()) {
+                    stackView.pop();
+                }
+            } else if (stackView.depth > 1) {
+                stackView.pop();
+            }
+        }
+
+        // Scroll within the current page (central encoder 3). The page opts in by
+        // defining wheelScrollDown()/wheelScrollUp(); pages without them ignore it.
+        function onScrollNext() {
+            var it = stackView.currentItem;
+            if (it && typeof it.wheelScrollDown === "function")
+                it.wheelScrollDown();
+        }
+        function onScrollPrev() {
+            var it = stackView.currentItem;
+            if (it && typeof it.wheelScrollUp === "function")
+                it.wheelScrollUp();
+        }
+
+        // Encoder push -> let the current page confirm its selection.
+        function onSelectPressed() {
+            var it = stackView.currentItem;
+            if (it && typeof it.wheelSelect === "function")
+                it.wheelSelect();
+        }
+
+        // Back button -> pop one level toward the Driver page.
+        function onNavigateBack() {
+            if (stackView.depth > 1)
+                stackView.pop();
+        }
+
+        // Inner-Right button -> jump straight to mission selection (from Driver).
+        function onOpenMissionSelect() {
+            if (stackView.depth === 1)
+                stackView.push(Qt.resolvedUrl("MissionSelectionPage.qml"), {
+                    "telemetry": telemetryProvider
+                });
+        }
+    }
+
     Shortcut {
         sequence: "Escape"
         onActivated: Qt.quit()
@@ -43,11 +107,11 @@ Window {
             // If we are on the Driver page, push the Diagnostics page
             if (stackView.depth === 1) {
                 stackView.push(Qt.resolvedUrl("DiagnosticPage.qml"), {
-                                   "telemetry": telemetryProvider
-                               })
+                    "telemetry": telemetryProvider
+                });
             } // If we are on the Diagnostics page, pop back to the Driver page
             else {
-                stackView.pop()
+                stackView.pop();
             }
         }
     }
@@ -62,10 +126,12 @@ Window {
         onDoubleClicked: {
             //If on Driver page, push Mission Selection
             if (stackView.depth === 1) {
-                stackView.push(Qt.resolvedUrl("MissionSelectionPage.qml"))
+                stackView.push(Qt.resolvedUrl("MissionSelectionPage.qml"), {
+                    "telemetry": telemetryProvider
+                });
             } // If already on a sub-page, pop back to the Driver page
             else {
-                stackView.pop()
+                stackView.pop();
             }
         }
     }
@@ -89,17 +155,19 @@ Window {
                 return "CRITICAL: CELL UNDERVOLTAGE (" + telemetryProvider.minCellVoltage.toFixed(2) + " V)";
             }
             // PRIORITY 3: Powertrain Temps
-            if (telemetryProvider.igbtTempFL >= maxInverterTempLimit || telemetryProvider.igbtTempFR >= maxInverterTempLimit ||
-                    telemetryProvider.igbtTempRL >= maxInverterTempLimit || telemetryProvider.igbtTempRR >= maxInverterTempLimit) {
+            if (telemetryProvider.igbtTempFL >= maxInverterTempLimit || telemetryProvider.igbtTempFR >= maxInverterTempLimit || telemetryProvider.igbtTempRL >= maxInverterTempLimit || telemetryProvider.igbtTempRR >= maxInverterTempLimit) {
                 return "WARNING: INVERTER OVERTEMP";
             }
             return "";
         }
 
         property color currentWarningColor: {
-            if (telemetryProvider.maxCellTemp >= maxCellTempLimit) return "#ff0000";
-            if (telemetryProvider.minCellVoltage <= minCellVoltageLimit) return "#ff0000";
-            if (telemetryProvider.igbtTempFL >= maxInverterTempLimit) return "#ff9900";
+            if (telemetryProvider.maxCellTemp >= maxCellTempLimit)
+                return "#ff0000";
+            if (telemetryProvider.minCellVoltage <= minCellVoltageLimit)
+                return "#ff0000";
+            if (telemetryProvider.igbtTempFL >= maxInverterTempLimit)
+                return "#ff9900";
             return "transparent";
         }
 
@@ -120,8 +188,16 @@ Window {
         SequentialAnimation on opacity {
             loops: Animation.Infinite
             running: warningManager.isWarningActive
-            NumberAnimation { to: 0.6; duration: 250; easing.type: Easing.InOutQuad }
-            NumberAnimation { to: 1.0; duration: 250; easing.type: Easing.InOutQuad }
+            NumberAnimation {
+                to: 0.6
+                duration: 250
+                easing.type: Easing.InOutQuad
+            }
+            NumberAnimation {
+                to: 1.0
+                duration: 250
+                easing.type: Easing.InOutQuad
+            }
         }
 
         Rectangle {
@@ -131,8 +207,6 @@ Window {
             border.color: "black"
             border.width: 4
             radius: 8
-
-
         }
         Text {
             // 1. Define the strict bounding box with margins so it doesn't touch the borders
@@ -156,8 +230,5 @@ Window {
             style: Text.Outline
             styleColor: "black"
         }
-
-
     }
-
 }
