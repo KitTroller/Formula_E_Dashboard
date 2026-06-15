@@ -6,6 +6,7 @@ Item {
     width: 800
     height: 480
     id: missionRoot
+    objectName: "missionSelectionPage"
 
     // Backend handle injected from Main.qml's stackView.push(). Used to transmit
     // the selected mission code (1..6) out the UART on confirm.

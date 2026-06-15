@@ -19,29 +19,37 @@ Window {
     Connections {
         target: telemetryProvider
 
-        function onNavigateNextPage() {
-            // If on Driver page, push the Diagnostics page
-            if (stackView.depth === 1) {
+        // Linear page model walked by the page-nav rotary (central encoder 1):
+        //   [Mission Select]  <--  [Driver]  -->  [Diagnostics tab0 -> tab1 -> tab2]
+        function onNavigateNextPage() {           // CW / forward (rightward)
+            var it = stackView.currentItem;
+            if (it && it.objectName === "missionSelectionPage") {
+                // Mission sits left of Driver -> forward returns to Driver
+                stackView.pop(null);
+            } else if (stackView.depth === 1) {
+                // Driver -> Diagnostics
                 stackView.push(Qt.resolvedUrl("DiagnosticPage.qml"), {
                     "telemetry": telemetryProvider
                 });
-            } else
-            // If on Diagnostics page, try to swipe to the next tab
-            if (stackView.currentItem && stackView.currentItem.objectName === "diagnosticPage") {
-                // We'll add an increment function to DiagnosticPage in the next step
-                stackView.currentItem.nextTab();
+            } else if (it && it.objectName === "diagnosticPage") {
+                // Advance through the diagnostic tabs (stays put at the last one)
+                it.nextTab();
             }
         }
 
-        function onNavigatePrevPage() {
-            // If on Diagnostics page, try to swipe left. If on first tab, pop out.
-            if (stackView.currentItem && stackView.currentItem.objectName === "diagnosticPage") {
-                if (!stackView.currentItem.prevTab()) {
+        function onNavigatePrevPage() {           // CCW / backward (leftward)
+            var it = stackView.currentItem;
+            if (it && it.objectName === "diagnosticPage") {
+                // Step back through tabs; from the first tab, pop out to Driver
+                if (!it.prevTab())
                     stackView.pop();
-                }
-            } else if (stackView.depth > 1) {
-                stackView.pop();
+            } else if (stackView.depth === 1) {
+                // Driver -> Mission Selection (Mission sits left of Driver)
+                stackView.push(Qt.resolvedUrl("MissionSelectionPage.qml"), {
+                    "telemetry": telemetryProvider
+                });
             }
+            // On Mission Selection (leftmost): turning further back does nothing
         }
 
         // Scroll within the current page (central encoder 3). The page opts in by
@@ -70,12 +78,15 @@ Window {
                 stackView.pop();
         }
 
-        // Inner-Right button -> jump straight to mission selection (from Driver).
+        // Inner-Right button -> jump straight to Mission Selection from ANY page
+        // (previously only worked on the Driver page, so it was dead on Diagnostics).
         function onOpenMissionSelect() {
-            if (stackView.depth === 1)
-                stackView.push(Qt.resolvedUrl("MissionSelectionPage.qml"), {
-                    "telemetry": telemetryProvider
-                });
+            if (stackView.currentItem && stackView.currentItem.objectName === "missionSelectionPage")
+                return;                 // already there
+            stackView.pop(null);        // unwind to Driver (no-op if already there)
+            stackView.push(Qt.resolvedUrl("MissionSelectionPage.qml"), {
+                "telemetry": telemetryProvider
+            });
         }
     }
 

@@ -252,8 +252,9 @@ void VehicleDataProvider::setKnobValue(int index, float value) {
 }
 
 // MISSION SELECT TRANSMITTER
-// Driver confirmed an autonomous mission on the MissionSelectionPage -> push a
-// single ASCII digit ('1'..'6') down the UART for the autonomous/VCU board.
+// Driver confirmed an autonomous mission on the MissionSelectionPage -> send a
+// framed 3-byte packet down the UART for the autonomous/VCU board:
+//   [0xAA header] [ASCII '1'..'6'] [checksum = 0xAA ^ value]
 //   1 = Manual driving   2 = Acceleration   3 = Skidpad
 //   4 = Autocross        5 = Trackdrive     6 = EBS test
 void VehicleDataProvider::selectMissionMode(int missionCode) {
@@ -266,11 +267,13 @@ void VehicleDataProvider::selectMissionMode(int missionCode) {
         return;
     }
 
+    const uint8_t value = static_cast<uint8_t>('0' + missionCode); // ASCII '1'..'6'
     QByteArray cmd;
-    cmd.append(static_cast<char>('0' + missionCode)); // ASCII '1'..'6'
-    // cmd.append('\n'); uncomment αν ο Αστέρης σταματάει να διαβάζει στην αλλαγή γραμμής
+    cmd.append(static_cast<char>(0xAA));               // header / sync byte
+    cmd.append(static_cast<char>(value));              // payload: '1'..'6'
+    cmd.append(static_cast<char>(0xAA ^ value));       // XOR checksum
     m_serial->write(cmd);
-    qDebug() << "Mission select -> UART:" << cmd;
+    qDebug() << "Mission select -> UART:" << cmd.toHex(' ');
 }
 
 // UART TRANSMITTER
@@ -327,9 +330,9 @@ void VehicleDataProvider::handleSteeringWheelInput(uint8_t id, uint8_t value) {
             if (cw) emit navigateNextPage();
             else    emit navigatePrevPage();
             break;
-        case 0x03:                               // central encoder 3 -> scroll in page
-            if (cw) emit scrollNext();
-            else    emit scrollPrev();
+        case 0x03:                               // central encoder 3 -> scroll (direction inverted)
+            if (cw) emit scrollPrev();
+            else    emit scrollNext();
             break;
         default:                                 // EN2 / EN4 / EN5 reserved
             break;
