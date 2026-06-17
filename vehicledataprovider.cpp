@@ -254,11 +254,11 @@ void VehicleDataProvider::setKnobValue(int index, float value) {
 // MISSION SELECT TRANSMITTER
 // Driver confirmed an autonomous mission on the MissionSelectionPage -> send a
 // framed 3-byte packet down the UART for the autonomous/VCU board:
-//   [0xAA header] [ASCII '1'..'6'] [checksum = 0xAA ^ value]
-//   1 = Manual driving   2 = Acceleration   3 = Skidpad
-//   4 = Autocross        5 = Trackdrive     6 = EBS test
+//   [0xAA header] [ASCII '1'..'7'] [checksum = 0xAA ^ value]
+//   1 = Manual driving   2 = Acceleration   3 = Skidpad   4 = Autocross
+//   5 = Trackdrive       6 = EBS test       7 = DV Inspection
 void VehicleDataProvider::selectMissionMode(int missionCode) {
-    if (missionCode < 1 || missionCode > 6) {
+    if (missionCode < 1 || missionCode > 7) {
         qWarning() << "selectMissionMode: ignoring out-of-range code" << missionCode;
         return;
     }
@@ -326,15 +326,11 @@ void VehicleDataProvider::handleSteeringWheelInput(uint8_t id, uint8_t value) {
 
         const bool cw = (value == 1);
         switch (id) {
-        case 0x01:                               // central encoder 1 -> change page
+        case 0x01:                               // central encoder 1 -> page nav (or scroll on mission page)
             if (cw) emit navigateNextPage();
             else    emit navigatePrevPage();
             break;
-        case 0x03:                               // central encoder 3 -> scroll (direction inverted)
-            if (cw) emit scrollPrev();
-            else    emit scrollNext();
-            break;
-        default:                                 // EN2 / EN4 / EN5 reserved
+        default:                                 // EN2..EN5 unused (single-rotary control)
             break;
         }
         return;
@@ -347,8 +343,7 @@ void VehicleDataProvider::handleSteeringWheelInput(uint8_t id, uint8_t value) {
     m_lastBtnMs = now;
 
     switch (id) {
-    case 0x06:                                   // encoder-1 push -> select
-    case 0x0C:                                   // encoder-3 push -> select
+    case 0x06:                                   // encoder-1 push -> select / confirm
         emit selectPressed();
         break;
     case 0x0A:                                   // Back button -> previous page

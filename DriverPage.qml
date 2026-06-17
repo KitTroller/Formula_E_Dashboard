@@ -393,9 +393,6 @@ Item {
                     // ==========================================
                     // HARDWARE ACCELERATED SPLIT HERO GAUGE
                     // ==========================================
-                    // ==========================================
-                    // HARDWARE ACCELERATED SPLIT HERO GAUGE
-                    // ==========================================
                     Shape {
                         anchors.fill: parent
                         layer.enabled: true
@@ -661,12 +658,12 @@ Item {
 
                     // COOLING ICON
                     Item {
-                        Layout.preferredWidth: 35
-                        Layout.preferredHeight: 35
+                        Layout.preferredWidth: 42
+                        Layout.preferredHeight: 42
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
-                            source: "qrc:/FormulaDash/assets/cooling_off.png" // Update to png!
+                            source: "qrc:/FormulaDash/assets/cooling_off.png" // Update to png! εγινε
                             opacity: (root.telemetry && root.telemetry.coolingActive) ? 0.0 : 1.0
                             Behavior on opacity {
                                 NumberAnimation {
@@ -677,7 +674,7 @@ Item {
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
-                            source: "qrc:/FormulaDash/assets/cooling_on.png" // Update to png!
+                            source: "qrc:/FormulaDash/assets/cooling_on.png" // Update to png!...εγινε φυσικα
                             opacity: (root.telemetry && root.telemetry.coolingActive) ? 1.0 : 0.0
                             Behavior on opacity {
                                 NumberAnimation {
@@ -689,8 +686,8 @@ Item {
 
                     // RADIO ICON
                     Item {
-                        Layout.preferredWidth: 35
-                        Layout.preferredHeight: 35
+                        Layout.preferredWidth: 42
+                        Layout.preferredHeight: 42
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -716,8 +713,8 @@ Item {
                     }
                     // TRACTION CONTROL ICON
                     Item {
-                        Layout.preferredWidth: 35
-                        Layout.preferredHeight: 35
+                        Layout.preferredWidth: 42
+                        Layout.preferredHeight: 42
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -747,8 +744,8 @@ Item {
                     Layout.alignment: Qt.AlignRight
                     spacing: 20 // Space between the two icons
                     Item {
-                        Layout.preferredWidth: 35
-                        Layout.preferredHeight: 35
+                        Layout.preferredWidth: 42
+                        Layout.preferredHeight: 42
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -774,8 +771,8 @@ Item {
                     }
 
                     Item {
-                        Layout.preferredWidth: 35
-                        Layout.preferredHeight: 35
+                        Layout.preferredWidth: 42
+                        Layout.preferredHeight: 42
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -800,8 +797,8 @@ Item {
                         }
                     }
                     Item {
-                        Layout.preferredWidth: 35
-                        Layout.preferredHeight: 35
+                        Layout.preferredWidth: 42
+                        Layout.preferredHeight: 42
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -840,14 +837,45 @@ Item {
                     //Text { text: "SIDE SLIP"; color: "white"; font.pixelSize: 13; font.bold: true; Layout.alignment: Qt.AlignRight; opacity: (root.telemetry && root.telemetry.ssActive) ? 1.0 : 0.3 }
                 }
 
-                // 3. THE MAGIC SPRING (Pushes the top items UP and bottom items DOWN)
-                // --- THE MAGIC SPRING ---
+                // 3.  (Pushes the top items UP and bottom items DOWN)
+                // ------
                 // This pushes the Text Alerts UP, and forces Brake Bias & G-Meter safely DOWN
                 //Item { Layout.fillHeight: true }
 
-                // --- BRAKE BIAS (Properly Right-Aligned) ---
+                // --- PEAK G (replaces brake bias) ---
+                // Largest g-force magnitude over the last ~1.5 s, so the driver can
+                // glance at how hard they took the last corner. Source: gMeterContainer.
                 ColumnLayout {
-                    Layout.alignment: Qt.AlignRight // THIS WAS MISSING
+                    Layout.alignment: Qt.AlignRight
+                    spacing: -4
+
+                    Text {
+                        text: "PEAK G"
+                        color: "gray"
+                        font.pixelSize: 14
+                        font.bold: true
+                        Layout.alignment: Qt.AlignRight
+                    }
+                    RowLayout {
+                        Layout.alignment: Qt.AlignRight
+                        Text {
+                            text: gMeterContainer.peakG.toFixed(2)
+                            color: gMeterContainer.peakG >= 1.5 ? "#00ffcc" : "white"
+                            font.pixelSize: 40
+                            font.bold: true
+                        }
+                        Text {
+                            text: "G"
+                            color: "gray"
+                            font.pixelSize: 16
+                            Layout.alignment: Qt.AlignBottom
+                            Layout.bottomMargin: 6
+                        }
+                    }
+                }
+                /* BRAKE BIAS — removed per request; re-enable this block if ever needed
+                ColumnLayout {
+                    Layout.alignment: Qt.AlignRight
                     spacing: -4
 
                     Text {
@@ -855,10 +883,10 @@ Item {
                         color: "gray"
                         font.pixelSize: 14
                         font.bold: true
-                        Layout.alignment: Qt.AlignRight // THIS WAS MISSING
+                        Layout.alignment: Qt.AlignRight
                     }
                     RowLayout {
-                        Layout.alignment: Qt.AlignRight // THIS WAS MISSING
+                        Layout.alignment: Qt.AlignRight
                         Text {
                             property real animatedBias: (root.telemetry ? root.telemetry.brakeBias : 0.0) || 0.0
                             Behavior on animatedBias {
@@ -880,6 +908,7 @@ Item {
                         }
                     }
                 }
+                */
                 // ==========================================
                 // DYNAMIC G-FORCE METER (SMOOTH TRAIL EDITION)
                 // ==========================================
@@ -896,6 +925,11 @@ Item {
                     // The Memory for the Ghost Trail
                     property var trailHistory: []
                     property int maxTrailPoints: 20
+
+                    // Peak-G readout: largest |g| over the last ~1.5 s (shown above the meter)
+                    property real peakG: 0.0
+                    property var gWindow: []
+                    readonly property int peakWindowMs: 1500
 
                     // The Sampler: Records the G-Force 33 times a second (30ms)
                     Timer {
@@ -914,6 +948,21 @@ Item {
                                 newTrail.pop();
                             }
                             gMeterContainer.trailHistory = newTrail;
+
+                            // Rolling peak: magnitude = sqrt(gx^2 + gy^2), keep the last
+                            // ~1.5 s of samples and take the max so it auto-resets after a corner.
+                            var now = Date.now();
+                            var mag = Math.sqrt(gMeterContainer.currentGx * gMeterContainer.currentGx
+                                              + gMeterContainer.currentGy * gMeterContainer.currentGy);
+                            var w = gMeterContainer.gWindow.slice();
+                            w.push({ "t": now, "mag": mag });
+                            while (w.length > 0 && (now - w[0].t) > gMeterContainer.peakWindowMs)
+                                w.shift();
+                            var pk = 0;
+                            for (var i = 0; i < w.length; i++)
+                                if (w[i].mag > pk) pk = w[i].mag;
+                            gMeterContainer.gWindow = w;
+                            gMeterContainer.peakG = pk;
                         }
                     }
 

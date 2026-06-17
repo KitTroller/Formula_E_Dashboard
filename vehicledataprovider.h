@@ -167,13 +167,11 @@ public:
     double cell1Temp() const; double cell2Temp() const; double cell3Temp() const; double cell4Temp() const; double cell5Temp() const; double cell6Temp() const; double cell7Temp() const; double cell8Temp() const; double cell9Temp() const; double cell10Temp() const; double cell11Temp() const; double cell12Temp() const;
 signals:
     // Navigation signals for QML, driven by the steering-wheel encoders/buttons
-    void navigateNextPage();   // central encoder 1, CW  -> page forward
-    void navigatePrevPage();   // central encoder 1, CCW -> page backward
-    void scrollNext();         // central encoder 3, CW  -> scroll within page
-    void scrollPrev();         // central encoder 3, CCW -> scroll within page
-    void selectPressed();      // encoder push (S1 or S3) -> confirm / enter
+    void navigateNextPage();   // central encoder 1, CW  -> page forward (scroll down on mission page)
+    void navigatePrevPage();   // central encoder 1, CCW -> page backward (scroll up on mission page)
+    void selectPressed();      // encoder-1 push (S1) -> confirm / enter
     void navigateBack();       // Back button -> pop to previous page
-    void openMissionSelect();  // Inner-Right button -> open mission-selection page
+    void openMissionSelect();  // Inner-Right button -> toggle mission-selection page
 
     // Hardware Interrupt Triggers
     void speedChanged(); void lapTimeChanged(); void timeDeltaChanged(); void lapCountChanged();

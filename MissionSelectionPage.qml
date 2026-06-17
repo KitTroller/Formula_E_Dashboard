@@ -13,7 +13,7 @@ Item {
     property var telemetry
 
     // ---- Steering-wheel hooks (called from Main.qml) ----
-    // Encoder 3 scroll moves the highlight; encoder push confirms.
+    // Encoder 1 scroll moves the highlight; encoder-1 push confirms.
     function wheelScrollDown() {
         if (missionList.currentIndex < missionList.count - 1)
             missionList.currentIndex++;
@@ -31,8 +31,8 @@ Item {
         var selectedMission = missionList.model[missionList.currentIndex];
         console.log("Mission Locked: " + selectedMission);
 
-        // Transmit the mission code (1..6) over the serial port.
-        // currentIndex 0..5 maps directly to MANUAL..EBS, so +1.
+        // Transmit the mission code (1..7) over the serial port.
+        // currentIndex 0..6 maps directly to MANUAL..DV INSPECTION, so +1.
         if (missionRoot.telemetry)
             missionRoot.telemetry.selectMissionMode(missionList.currentIndex + 1);
 
@@ -97,7 +97,7 @@ Item {
             boundsBehavior: Flickable.StopAtBounds
             bottomMargin: 20 // Gives "EBS TEST" room to breathe at the bottom!
 
-            model: ["MANUAL DRIVING", "ACCELERATION", "SKIDPAD", "AUTOCROSS", "TRACKDRIVE", "EBS TEST"]
+            model: ["MANUAL DRIVING", "ACCELERATION", "SKIDPAD", "AUTOCROSS", "TRACKDRIVE", "EBS TEST", "DV INSPECTION"]
 
             delegate: Rectangle {
                 width: ListView.view.width

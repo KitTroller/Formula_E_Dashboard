@@ -69,7 +69,7 @@ Item {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        height: 50
+        height: 42
         spacing: 2 // Creates a tiny gap between tabs
 
         // Custom Tab Button 1: Accumulator
@@ -251,8 +251,8 @@ Item {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 20
-                anchors.topMargin: 10
+                anchors.margins: 14
+                anchors.topMargin: 6
                 spacing: 40
 
                 // ==========================================
@@ -261,12 +261,12 @@ Item {
                 ColumnLayout {
                     Layout.preferredWidth: 460 // Slightly widened for comfort
                     Layout.fillHeight: true    // Forces this column to take full vertical space
-                    spacing: 8
+                    spacing: 4
 
                     // FIXED TABLE HEADER (Never scrolls)
                     ColumnLayout {
                         Layout.fillWidth: true
-                        spacing: 4
+                        spacing: 2
 
                         RowLayout {
                             Layout.fillWidth: true
@@ -319,12 +319,12 @@ Item {
 
                         // Pass exactly 12 integers to generate 12 rows
                         model: 12
-                        spacing: 2
+                        spacing: 1
                         boundsBehavior: Flickable.StopAtBounds
 
                         delegate: Rectangle {
                             width: ListView.view.width
-                            height: 38
+                            height: 30
                             radius: 6
                             color: index % 2 === 0 ? "#0a1525" : "transparent"
 
@@ -629,8 +629,8 @@ Item {
                     id: wheelDataBox
                     Rectangle {
                         id: boxRoot
-                        width: 195 // Widened to comfortably fit the graph
-                        height: 145
+                        width: 220 // Widened for larger, more readable fonts
+                        height: 180 // taller to fit 6 rows (RPM/torques + motor/IGBT temps)
                         color: "#cc050a15"
                         border.color: "#1a3344"
                         border.width: 1
@@ -662,9 +662,19 @@ Item {
                             // --- COLUMN 1: THE TEXT DATA ---
                             ColumnLayout {
                                 Layout.fillWidth: true
-                                spacing: 1
+                                spacing: 3
 
-                                // TYRE PRESSURE & TEMP HEADER
+                                // WHEEL / TYRE LABEL (pressure & temp hidden — car doesn't send them yet)
+                                Text {
+                                    text: boxRoot.wheelName + " TYRE"
+                                    color: "#00ffcc"
+                                    font.pixelSize: 20
+                                    font.bold: true
+                                    font.letterSpacing: 1
+                                    Layout.alignment: boxRoot.alignFlag
+                                    Layout.bottomMargin: 4
+                                }
+                                /* TYRE PRESSURE & TEMP — re-enable when the car sends tyre data
                                 Text {
                                     text: boxRoot.wheelName + " TYRE: " + boxRoot.tyrePress.toFixed(1) + "b  " + boxRoot.tyreTemp.toFixed(0) + "°C"
                                     color: (boxRoot.tyrePress < 1.0 || boxRoot.tyreTemp > 90) ? "#ff3333" : "#00ffcc"
@@ -673,19 +683,20 @@ Item {
                                     Layout.alignment: boxRoot.alignFlag
                                     Layout.bottomMargin: 4
                                 }
+                                */
                                 // RPM
                                 RowLayout {
                                     Layout.alignment: boxRoot.alignFlag
                                     Text {
                                         text: "RPM:"
                                         color: "#8899aa"
-                                        font.pixelSize: 11
+                                        font.pixelSize: 14
                                         font.bold: true
                                     }
                                     Text {
                                         text: boxRoot.rpm
                                         color: "white"
-                                        font.pixelSize: 14
+                                        font.pixelSize: 18
                                         font.bold: true
                                     }
                                 }
@@ -695,13 +706,13 @@ Item {
                                     Text {
                                         text: "TRQ REQ:"
                                         color: "#8899aa"
-                                        font.pixelSize: 11
+                                        font.pixelSize: 14
                                         font.bold: true
                                     }
                                     Text {
                                         text: boxRoot.torqueReq + " Nm"
                                         color: "#ffcc00"
-                                        font.pixelSize: 14
+                                        font.pixelSize: 18
                                         font.bold: true
                                     }
                                 }
@@ -711,45 +722,34 @@ Item {
                                     Text {
                                         text: "TRQ ACT:"
                                         color: "#8899aa"
-                                        font.pixelSize: 11
+                                        font.pixelSize: 14
                                         font.bold: true
                                     }
                                     Text {
                                         text: boxRoot.torqueAct + " Nm"
                                         color: "white"
-                                        font.pixelSize: 14
+                                        font.pixelSize: 18
                                         font.bold: true
                                     }
                                 }
-                                // MOTOR TEMP
+                                // MOTOR & INVERTER (IGBT) TEMPERATURES
                                 RowLayout {
                                     Layout.alignment: boxRoot.alignFlag
-                                    Text {
-                                        text: "MOTOR:"
-                                        color: "#8899aa"
-                                        font.pixelSize: 11
-                                        font.bold: true
-                                    }
+                                    Text { text: "MOTOR:"; color: "#8899aa"; font.pixelSize: 14; font.bold: true }
                                     Text {
                                         text: boxRoot.motorTemp.toFixed(1) + " °C"
                                         color: boxRoot.motorTemp > 65 ? "#ff3333" : "white"
-                                        font.pixelSize: 14
+                                        font.pixelSize: 18
                                         font.bold: true
                                     }
                                 }
-                                // IGBT TEMP
                                 RowLayout {
                                     Layout.alignment: boxRoot.alignFlag
-                                    Text {
-                                        text: "IGBT:"
-                                        color: "#8899aa"
-                                        font.pixelSize: 11
-                                        font.bold: true
-                                    }
+                                    Text { text: "IGBT:"; color: "#8899aa"; font.pixelSize: 14; font.bold: true }
                                     Text {
                                         text: boxRoot.igbtTemp.toFixed(1) + " °C"
                                         color: boxRoot.igbtTemp > 60 ? "#ff3333" : "white"
-                                        font.pixelSize: 14
+                                        font.pixelSize: 18
                                         font.bold: true
                                     }
                                 }
@@ -851,7 +851,7 @@ Item {
                     id: carWireframe
                     anchors.centerIn: parent
                     width: 240  // This controls the physical horizontal gap between the Left and Right panels
-                    height: 340 // This controls the physical vertical gap between the Front and Rear panels
+                    height: 380 // This controls the physical vertical gap between the Front and Rear panels (raised so the taller wheel boxes don't overlap)
 
                     Image {
                         id: topdownImage
