@@ -4,6 +4,11 @@
 #include <QTimer>
 #include <qqml.h>
 #include <QSerialPort>
+#include <QHash>
+#include <QList>
+#include <QString>
+#include <QByteArray>
+#include <QVariantList>
 
 class VehicleDataProvider : public QObject{
     Q_OBJECT
@@ -135,10 +140,24 @@ public:
     Q_INVOKABLE void toggleRegen(bool enable);
     Q_INVOKABLE void setKnobValue(int index, float value);
 
-    // Mission selection — sends the FSD mission code (1..6) out the UART when the
+    // Mission selection — sends the FSD mission code (1..7) out the UART when the
     // driver confirms a mission on the MissionSelectionPage.
-    // 1=Manual  2=Acceleration  3=Skidpad  4=Autocross  5=Trackdrive  6=EBS Test
+    // 1=Manual 2=Acceleration 3=Skidpad 4=Autocross 5=Trackdrive 6=EBS Test 7=DV Inspection
     Q_INVOKABLE void selectMissionMode(int missionCode);
+
+    // ---- CAN sniffer (DBC-driven, Kvaser-style live trace) ----
+    // Tell the other board to start/stop streaming every CAN message (framed cmd).
+    Q_INVOKABLE void setSnifferActive(bool on);
+    // Full message catalogue from the DBC, sorted by id ascending:
+    //   [{ id, idHex, name, dlc }]  — call once to populate the list.
+    Q_INVOKABLE QVariantList snifferMessages() const;
+    // Has a frame for this id been seen yet?
+    Q_INVOKABLE bool snifferReceived(int id) const;
+    // "—" if never received, else age of the last frame ("7 ms" / "1.3 s").
+    Q_INVOKABLE QString snifferLastSeen(int id) const;
+    // Decoded signals for one message from its latest payload:
+    //   [{ name, value, unit }]  — value is "—" when nothing received yet.
+    Q_INVOKABLE QVariantList snifferDecode(int id) const;
 
     // Get Functions
     int speed() const; double lapTime() const; double timeDelta() const; int lapCount() const;
@@ -171,7 +190,7 @@ signals:
     void navigatePrevPage();   // central encoder 1, CCW -> page backward (scroll up on mission page)
     void selectPressed();      // encoder-1 push (S1) -> confirm / enter
     void navigateBack();       // Back button -> pop to previous page
-    void openMissionSelect();  // Inner-Right button -> toggle mission-selection page
+    void toggleMenu();         // Inner-Right button -> toggle the main menu page
 
     // Hardware Interrupt Triggers
     void speedChanged(); void lapTimeChanged(); void timeDeltaChanged(); void lapCountChanged();
@@ -259,5 +278,34 @@ private:
     // Steering-wheel debounce state (one detent / one press = one action)
     qint64  m_lastRotMs = 0;   uint8_t m_lastRotId = 0;
     qint64  m_lastBtnMs = 0;   uint8_t m_lastBtnId = 0;
+
+    // ---- CAN sniffer data ----
+    // DBC layout (loaded once from the bundled can_dbc.json).
+    struct CanSignal {
+        QString name;
+        int     startBit = 0;
+        int     bitLen   = 0;
+        bool    littleEndian = true;   // CAN_MCU.dbc is all @1 (Intel)
+        bool    isSigned = false;
+        double  factor = 1.0;
+        double  offset = 0.0;
+        QString unit;
+    };
+    struct CanMessageDef {
+        quint32 id = 0;
+        QString name;
+        int     dlc = 0;
+        QList<CanSignal> sigs;
+    };
+    QList<CanMessageDef> m_dbc;                  // sorted by id ascending
+    QHash<quint32, int>  m_dbcIndex;            // id -> index into m_dbc
+
+    // Live capture: latest payload + timing per arbitration id (the "trace").
+    QHash<quint32, QByteArray> m_rawData;
+    QHash<quint32, qint64>     m_rawLastMs;
+
+    void loadDbc();
+    void recordRawFrame(quint32 id, const QByteArray &data);
+    static double decodeSignal(const QByteArray &data, const CanSignal &s);
 
 };

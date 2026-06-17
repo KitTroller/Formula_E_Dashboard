@@ -1,0 +1,5474 @@
+{
+ "messages": [
+  {
+   "id": 0,
+   "name": "APU_RES_INIT",
+   "dlc": 2,
+   "tx": "APU",
+   "signals": [
+    {
+     "name": "Requested_State",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "Addresed_Node",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "name": "APU_STATE_MISSION",
+   "dlc": 1,
+   "tx": "APU",
+   "signals": [
+    {
+     "name": "AS_Mission",
+     "start": 0,
+     "len": 3,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "enum"
+    },
+    {
+     "name": "AS_State",
+     "start": 3,
+     "len": 3,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "enum"
+    },
+    {
+     "name": "AS_Set_Finished",
+     "start": 6,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "bool"
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "name": "APU_COMMAND",
+   "dlc": 2,
+   "tx": "APU",
+   "signals": [
+    {
+     "name": "Treq_DV",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Nm"
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "name": "APU_Tuning_VCU",
+   "dlc": 4,
+   "tx": "APU",
+   "signals": [
+    {
+     "name": "Inverter_RPM_Limit_Percent",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "%"
+    },
+    {
+     "name": "Servo_Start_Speed",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "m/s"
+    },
+    {
+     "name": "Regen_Min_Speed",
+     "start": 16,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "m/s"
+    },
+    {
+     "name": "TC_ON",
+     "start": 24,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "TV_ON",
+     "start": 25,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "REGEN_ON",
+     "start": 26,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "name": "APU_TEMP_THA_ENHMERWTHEI",
+   "dlc": 4,
+   "tx": "APU",
+   "signals": [
+    {
+     "name": "CPU_Temp",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "GPU_Temp",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    }
+   ]
+  },
+  {
+   "id": 25,
+   "name": "APU_ESTIMATION",
+   "dlc": 6,
+   "tx": "ADU",
+   "signals": [
+    {
+     "name": "VelX_Estimation",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "m/s"
+    },
+    {
+     "name": "VelY_Estimation",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "m/s"
+    },
+    {
+     "name": "YawRate_Estimation",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "rad/s"
+    }
+   ]
+  },
+  {
+   "id": 35,
+   "name": "ASB",
+   "dlc": 5,
+   "tx": "ASB",
+   "signals": [
+    {
+     "name": "ASMS_State",
+     "start": 0,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "TSMS_Out",
+     "start": 1,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "ASB_LED",
+     "start": 2,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "Initial_Checked",
+     "start": 3,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "Service_Brake_Status",
+     "start": 16,
+     "len": 4,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "enum"
+    },
+    {
+     "name": "EBS_Status",
+     "start": 20,
+     "len": 4,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "enum"
+    },
+    {
+     "name": "Initial_Check_Step",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "int8"
+    },
+    {
+     "name": "Monitor_Tank_Pressure",
+     "start": 4,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "Monitor_Brake_Pressure",
+     "start": 5,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "Monitor_Servo_Check",
+     "start": 6,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "Monitor_APU",
+     "start": 7,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "bool"
+    },
+    {
+     "name": "EBS_Tank_Pressure",
+     "start": 24,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "bar"
+    }
+   ]
+  },
+  {
+   "id": 100,
+   "name": "DASH_APPS",
+   "dlc": 5,
+   "tx": "Dashboard",
+   "signals": [
+    {
+     "name": "APPS1_Raw",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": "ADC"
+    },
+    {
+     "name": "APPS2_Raw",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": "ADC"
+    },
+    {
+     "name": "APPS_SC_Signals",
+     "start": 32,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "APPS_SC_Sup",
+     "start": 33,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "APPS_SC_GND",
+     "start": 34,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "APPS_Out_Of_Range",
+     "start": 35,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    }
+   ]
+  },
+  {
+   "id": 101,
+   "name": "DASH_BRAKE",
+   "dlc": 5,
+   "tx": "Dashboard",
+   "signals": [
+    {
+     "name": "BRAKE_Pressure_Front",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 20000.0,
+     "unit": "bar"
+    },
+    {
+     "name": "BRAKE_Pressure_Rear",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 20000.0,
+     "unit": "bar"
+    },
+    {
+     "name": "BRAKE_SC_GND",
+     "start": 32,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "BRAKE_SC_Sup",
+     "start": 33,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "BRAKE_Out_of_Range",
+     "start": 34,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 102,
+   "name": "DASH_STEERING",
+   "dlc": 6,
+   "tx": "Dashboard",
+   "signals": [
+    {
+     "name": "Steering",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "rad"
+    },
+    {
+     "name": "Steering_Voltage",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    }
+   ]
+  },
+  {
+   "id": 103,
+   "name": "DASH_BOOLS",
+   "dlc": 4,
+   "tx": "Dashboard",
+   "signals": [
+    {
+     "name": "Start",
+     "start": 0,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "AddAct",
+     "start": 1,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "Rotary_Active_Mode",
+     "start": 6,
+     "len": 2,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 15.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "Steering_Implausibility",
+     "start": 2,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "Setup",
+     "start": 8,
+     "len": 4,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "Main_menu",
+     "start": 12,
+     "len": 4,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "Sub_menu",
+     "start": 16,
+     "len": 4,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "Monitor",
+     "start": 3,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "Cooling_status",
+     "start": 4,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "Screen",
+     "start": 20,
+     "len": 4,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "TS_Off",
+     "start": 5,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "Reset_SDC",
+     "start": 24,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "SD_Before_ASB_OK",
+     "start": 25,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "SD_After_BSPD_OK",
+     "start": 26,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "SD_Before_Inertia_OK",
+     "start": 27,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "SD_Before_TSMS_OK",
+     "start": 28,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    }
+   ]
+  },
+  {
+   "id": 105,
+   "name": "DASH_SUSP_F",
+   "dlc": 4,
+   "tx": "Dashboard",
+   "signals": [
+    {
+     "name": "Susp_Pot_FL",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "ADC"
+    },
+    {
+     "name": "Susp_Pot_FR",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "ADC"
+    }
+   ]
+  },
+  {
+   "id": 106,
+   "name": "DASH_Tuning_VCU",
+   "dlc": 5,
+   "tx": "Dashboard",
+   "signals": [
+    {
+     "name": "Index",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "Value",
+     "start": 8,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 108,
+   "name": "DASH_ADU",
+   "dlc": 2,
+   "tx": "Dashboard",
+   "signals": [
+    {
+     "name": "Steering_16bit",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 109,
+   "name": "DASH_AMI",
+   "dlc": 1,
+   "tx": "Dashboard",
+   "signals": [
+    {
+     "name": "AMI",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "enum"
+    }
+   ]
+  },
+  {
+   "id": 110,
+   "name": "Dash_Poweroff",
+   "dlc": 1,
+   "tx": "Dashboard",
+   "signals": [
+    {
+     "name": "Poweroff",
+     "start": 0,
+     "len": 4,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "Reboot",
+     "start": 4,
+     "len": 4,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 255,
+   "name": "BLDC_Emergency",
+   "dlc": 8,
+   "tx": "BLDC",
+   "signals": [
+    {
+     "name": "EMCY_Error_Code",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "Error_Register",
+     "start": 16,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "Error_Number",
+     "start": 24,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 272,
+   "name": "SBG_ECAN_MSG_STATUS_01",
+   "dlc": 8,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "CLOCK",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 65535.0,
+     "unit": ""
+    },
+    {
+     "name": "GENERAL",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 65535.0,
+     "unit": ""
+    },
+    {
+     "name": "TIME_STAMP",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 2704.0,
+     "unit": "µs"
+    }
+   ]
+  },
+  {
+   "id": 273,
+   "name": "SBG_ECAN_MSG_STATUS_02",
+   "dlc": 8,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "AIDING",
+     "start": 32,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 2704.0,
+     "unit": ""
+    },
+    {
+     "name": "COM",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 2704.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 274,
+   "name": "SBG_ECAN_MSG_STATUS_03",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "HEAVE_STATUS",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 65535.0,
+     "unit": ""
+    },
+    {
+     "name": "SOLUTION",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 2704.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 275,
+   "name": "SBG_ECAN_MSG_UTC_0",
+   "dlc": 8,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "GPS_TOW",
+     "start": 32,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 2704.0,
+     "unit": "ms"
+    },
+    {
+     "name": "TIME_STAMP",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 2704.0,
+     "unit": "µs"
+    }
+   ]
+  },
+  {
+   "id": 276,
+   "name": "SBG_ECAN_MSG_UTC_1",
+   "dlc": 8,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "MICRO_SEC",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 100.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 6553500.0,
+     "unit": "us"
+    },
+    {
+     "name": "SEC",
+     "start": 40,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 255.0,
+     "unit": "s"
+    },
+    {
+     "name": "MIN",
+     "start": 32,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 255.0,
+     "unit": "min"
+    },
+    {
+     "name": "HOUR",
+     "start": 24,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 255.0,
+     "unit": "h"
+    },
+    {
+     "name": "DAY",
+     "start": 16,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 255.0,
+     "unit": "d"
+    },
+    {
+     "name": "MONTH",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 255.0,
+     "unit": "month"
+    },
+    {
+     "name": "YEAR",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 2000.0,
+     "min": 2000.0,
+     "max": 2255.0,
+     "unit": "year"
+    }
+   ]
+  },
+  {
+   "id": 288,
+   "name": "SBG_ECAN_MSG_IMU_INFO",
+   "dlc": 8,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "TEMPERATURE",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "°C"
+    },
+    {
+     "name": "STATUS",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 65535.0,
+     "unit": ""
+    },
+    {
+     "name": "TIME_STAMP",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 2704.0,
+     "unit": "µs"
+    }
+   ]
+  },
+  {
+   "id": 289,
+   "name": "SBG_ECAN_MSG_IMU_ACCEL",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "ACCEL_Z",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-2"
+    },
+    {
+     "name": "ACCEL_Y",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-2"
+    },
+    {
+     "name": "ACCEL_X",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-2"
+    }
+   ]
+  },
+  {
+   "id": 290,
+   "name": "SBG_ECAN_MSG_IMU_GYRO",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "GYRO_Z",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": -32.768,
+     "max": 32.767,
+     "unit": "rad.s-1"
+    },
+    {
+     "name": "GYRO_Y",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": -32.768,
+     "max": 32.767,
+     "unit": "rad.s-1"
+    },
+    {
+     "name": "GYRO_X",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": -32.768,
+     "max": 32.767,
+     "unit": "rad.s-1"
+    }
+   ]
+  },
+  {
+   "id": 306,
+   "name": "SBG_ECAN_MSG_EKF_EULER",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "YAW",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.0001,
+     "offset": 0.0,
+     "min": -3.2768,
+     "max": 3.2767,
+     "unit": "rad"
+    },
+    {
+     "name": "PITCH",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.0001,
+     "offset": 0.0,
+     "min": -3.2768,
+     "max": 3.2767,
+     "unit": "rad"
+    },
+    {
+     "name": "ROLL",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.0001,
+     "offset": 0.0,
+     "min": -3.2768,
+     "max": 3.2767,
+     "unit": "rad"
+    }
+   ]
+  },
+  {
+   "id": 307,
+   "name": "SBG_ECAN_MSG_EKF_ORIENTATION_ACC",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "YAW_ACC",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.0001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 6.5535,
+     "unit": "rad"
+    },
+    {
+     "name": "PITCH_ACC",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.0001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 6.5535,
+     "unit": "rad"
+    },
+    {
+     "name": "ROLL_ACC",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.0001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 6.5535,
+     "unit": "rad"
+    }
+   ]
+  },
+  {
+   "id": 308,
+   "name": "SBG_ECAN_MSG_EKF_POS",
+   "dlc": 8,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "LONGITUDE",
+     "start": 32,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 1e-07,
+     "offset": 0.0,
+     "min": -214.7483648,
+     "max": 214.7483647,
+     "unit": "°"
+    },
+    {
+     "name": "LATITUDE",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 1e-07,
+     "offset": 0.0,
+     "min": -214.7483648,
+     "max": 214.7483647,
+     "unit": "°"
+    }
+   ]
+  },
+  {
+   "id": 309,
+   "name": "SBG_ECAN_MSG_EKF_ALTITUDE",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "UNDULATION",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.005,
+     "offset": 0.0,
+     "min": -163.84,
+     "max": 163.835,
+     "unit": "m"
+    },
+    {
+     "name": "ALTITUDE",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": -2147480.0,
+     "max": 2147480.0,
+     "unit": "m"
+    }
+   ]
+  },
+  {
+   "id": 310,
+   "name": "SBG_ECAN_MSG_EKF_POS_ACC",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "ALTITUDE_ACC",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 655.35,
+     "unit": "m"
+    },
+    {
+     "name": "LONGITUDE_ACC",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 655.35,
+     "unit": "m"
+    },
+    {
+     "name": "LATITUDE_ACC",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 655.35,
+     "unit": "m"
+    }
+   ]
+  },
+  {
+   "id": 311,
+   "name": "SBG_ECAN_MSG_EKF_VEL_NED",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "VELOCITY_D",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    },
+    {
+     "name": "VELOCITY_E",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    },
+    {
+     "name": "VELOCITY_N",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    }
+   ]
+  },
+  {
+   "id": 312,
+   "name": "SBG_ECAN_MSG_EKF_VEL_NED_ACC",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "VELOCITY_ACC_D",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    },
+    {
+     "name": "VELOCITY_ACC_E",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    },
+    {
+     "name": "VELOCITY_ACC_N",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    }
+   ]
+  },
+  {
+   "id": 313,
+   "name": "SBG_ECAN_MSG_EKF_VEL_BODY",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "VELOCITY_Z",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    },
+    {
+     "name": "VELOCITY_Y",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    },
+    {
+     "name": "VELOCITY_X",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    }
+   ]
+  },
+  {
+   "id": 336,
+   "name": "SBG_ECAN_MSG_MAG_0",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "STATUS",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 65535.0,
+     "unit": ""
+    },
+    {
+     "name": "TIME_STAMP",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 2704.0,
+     "unit": "µs"
+    }
+   ]
+  },
+  {
+   "id": 337,
+   "name": "SBG_ECAN_MSG_MAG_1",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "MAG_Z",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": -32.768,
+     "max": 32.767,
+     "unit": "a.u."
+    },
+    {
+     "name": "MAG_Y",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": -32.768,
+     "max": 32.767,
+     "unit": "a.u."
+    },
+    {
+     "name": "MAG_X",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": -32.768,
+     "max": 32.767,
+     "unit": "a.u."
+    }
+   ]
+  },
+  {
+   "id": 338,
+   "name": "SBG_ECAN_MSG_MAG_2",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "ACCEL_Z",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-2"
+    },
+    {
+     "name": "ACCEL_Y",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-2"
+    },
+    {
+     "name": "ACCEL_X",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-2"
+    }
+   ]
+  },
+  {
+   "id": 355,
+   "name": "SBG_ECAN_MSG_ODO_INFO",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "ODO_STATUS",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 65535.0,
+     "unit": ""
+    },
+    {
+     "name": "TIME_STAMP",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 2704.0,
+     "unit": "µs"
+    }
+   ]
+  },
+  {
+   "id": 356,
+   "name": "SBG_ECAN_MSG_ODO_VEL",
+   "dlc": 2,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "VELOCITY",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    }
+   ]
+  },
+  {
+   "id": 368,
+   "name": "SBG_ECAN_MSG_GPS1_VEL_INFO",
+   "dlc": 8,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "STATUS",
+     "start": 32,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 2704.0,
+     "unit": ""
+    },
+    {
+     "name": "TIME_STAMP",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 2704.0,
+     "unit": "µs"
+    }
+   ]
+  },
+  {
+   "id": 369,
+   "name": "SBG_ECAN_MSG_GPS1_VEL",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "VELOCITY_D",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    },
+    {
+     "name": "VELOCITY_E",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    },
+    {
+     "name": "VELOCITY_N",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    }
+   ]
+  },
+  {
+   "id": 370,
+   "name": "SBG_ECAN_MSG_GPS1_VEL_ACC",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "VELOCITY_ACC_D",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    },
+    {
+     "name": "VELOCITY_ACC_E",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    },
+    {
+     "name": "VELOCITY_ACC_N",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m.s-1"
+    }
+   ]
+  },
+  {
+   "id": 371,
+   "name": "SBG_ECAN_MSG_GPS1_VEL_COURSE",
+   "dlc": 4,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "COURSE_ACC",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 655.35,
+     "unit": "°"
+    },
+    {
+     "name": "COURSE",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 655.35,
+     "unit": "°"
+    }
+   ]
+  },
+  {
+   "id": 372,
+   "name": "SBG_ECAN_MSG_GPS1_POS_INFO",
+   "dlc": 8,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "STATUS",
+     "start": 32,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 2704.0,
+     "unit": ""
+    },
+    {
+     "name": "TIME_STAMP",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 2704.0,
+     "unit": "µs"
+    }
+   ]
+  },
+  {
+   "id": 373,
+   "name": "SBG_ECAN_MSG_GPS1_POS",
+   "dlc": 8,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "LONGITUDE",
+     "start": 32,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 1e-07,
+     "offset": 0.0,
+     "min": -214.7483648,
+     "max": 214.7483647,
+     "unit": "°"
+    },
+    {
+     "name": "LATITUDE",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 1e-07,
+     "offset": 0.0,
+     "min": -214.7483648,
+     "max": 214.7483647,
+     "unit": "°"
+    }
+   ]
+  },
+  {
+   "id": 374,
+   "name": "SBG_ECAN_MSG_GPS1_POS_ALT",
+   "dlc": 8,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "DIFF_CORR_AGE",
+     "start": 56,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 255.0,
+     "unit": "s"
+    },
+    {
+     "name": "NUM_SV",
+     "start": 48,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 255.0,
+     "unit": ""
+    },
+    {
+     "name": "UNDULATION",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.005,
+     "offset": 0.0,
+     "min": -163.84,
+     "max": 163.835,
+     "unit": "m"
+    },
+    {
+     "name": "ALTITUDE",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": -2147480.0,
+     "max": 2147480.0,
+     "unit": "m"
+    }
+   ]
+  },
+  {
+   "id": 375,
+   "name": "SBG_ECAN_MSG_GPS1_POS_ACC",
+   "dlc": 8,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "BASE_STATION_ID",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 65535.0,
+     "unit": ""
+    },
+    {
+     "name": "ALTITUDE_ACC",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 655.35,
+     "unit": "m"
+    },
+    {
+     "name": "LONGITUDE_ACC",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 655.35,
+     "unit": "m"
+    },
+    {
+     "name": "LATITUDE_ACC",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 655.35,
+     "unit": "m"
+    }
+   ]
+  },
+  {
+   "id": 376,
+   "name": "SBG_ECAN_MSG_GPS1_HDT_INFO",
+   "dlc": 6,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "STATUS",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 65535.0,
+     "unit": ""
+    },
+    {
+     "name": "TIME_STAMP",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 2704.0,
+     "unit": "µs"
+    }
+   ]
+  },
+  {
+   "id": 377,
+   "name": "SBG_ECAN_MSG_GPS1_HDT",
+   "dlc": 8,
+   "tx": "SBG",
+   "signals": [
+    {
+     "name": "PITCH_ACC",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 655.35,
+     "unit": "°"
+    },
+    {
+     "name": "PITCH",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "°"
+    },
+    {
+     "name": "TRUE_HEADING_ACC",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 655.35,
+     "unit": "°"
+    },
+    {
+     "name": "TRUE_HEADING",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 655.35,
+     "unit": "°"
+    }
+   ]
+  },
+  {
+   "id": 401,
+   "name": "RES_STATUS",
+   "dlc": 8,
+   "tx": "RES",
+   "signals": [
+    {
+     "name": "Stop",
+     "start": 0,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": ""
+    },
+    {
+     "name": "Toggle",
+     "start": 1,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": ""
+    },
+    {
+     "name": "Button",
+     "start": 2,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": ""
+    },
+    {
+     "name": "Signal_Strength",
+     "start": 48,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 100.0,
+     "unit": "%"
+    }
+   ]
+  },
+  {
+   "id": 512,
+   "name": "BLDC_TX_1",
+   "dlc": 3,
+   "tx": "BLDC",
+   "signals": [
+    {
+     "name": "StatusWord",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "ModesOfOperation_Display",
+     "start": 16,
+     "len": 8,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 639,
+   "name": "BLDC_RX_1",
+   "dlc": 7,
+   "tx": "APU",
+   "signals": [
+    {
+     "name": "Controlword",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "ModeOfOperation",
+     "start": 16,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "MotorDriveSubmodeSelect",
+     "start": 24,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 701,
+   "name": "VCU_RL_Info",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "IGBT_RL",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "Motor_Temp_RL",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RPM_RL",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "RPM"
+    },
+    {
+     "name": "Torque_Commanded_RL",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Nm"
+    },
+    {
+     "name": "Torque_Actual_RL",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Nm"
+    }
+   ]
+  },
+  {
+   "id": 702,
+   "name": "VCU_RR_Info",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "IGBT_RR",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "Motor_Temp_RR",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RPM_RR",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "RPM"
+    },
+    {
+     "name": "Torque_Commanded_RR",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Nm"
+    },
+    {
+     "name": "Torque_Actual_RR",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Nm"
+    }
+   ]
+  },
+  {
+   "id": 703,
+   "name": "VCU_FL_Info",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "IGBT_FL",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "Motor_Temp_FL",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RPM_FL",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "RPM"
+    },
+    {
+     "name": "Torque_Commanded_FL",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Nm"
+    },
+    {
+     "name": "Torque_Actual_FL",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Nm"
+    }
+   ]
+  },
+  {
+   "id": 704,
+   "name": "VCU_FR_Info",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "IGBT_FR",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "Motor_Temp_FR",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RPM_FR",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "RPM"
+    },
+    {
+     "name": "Torque_Commanded_FR",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Nm"
+    },
+    {
+     "name": "Torque_Actual_FR",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Nm"
+    }
+   ]
+  },
+  {
+   "id": 714,
+   "name": "TireTemp_RearLeft_Part1",
+   "dlc": 8,
+   "tx": "RL_Thermal_Camera",
+   "signals": [
+    {
+     "name": "RL_Temp_1",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RL_Temp_2",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RL_Temp_3",
+     "start": 16,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RL_Temp_4",
+     "start": 24,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RL_Temp_5",
+     "start": 32,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RL_Temp_6",
+     "start": 40,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RL_Temp_7",
+     "start": 48,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RL_Temp_8",
+     "start": 56,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    }
+   ]
+  },
+  {
+   "id": 715,
+   "name": "TireTemp_RearLeft_Part2",
+   "dlc": 8,
+   "tx": "RL_Thermal_Camera",
+   "signals": [
+    {
+     "name": "RL_Temp_9",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "RL_Temp_10",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "RL_Temp_11",
+     "start": 16,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "RL_Temp_12",
+     "start": 24,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "RL_Temp_13",
+     "start": 32,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "RL_Temp_14",
+     "start": 40,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "RL_Temp_15",
+     "start": 48,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "RL_Temp_16",
+     "start": 56,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 716,
+   "name": "TireTemp_RearRight_Part1",
+   "dlc": 8,
+   "tx": "RR_Thermal_Camera",
+   "signals": [
+    {
+     "name": "RR_Temp_1",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RR_Temp_2",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RR_Temp_3",
+     "start": 16,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RR_Temp_4",
+     "start": 24,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RR_Temp_5",
+     "start": 32,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RR_Temp_6",
+     "start": 40,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RR_Temp_7",
+     "start": 48,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "RR_Temp_8",
+     "start": 56,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    }
+   ]
+  },
+  {
+   "id": 717,
+   "name": "TireTemp_RearRight_Part2",
+   "dlc": 8,
+   "tx": "RR_Thermal_Camera",
+   "signals": [
+    {
+     "name": "RR_Temp_9",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "RR_Temp_10",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "RR_Temp_11",
+     "start": 16,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "RR_Temp_12",
+     "start": 24,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "RR_Temp_13",
+     "start": 32,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "RR_Temp_14",
+     "start": 40,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "RR_Temp_15",
+     "start": 48,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "RR_Temp_16",
+     "start": 56,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 767,
+   "name": "BLDC_TX_2",
+   "dlc": 4,
+   "tx": "BLDC",
+   "signals": [
+    {
+     "name": "Position_Actual_Value",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 798,
+   "name": "VCU_APPS",
+   "dlc": 2,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "APPS",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 799,
+   "name": "VCU_Steering_Calibrated",
+   "dlc": 6,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "Steering_Angle_Calibrated",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "rad"
+    },
+    {
+     "name": "Steering_Offset",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.0001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "rad"
+    }
+   ]
+  },
+  {
+   "id": 800,
+   "name": "VCU_BOOLS",
+   "dlc": 1,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "Buzzer",
+     "start": 0,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "Enable",
+     "start": 1,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "SafeState_OK",
+     "start": 2,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "AMS_Error_Latched",
+     "start": 3,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "IMD_Error_Latched",
+     "start": 4,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "Mode",
+     "start": 5,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Boolean"
+    },
+    {
+     "name": "AUX_AIR_Plus",
+     "start": 6,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 801,
+   "name": "VCU_ADU",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "Power_kW",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "kW"
+    },
+    {
+     "name": "Vicor_Thermistor",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "Velocity",
+     "start": 24,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "km/h"
+    },
+    {
+     "name": "Recom_Thermistor",
+     "start": 16,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "Sensor_Error",
+     "start": 40,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "bitfield"
+    },
+    {
+     "name": "TV_ON",
+     "start": 56,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "REGEN_ON",
+     "start": 57,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "TC_ON",
+     "start": 58,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "SoC",
+     "start": 48,
+     "len": 8,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "%"
+    }
+   ]
+  },
+  {
+   "id": 802,
+   "name": "VCU_ADU_ROTARY",
+   "dlc": 5,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "TV_Aggressiveness_Factor",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 0.1,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "K_u",
+     "start": 8,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "TC_Aggressiveness_Factor",
+     "start": 24,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 0.1,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "Mu_Road",
+     "start": 32,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 803,
+   "name": "VCU_SUSP_R",
+   "dlc": 4,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "Susp_Pot_RL",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "Susp_Pot_RR",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    }
+   ]
+  },
+  {
+   "id": 804,
+   "name": "VCU_Servo_Control",
+   "dlc": 1,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "Servo_control",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 805,
+   "name": "VCU_APPS_Raw",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "APPS1_Raw_Min",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "APPS2_Raw_Min",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "APPS1_Raw_Max",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "APPS2_Raw_Max",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 806,
+   "name": "VCU_APU_Info",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "Inverter_RPM_Limit_Percent",
+     "start": 0,
+     "len": 7,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "%"
+    },
+    {
+     "name": "Tmax_Rear_Motor",
+     "start": 7,
+     "len": 6,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Nm"
+    },
+    {
+     "name": "Tmax_Front_Motor",
+     "start": 13,
+     "len": 6,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Nm"
+    },
+    {
+     "name": "Power_Target_kW",
+     "start": 19,
+     "len": 10,
+     "le": true,
+     "signed": false,
+     "factor": 0.1,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "kW"
+    },
+    {
+     "name": "Servo_Start_Speed",
+     "start": 29,
+     "len": 4,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "kph"
+    },
+    {
+     "name": "Regen_Min_Speed",
+     "start": 33,
+     "len": 4,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "kph"
+    },
+    {
+     "name": "Inverter_RPM_Max",
+     "start": 37,
+     "len": 14,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "rpm"
+    },
+    {
+     "name": "Tmax_Final",
+     "start": 51,
+     "len": 13,
+     "le": true,
+     "signed": false,
+     "factor": 0.1,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Nm"
+    }
+   ]
+  },
+  {
+   "id": 895,
+   "name": "BLDC_RX_2",
+   "dlc": 8,
+   "tx": "APU",
+   "signals": [
+    {
+     "name": "Target_Position",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "Profile_Velocity",
+     "start": 32,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 1023,
+   "name": "BLDC_TX_3",
+   "dlc": 2,
+   "tx": "BLDC",
+   "signals": [
+    {
+     "name": "Velocity_Actual_Value",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 1072,
+   "name": "FS_Datalogger_Status",
+   "dlc": 6,
+   "tx": "FS_Datalogger",
+   "signals": [
+    {
+     "name": "Current",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 64.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 4194240.0,
+     "unit": "mA"
+    },
+    {
+     "name": "Voltage",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 16.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1048560.0,
+     "unit": "mV"
+    },
+    {
+     "name": "Status_Triggered_Current",
+     "start": 11,
+     "len": 1,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "Status_Triggered_Voltage",
+     "start": 10,
+     "len": 1,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "Status_Logging",
+     "start": 9,
+     "len": 1,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "Status_Ready",
+     "start": 8,
+     "len": 1,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "MsgCnt",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 255.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 1151,
+   "name": "BLDC_RX_3",
+   "dlc": 2,
+   "tx": "APU",
+   "signals": [
+    {
+     "name": "Target_Velocity",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 1279,
+   "name": "BLDC_TX_4",
+   "dlc": 4,
+   "tx": "BLDC",
+   "signals": [
+    {
+     "name": "Digital_Input",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 1280,
+   "name": "DV_Driving_Dynamics_1",
+   "dlc": 8,
+   "tx": "APU",
+   "signals": [
+    {
+     "name": "Speed_actual",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "km/h"
+    },
+    {
+     "name": "Speed_target",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "km/h"
+    },
+    {
+     "name": "Steering_angle_actual",
+     "start": 16,
+     "len": 8,
+     "le": true,
+     "signed": true,
+     "factor": 0.5,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": " °"
+    },
+    {
+     "name": "Steering_angle_target",
+     "start": 24,
+     "len": 8,
+     "le": true,
+     "signed": true,
+     "factor": 0.5,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": " °"
+    },
+    {
+     "name": "Brake_hydr_actual",
+     "start": 32,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "%"
+    },
+    {
+     "name": "Brake_hydr_target",
+     "start": 40,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "%"
+    },
+    {
+     "name": "Motor_moment_actual",
+     "start": 48,
+     "len": 8,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "%"
+    },
+    {
+     "name": "Motor_moment_target",
+     "start": 56,
+     "len": 8,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "%"
+    }
+   ]
+  },
+  {
+   "id": 1281,
+   "name": "DV_Driving_Dynamics_2",
+   "dlc": 6,
+   "tx": "APU",
+   "signals": [
+    {
+     "name": "Acceleration_longitudinal",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.00195313,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "m/s^2"
+    },
+    {
+     "name": "Acceleration_lateral",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.00195313,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "m/s^2"
+    },
+    {
+     "name": "Yaw_Rate",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.0078125,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": " °/s"
+    }
+   ]
+  },
+  {
+   "id": 1282,
+   "name": "DV_SYSTEM_STATUS",
+   "dlc": 5,
+   "tx": "APU",
+   "signals": [
+    {
+     "name": "AS_STATE",
+     "start": 0,
+     "len": 3,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "ASB_EBS_STATE",
+     "start": 3,
+     "len": 2,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "AMI_STATE",
+     "start": 5,
+     "len": 3,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "STEERING_STATE",
+     "start": 8,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "ASB_REDUNDANCY_STATE",
+     "start": 9,
+     "len": 2,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "LAP_COUNTER",
+     "start": 11,
+     "len": 4,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "CONES_COUNT_ACTUAL",
+     "start": 15,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "CONES_COUNT_ALL",
+     "start": 23,
+     "len": 17,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 1297,
+   "name": "ASB_DATALOGGER",
+   "dlc": 5,
+   "tx": "ASB",
+   "signals": [
+    {
+     "name": "EBS_Pneumatic_Pressure",
+     "start": 0,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "bar"
+    },
+    {
+     "name": "Brake_Pressure_Rear",
+     "start": 8,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "bar"
+    },
+    {
+     "name": "Brake_Pressure_Front",
+     "start": 16,
+     "len": 8,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "bar"
+    },
+    {
+     "name": "EBSstate_unavailable",
+     "start": 24,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "EBSstate_armed",
+     "start": 25,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "EBSstate_activated",
+     "start": 26,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "Servicebrakestate_disengaged",
+     "start": 27,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "Servicebrakestate_engaged",
+     "start": 28,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "Servicebrakestate_available",
+     "start": 29,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "Watchdog_OK",
+     "start": 30,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "ValveInterlock_OK",
+     "start": 31,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "ServoInterlock_OK",
+     "start": 32,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    },
+    {
+     "name": "AS_State",
+     "start": 33,
+     "len": 3,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "ASMS_Out",
+     "start": 36,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "boolean"
+    }
+   ]
+  },
+  {
+   "id": 1313,
+   "name": "ISABELLEN_IDC",
+   "dlc": 6,
+   "tx": "Isabellen",
+   "signals": [
+    {
+     "name": "Idc",
+     "start": 16,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "A"
+    },
+    {
+     "name": "Idc_Measurement_Error",
+     "start": 13,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    },
+    {
+     "name": "System_Error",
+     "start": 15,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 7.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 1314,
+   "name": "ISABELLEN_VDC",
+   "dlc": 6,
+   "tx": "Isabellen",
+   "signals": [
+    {
+     "name": "Vdc",
+     "start": 16,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "Vdc_Measurement_error",
+     "start": 13,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 1315,
+   "name": "ISABELLEN_16_bit",
+   "dlc": 8,
+   "tx": "Dashboard",
+   "signals": [
+    {
+     "name": "Vdc_16_bit",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.1,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "Pdc_16_bit",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "kW"
+    },
+    {
+     "name": "Idc_16_bit",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "A"
+    }
+   ]
+  },
+  {
+   "id": 1318,
+   "name": "ISABELLEN_PDC",
+   "dlc": 6,
+   "tx": "Isabellen",
+   "signals": [
+    {
+     "name": "Pdc",
+     "start": 16,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "W"
+    },
+    {
+     "name": "Pdc_Measurement_Error",
+     "start": 13,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 1320,
+   "name": "ISABELLEN_ENERGY",
+   "dlc": 6,
+   "tx": "Isabellen",
+   "signals": [
+    {
+     "name": "Energy",
+     "start": 16,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "Wh"
+    },
+    {
+     "name": "Energy_Measurement_Error",
+     "start": 13,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 1407,
+   "name": "BLDC_RX_4",
+   "dlc": 4,
+   "tx": "APU",
+   "signals": [
+    {
+     "name": "Digital_Output",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 1600,
+   "name": "BMS_MIN_MAX_S1_S2",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "S1_Min",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S1_Max",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S2_Min",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S2_Max",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    }
+   ]
+  },
+  {
+   "id": 1601,
+   "name": "BMS_MIN_MAX_S3_S4",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "S3_Min",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S3_Max",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S4_Min",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S4_Max",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    }
+   ]
+  },
+  {
+   "id": 1602,
+   "name": "BMS_MIN_MAX_S5_S6",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "S5_Min",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S5_Max",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S6_Min",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S6_Max",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    }
+   ]
+  },
+  {
+   "id": 1603,
+   "name": "BMS_MIN_MAX_S7_S8",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "S7_Min",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S7_Max",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S8_Min",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S8_Max",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    }
+   ]
+  },
+  {
+   "id": 1604,
+   "name": "BMS_MIN_MAX_S9_S10",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "S9_Min",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S9_Max",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S10_Min",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S10_Max",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    }
+   ]
+  },
+  {
+   "id": 1605,
+   "name": "BMS_MIN_MAX_S11_S12",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "S11_Min",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S11_Max",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S12_Min",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    },
+    {
+     "name": "S12_Max",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "V"
+    }
+   ]
+  },
+  {
+   "id": 1606,
+   "name": "BMS_Max_Temp_S1_S4",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "S1_Max_Temp",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "S2_Max_Temp",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "S3_Max_Temp",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "S4_Max_Temp",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    }
+   ]
+  },
+  {
+   "id": 1607,
+   "name": "BMS_Max_Temp_S5_S8",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "S5_Max_Temp",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "S6_Max_Temp",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "S7_Max_Temp",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "S8_Max_Temp",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    }
+   ]
+  },
+  {
+   "id": 1608,
+   "name": "BMS_Max_Temp_S9_S12",
+   "dlc": 8,
+   "tx": "VCU",
+   "signals": [
+    {
+     "name": "S9_Max_Temp",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "S10_Max_Temp",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "S11_Max_Temp",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    },
+    {
+     "name": "S12_Max_Temp",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "unit": "°C"
+    }
+   ]
+  },
+  {
+   "id": 1792,
+   "name": "VelAndAngPOI",
+   "dlc": 8,
+   "tx": "SensoricSolutionsOMSRace",
+   "signals": [
+    {
+     "name": "VelXPoi",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.02,
+     "offset": 0.0,
+     "min": -450.0,
+     "max": 450.0,
+     "unit": "km/h"
+    },
+    {
+     "name": "VelYPoi",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.02,
+     "offset": 0.0,
+     "min": -100.0,
+     "max": 100.0,
+     "unit": "km/h"
+    },
+    {
+     "name": "VelAPoi",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.02,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 450.0,
+     "unit": "km/h"
+    },
+    {
+     "name": "AngSPoi",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.003,
+     "offset": 0.0,
+     "min": -40.0,
+     "max": 40.0,
+     "unit": "°"
+    }
+   ]
+  },
+  {
+   "id": 1793,
+   "name": "DistPOI",
+   "dlc": 8,
+   "tx": "SensoricSolutionsOMSRace",
+   "signals": [
+    {
+     "name": "DistAPoi",
+     "start": 0,
+     "len": 32,
+     "le": true,
+     "signed": true,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": -2000000.0,
+     "max": 2000000.0,
+     "unit": "m"
+    },
+    {
+     "name": "RadiusPoi",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.01,
+     "offset": 0.0,
+     "min": -327.68,
+     "max": 327.67,
+     "unit": "m"
+    },
+    {
+     "name": "AccCPoi",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.02,
+     "offset": 0.0,
+     "min": -40.0,
+     "max": 40.0,
+     "unit": "m/s^2"
+    }
+   ]
+  },
+  {
+   "id": 1794,
+   "name": "PitchAndRoll",
+   "dlc": 4,
+   "tx": "SensoricSolutionsOMSRace",
+   "signals": [
+    {
+     "name": "Roll",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.003,
+     "offset": 0.0,
+     "min": -90.0,
+     "max": 90.0,
+     "unit": "°"
+    },
+    {
+     "name": "Pitch",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.003,
+     "offset": 0.0,
+     "min": -90.0,
+     "max": 90.0,
+     "unit": "°"
+    }
+   ]
+  },
+  {
+   "id": 1797,
+   "name": "VelAndAng",
+   "dlc": 8,
+   "tx": "SensoricSolutionsOMSRace",
+   "signals": [
+    {
+     "name": "VelX",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.02,
+     "offset": 0.0,
+     "min": -450.0,
+     "max": 450.0,
+     "unit": "km/h"
+    },
+    {
+     "name": "VelY",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.02,
+     "offset": 0.0,
+     "min": -100.0,
+     "max": 100.0,
+     "unit": "km/h"
+    },
+    {
+     "name": "VelA",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.02,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 450.0,
+     "unit": "km/h"
+    },
+    {
+     "name": "AngS",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.003,
+     "offset": 0.0,
+     "min": -40.0,
+     "max": 40.0,
+     "unit": "°"
+    }
+   ]
+  },
+  {
+   "id": 1799,
+   "name": "Acc",
+   "dlc": 6,
+   "tx": "SensoricSolutionsOMSRace",
+   "signals": [
+    {
+     "name": "AccX",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.02,
+     "offset": 0.0,
+     "min": -655.36,
+     "max": 655.34,
+     "unit": "m/s^2"
+    },
+    {
+     "name": "AccY",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.02,
+     "offset": 0.0,
+     "min": -655.36,
+     "max": 655.34,
+     "unit": "m/s^2"
+    },
+    {
+     "name": "AccZ",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.02,
+     "offset": 0.0,
+     "min": -655.36,
+     "max": 655.34,
+     "unit": "m/s^2"
+    }
+   ]
+  },
+  {
+   "id": 1800,
+   "name": "Rate",
+   "dlc": 6,
+   "tx": "SensoricSolutionsOMSRace",
+   "signals": [
+    {
+     "name": "RateX",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.02,
+     "offset": 0.0,
+     "min": -655.36,
+     "max": 655.34,
+     "unit": "°/s"
+    },
+    {
+     "name": "RateY",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.02,
+     "offset": 0.0,
+     "min": -655.36,
+     "max": 655.34,
+     "unit": "°/s"
+    },
+    {
+     "name": "RateZ",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.02,
+     "offset": 0.0,
+     "min": -655.36,
+     "max": 655.34,
+     "unit": "°/s"
+    }
+   ]
+  },
+  {
+   "id": 1801,
+   "name": "VelAndAngSp",
+   "dlc": 8,
+   "tx": "SensoricSolutionsOMSRace",
+   "signals": [
+    {
+     "name": "VelASp",
+     "start": 0,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.02,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 450.0,
+     "unit": "km/h"
+    },
+    {
+     "name": "AngSSp",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.003,
+     "offset": 0.0,
+     "min": -40.0,
+     "max": 40.0,
+     "unit": "°"
+    },
+    {
+     "name": "QualityCh0",
+     "start": 32,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 65535.0,
+     "unit": ""
+    },
+    {
+     "name": "QualityCh1",
+     "start": 48,
+     "len": 16,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 65535.0,
+     "unit": ""
+    }
+   ]
+  },
+  {
+   "id": 1803,
+   "name": "Status",
+   "dlc": 7,
+   "tx": "SensoricSolutionsOMSRace",
+   "signals": [
+    {
+     "name": "Standstill",
+     "start": 0,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": ""
+    },
+    {
+     "name": "DirectionNeg",
+     "start": 1,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": ""
+    },
+    {
+     "name": "RateAdjustActive",
+     "start": 2,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": ""
+    },
+    {
+     "name": "Trigger",
+     "start": 4,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": ""
+    },
+    {
+     "name": "BrakeAccStatus",
+     "start": 5,
+     "len": 3,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 5.0,
+     "unit": ""
+    },
+    {
+     "name": "IlluOn",
+     "start": 8,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": ""
+    },
+    {
+     "name": "IlluOk",
+     "start": 9,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": ""
+    },
+    {
+     "name": "SensorConnected",
+     "start": 10,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": ""
+    },
+    {
+     "name": "AdjustmentActive",
+     "start": 12,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": ""
+    },
+    {
+     "name": "CanAngAdjFailed",
+     "start": 13,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": ""
+    },
+    {
+     "name": "StatusOk",
+     "start": 15,
+     "len": 1,
+     "le": true,
+     "signed": false,
+     "factor": 1.0,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 1.0,
+     "unit": ""
+    },
+    {
+     "name": "TempSensor",
+     "start": 16,
+     "len": 16,
+     "le": true,
+     "signed": true,
+     "factor": 0.1,
+     "offset": 0.0,
+     "min": -20.0,
+     "max": 85.0,
+     "unit": "°C"
+    },
+    {
+     "name": "SampleTime",
+     "start": 32,
+     "len": 24,
+     "le": true,
+     "signed": false,
+     "factor": 0.001,
+     "offset": 0.0,
+     "min": 0.0,
+     "max": 16777.215,
+     "unit": "s"
+    }
+   ]
+  },
+  {
+   "id": 1872,
+   "name": "FS_Datalogger_Reserved_1",
+   "dlc": 8,
+   "tx": "Vector__XXX",
+   "signals": []
+  },
+  {
+   "id": 1873,
+   "name": "FS_Datalogger_Reserved_2",
+   "dlc": 8,
+   "tx": "Vector__XXX",
+   "signals": []
+  },
+  {
+   "id": 1874,
+   "name": "FS_Datalogger_Reserved_3",
+   "dlc": 8,
+   "tx": "Vector__XXX",
+   "signals": []
+  },
+  {
+   "id": 1875,
+   "name": "FS_Datalogger_Reserved_4",
+   "dlc": 8,
+   "tx": "Vector__XXX",
+   "signals": []
+  },
+  {
+   "id": 1876,
+   "name": "FS_Datalogger_Reserved_5",
+   "dlc": 8,
+   "tx": "Vector__XXX",
+   "signals": []
+  },
+  {
+   "id": 1877,
+   "name": "FS_Datalogger_Reserved_6",
+   "dlc": 8,
+   "tx": "Vector__XXX",
+   "signals": []
+  }
+ ]
+}

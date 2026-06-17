@@ -9,6 +9,10 @@ Item {
     height: 480
     property var telemetry
 
+    // Which tab to open on. Set by the Main Menu (0=Accumulator,1=Powertrain,2=CAN Sniffer).
+    property int startTab: 0
+    Component.onCompleted: swipeView.currentIndex = startTab
+
     // Navigation Functions for hardware rotary dial
     function nextTab() {
         if (swipeView.currentIndex < swipeView.count - 1) {
@@ -111,26 +115,7 @@ Item {
                 onClicked: swipeView.currentIndex = 1
             }
         }
-
-        // Custom Tab Button 3: CAN Bus (Placeholder for future)
-        Rectangle {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            color: swipeView.currentIndex === 2 ? "#ffffff" : "#222222"
-
-            Text {
-                anchors.centerIn: parent
-                text: "CAN DATA"
-                color: swipeView.currentIndex === 2 ? "black" : "#888888"
-                font.pixelSize: 18
-                font.bold: true
-                font.letterSpacing: 2
-            }
-            MouseArea {
-                anchors.fill: parent
-                onClicked: swipeView.currentIndex = 2
-            }
-        }
+        // (CAN Sniffer is now its own page, opened from the Main Menu.)
     }
 
     // ==========================================
@@ -629,8 +614,8 @@ Item {
                     id: wheelDataBox
                     Rectangle {
                         id: boxRoot
-                        width: 220 // Widened for larger, more readable fonts
-                        height: 180 // taller to fit 6 rows (RPM/torques + motor/IGBT temps)
+                        width: 255 // Wider for bigger, more readable fonts (title removed)
+                        height: 180 // fits 5 rows (RPM/torques + motor/IGBT temps) comfortably
                         color: "#cc050a15"
                         border.color: "#1a3344"
                         border.width: 1
@@ -664,7 +649,8 @@ Item {
                                 Layout.fillWidth: true
                                 spacing: 3
 
-                                // WHEEL / TYRE LABEL (pressure & temp hidden — car doesn't send them yet)
+                                /* WHEEL/TYRE TITLE + tyre pressure/temp removed for more text space.
+                                   Re-enable this block (and the tyrePress/tyreTemp bindings) when the car sends tyre data:
                                 Text {
                                     text: boxRoot.wheelName + " TYRE"
                                     color: "#00ffcc"
@@ -674,7 +660,6 @@ Item {
                                     Layout.alignment: boxRoot.alignFlag
                                     Layout.bottomMargin: 4
                                 }
-                                /* TYRE PRESSURE & TEMP — re-enable when the car sends tyre data
                                 Text {
                                     text: boxRoot.wheelName + " TYRE: " + boxRoot.tyrePress.toFixed(1) + "b  " + boxRoot.tyreTemp.toFixed(0) + "°C"
                                     color: (boxRoot.tyrePress < 1.0 || boxRoot.tyreTemp > 90) ? "#ff3333" : "#00ffcc"
@@ -687,69 +672,54 @@ Item {
                                 // RPM
                                 RowLayout {
                                     Layout.alignment: boxRoot.alignFlag
-                                    Text {
-                                        text: "RPM:"
-                                        color: "#8899aa"
-                                        font.pixelSize: 14
-                                        font.bold: true
-                                    }
+                                    Text { text: "RPM:"; color: "#8899aa"; font.pixelSize: 16; font.bold: true }
                                     Text {
                                         text: boxRoot.rpm
                                         color: "white"
-                                        font.pixelSize: 18
+                                        font.pixelSize: 22
                                         font.bold: true
                                     }
                                 }
                                 // REQUESTED TORQUE
                                 RowLayout {
                                     Layout.alignment: boxRoot.alignFlag
-                                    Text {
-                                        text: "TRQ REQ:"
-                                        color: "#8899aa"
-                                        font.pixelSize: 14
-                                        font.bold: true
-                                    }
+                                    Text { text: "TRQ REQ:"; color: "#8899aa"; font.pixelSize: 16; font.bold: true }
                                     Text {
                                         text: boxRoot.torqueReq + " Nm"
                                         color: "#ffcc00"
-                                        font.pixelSize: 18
+                                        font.pixelSize: 22
                                         font.bold: true
                                     }
                                 }
                                 // ACTUAL TORQUE
                                 RowLayout {
                                     Layout.alignment: boxRoot.alignFlag
-                                    Text {
-                                        text: "TRQ ACT:"
-                                        color: "#8899aa"
-                                        font.pixelSize: 14
-                                        font.bold: true
-                                    }
+                                    Text { text: "TRQ ACT:"; color: "#8899aa"; font.pixelSize: 16; font.bold: true }
                                     Text {
                                         text: boxRoot.torqueAct + " Nm"
                                         color: "white"
-                                        font.pixelSize: 18
+                                        font.pixelSize: 22
                                         font.bold: true
                                     }
                                 }
                                 // MOTOR & INVERTER (IGBT) TEMPERATURES
                                 RowLayout {
                                     Layout.alignment: boxRoot.alignFlag
-                                    Text { text: "MOTOR:"; color: "#8899aa"; font.pixelSize: 14; font.bold: true }
+                                    Text { text: "MOTOR:"; color: "#8899aa"; font.pixelSize: 16; font.bold: true }
                                     Text {
                                         text: boxRoot.motorTemp.toFixed(1) + " °C"
                                         color: boxRoot.motorTemp > 65 ? "#ff3333" : "white"
-                                        font.pixelSize: 18
+                                        font.pixelSize: 22
                                         font.bold: true
                                     }
                                 }
                                 RowLayout {
                                     Layout.alignment: boxRoot.alignFlag
-                                    Text { text: "IGBT:"; color: "#8899aa"; font.pixelSize: 14; font.bold: true }
+                                    Text { text: "IGBT:"; color: "#8899aa"; font.pixelSize: 16; font.bold: true }
                                     Text {
                                         text: boxRoot.igbtTemp.toFixed(1) + " °C"
                                         color: boxRoot.igbtTemp > 60 ? "#ff3333" : "white"
-                                        font.pixelSize: 18
+                                        font.pixelSize: 22
                                         font.bold: true
                                     }
                                 }
@@ -850,15 +820,15 @@ Item {
                 Item {
                     id: carWireframe
                     anchors.centerIn: parent
-                    width: 240  // This controls the physical horizontal gap between the Left and Right panels
-                    height: 380 // This controls the physical vertical gap between the Front and Rear panels (raised so the taller wheel boxes don't overlap)
+                    width: 210  // Narrower so the wider wheel boxes have more room (controls L/R gap)
+                    height: 380 // Controls the vertical gap between the Front and Rear panels (keeps the taller boxes from overlapping)
 
                     Image {
                         id: topdownImage
                         anchors.centerIn: parent
                         // Tweak these two numbers to make the car perfectly fill the center space.
-                        width: 405
-                        height: 585
+                        width: 360
+                        height: 520
 
                         anchors.horizontalCenterOffset: -10
 
@@ -1018,14 +988,6 @@ Item {
             }
         }
 
-        // --- PAGE 2: CAN DATA ---
-        Item {
-            Text {
-                anchors.centerIn: parent
-                text: "RAW HEX DATA LOG COMING SOON"
-                color: "#888888"
-                font.pixelSize: 24
-            }
-        }
+        // (CAN Sniffer moved to its own CanSnifferPage.qml, opened from the Main Menu.)
     }
 }

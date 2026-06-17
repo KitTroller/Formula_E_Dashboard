@@ -21,6 +21,8 @@ qt_add_qml_module(appFormulaDash
         DiagnosticPage.qml
         MissionSelectionPage.qml
         ActiveMissionPage.qml
+        MainMenuPage.qml
+        CanSnifferPage.qml
     SOURCES
         vehicledataprovider.h
         vehicledataprovider.cpp
@@ -53,6 +55,7 @@ qt_add_qml_module(appFormulaDash
         assets/sideslip_on.png
         assets/topdown.png
 
+        can_dbc.json
 )
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

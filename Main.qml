@@ -19,59 +19,56 @@ Window {
     Connections {
         target: telemetryProvider
 
-        // Central encoder 1 is the ONE rotary that drives everything:
-        //  - on the Mission Selection page it scrolls the mission list,
-        //  - everywhere else it walks pages: Driver <-> Diagnostics (tab0->1->2).
-        // Mission Selection is entered/left ONLY via the Inner-Right button
-        // (onOpenMissionSelect), so the rotary never navigates into/out of it.
+        // Central encoder 1 is the ONE rotary:
+        //  - on the Main Menu / Mission Selection pages it scrolls the list,
+        //  - on the Diagnostics page it switches tabs,
+        //  - on the Driver page it does nothing (navigation goes through the menu).
         function onNavigateNextPage() {           // CW / forward
             var it = stackView.currentItem;
-            if (it && it.objectName === "missionSelectionPage") {
-                it.wheelScrollDown();             // scroll the mission list down
-            } else if (stackView.depth === 1) {
-                stackView.push(Qt.resolvedUrl("DiagnosticPage.qml"), {
-                    "telemetry": telemetryProvider
-                });
-            } else if (it && it.objectName === "diagnosticPage") {
+            if (!it) return;
+            if (it.objectName === "mainMenuPage" || it.objectName === "missionSelectionPage")
+                it.wheelScrollDown();
+            else if (it.objectName === "diagnosticPage")
                 it.nextTab();                     // next tab (stays at the last one)
-            }
         }
 
         function onNavigatePrevPage() {           // CCW / backward
             var it = stackView.currentItem;
-            if (it && it.objectName === "missionSelectionPage") {
-                it.wheelScrollUp();               // scroll the mission list up
-            } else if (it && it.objectName === "diagnosticPage") {
-                if (!it.prevTab())                // first tab -> pop back to Driver
-                    stackView.pop();
-            }
-            // On the Driver page, turning back does nothing.
+            if (!it) return;
+            if (it.objectName === "mainMenuPage" || it.objectName === "missionSelectionPage")
+                it.wheelScrollUp();
+            else if (it.objectName === "diagnosticPage")
+                it.prevTab();                     // previous tab (stays at the first one)
         }
 
-        // Encoder push -> let the current page confirm its selection.
+        // Encoder push -> let the current page act on its selection
+        // (Main Menu opens a page; Mission Selection confirms the mission).
         function onSelectPressed() {
             var it = stackView.currentItem;
             if (it && typeof it.wheelSelect === "function")
                 it.wheelSelect();
         }
 
-        // Back button -> pop one level toward the Driver page.
+        // Back button -> pop one level (sub-page -> Menu, Menu -> Driver).
         function onNavigateBack() {
             if (stackView.depth > 1)
                 stackView.pop();
         }
 
-        // Inner-Right button is the ONLY way in/out of Mission Selection:
-        //  - on Mission Selection -> return to the Driver page,
-        //  - anywhere else        -> unwind to Driver, then open Mission Selection.
-        function onOpenMissionSelect() {
-            if (stackView.currentItem && stackView.currentItem.objectName === "missionSelectionPage") {
-                stackView.pop(null);    // Mission Selection -> Driver
-            } else {
-                stackView.pop(null);    // unwind to Driver (no-op if already there)
-                stackView.push(Qt.resolvedUrl("MissionSelectionPage.qml"), {
+        // Inner-Right button toggles the Main Menu:
+        //  - on the Menu        -> back to the Driver page,
+        //  - on the Driver page -> open the Menu,
+        //  - on any deeper page -> return home to the Driver page.
+        function onToggleMenu() {
+            var it = stackView.currentItem;
+            if (it && it.objectName === "mainMenuPage") {
+                stackView.pop(null);              // Menu -> Driver
+            } else if (stackView.depth === 1) {
+                stackView.push(Qt.resolvedUrl("MainMenuPage.qml"), {
                     "telemetry": telemetryProvider
-                });
+                });                               // Driver -> Menu
+            } else {
+                stackView.pop(null);              // deeper page -> Driver (home)
             }
         }
     }
@@ -121,15 +118,16 @@ Window {
         width: 100
 
         onDoubleClicked: {
-            //If on Driver page, push Mission Selection
-            if (stackView.depth === 1) {
-                stackView.push(Qt.resolvedUrl("MissionSelectionPage.qml"), {
+            // Touch mirror of the Inner-Right button: toggle the Main Menu / go home
+            var it = stackView.currentItem;
+            if (it && it.objectName === "mainMenuPage")
+                stackView.pop(null);
+            else if (stackView.depth === 1)
+                stackView.push(Qt.resolvedUrl("MainMenuPage.qml"), {
                     "telemetry": telemetryProvider
                 });
-            } // If already on a sub-page, pop back to the Driver page
-            else {
-                stackView.pop();
-            }
+            else
+                stackView.pop(null);
         }
     }
     // ==========================================

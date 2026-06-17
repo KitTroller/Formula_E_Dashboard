@@ -94,6 +94,11 @@ void VehicleDataProvider::updateMockData() {
 #include <QStringList>
 #include <QDateTime>
 #include <QDebug>
+#include <QFile>
+#include <QVariant>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 
 //CONSTRUCTOR (UART Initialization)
 
@@ -119,6 +124,8 @@ VehicleDataProvider::VehicleDataProvider(QObject *parent)
     m_cell1MaxV(0.0), m_cell2MaxV(0.0), m_cell3MaxV(0.0), m_cell4MaxV(0.0), m_cell5MaxV(0.0), m_cell6MaxV(0.0), m_cell7MaxV(0.0), m_cell8MaxV(0.0), m_cell9MaxV(0.0), m_cell10MaxV(0.0), m_cell11MaxV(0.0), m_cell12MaxV(0.0),
     m_cell1Temp(0.0), m_cell2Temp(0.0), m_cell3Temp(0.0), m_cell4Temp(0.0), m_cell5Temp(0.0), m_cell6Temp(0.0), m_cell7Temp(0.0), m_cell8Temp(0.0), m_cell9Temp(0.0), m_cell10Temp(0.0), m_cell11Temp(0.0), m_cell12Temp(0.0)
 {
+    loadDbc();   // CAN message catalogue for the sniffer (bundled can_dbc.json)
+
     // Initialize the Serial Port
     m_serial = new QSerialPort(this);
 
@@ -147,11 +154,11 @@ VehicleDataProvider::VehicleDataProvider(QObject *parent)
     // Open the port ReadWrite — we both receive telemetry AND transmit commands
     // (mission select, tuning knobs / steering-wheel toggles). Opening ReadOnly
     // silently dropped every write(), so TX never actually left the dashboard.
-    if(m_serial->open(QIODevice::ReadWrite)) {
+    /*if(m_serial->open(QIODevice::ReadWrite)) {
         qDebug() << "Successfully opened virtual UART port!";
     } else {
         qDebug() << "Failed to open UART port. (We will create it in the terminal next)";
-    }
+    }*/
 }
 
 
@@ -349,28 +356,14 @@ void VehicleDataProvider::handleSteeringWheelInput(uint8_t id, uint8_t value) {
     case 0x0A:                                   // Back button -> previous page
         emit navigateBack();
         break;
-    case 0x0D:                                   // Inner-Right -> open mission select
-        emit openMissionSelect();
+    case 0x0D:                                   // Inner-Right -> toggle the main menu
+        emit toggleMenu();
         break;
-    case 0x08: {                                 // Right button -> Regen
-        const bool s = !m_regenActive;
-        setRegenActive(s);
-        setKnobValue(7, s ? 1.0f : 0.0f);
-        break;
-    }
-    case 0x09: {                                 // Left button -> Traction Control
-        const bool s = !m_tcWarning;
-        setTcWarning(s);
-        setKnobValue(9, s ? 1.0f : 0.0f);
-        break;
-    }
-    case 0x0E: {                                 // Inner-Left -> Torque Vectoring
-        const bool s = !m_tvActive;
-        setTvActive(s);
-        setKnobValue(8, s ? 1.0f : 0.0f);
-        break;
-    }
-    default:                                     // 0x07 (S2), 0x0B (Spare): free
+    // Status indicators (Regen / TC / TV / cooling / …) are driven SOLELY by the
+    // ECU now — the ECU is the single source of truth and a driver-board request
+    // isn't safety-critical, so the wheel no longer toggles them locally.
+    // RB (0x08), LB (0x09), Inner-Left (0x0E), S2 (0x07), Spare (0x0B) are free.
+    default:
         break;
     }
 }
@@ -476,6 +469,9 @@ void VehicleDataProvider::processIncomingByte(uint8_t byte) {
 // PHASE 3: THE DBC DECODER
 // ==========================================
 void VehicleDataProvider::parseCanMessage(uint32_t canId, uint8_t dlc, const QByteArray& data) {
+
+    // CAN sniffer: record EVERY valid frame (known or not) for the live trace.
+    recordRawFrame(canId, data);
 
     if (data.size() < dlc) return; // Safety check
 
@@ -701,4 +697,149 @@ void VehicleDataProvider::parseCanMessage(uint32_t canId, uint8_t dlc, const QBy
     }
 
 #undef UPDATE_VAL
+}
+
+// ==========================================
+// CAN SNIFFER (DBC-driven, Kvaser-style live trace)
+// ==========================================
+
+// Load the static message catalogue produced by tools/dbc_to_json.py.
+void VehicleDataProvider::loadDbc() {
+    // Try the known Qt-resource prefixes (qt_add_qml_module placement varies by Qt version).
+    const QStringList candidates = {
+        QStringLiteral(":/FormulaDash/can_dbc.json"),
+        QStringLiteral(":/qt/qml/FormulaDash/can_dbc.json"),
+        QStringLiteral(":/can_dbc.json")
+    };
+    QFile f;
+    for (const QString &p : candidates) {
+        f.setFileName(p);
+        if (f.open(QIODevice::ReadOnly))
+            break;
+    }
+    if (!f.isOpen()) {
+        qWarning() << "CAN sniffer: could not open can_dbc.json from any resource path";
+        return;
+    }
+    const QJsonObject root = QJsonDocument::fromJson(f.readAll()).object();
+    const QJsonArray msgs  = root.value(QStringLiteral("messages")).toArray();
+    m_dbc.clear();
+    m_dbcIndex.clear();
+    for (const QJsonValue &mv : msgs) {
+        const QJsonObject mo = mv.toObject();
+        CanMessageDef def;
+        def.id   = static_cast<quint32>(mo.value("id").toDouble());
+        def.name = mo.value("name").toString();
+        def.dlc  = mo.value("dlc").toInt();
+        const QJsonArray sigs = mo.value("signals").toArray();
+        for (const QJsonValue &sv : sigs) {
+            const QJsonObject so = sv.toObject();
+            CanSignal s;
+            s.name         = so.value("name").toString();
+            s.startBit     = so.value("start").toInt();
+            s.bitLen       = so.value("len").toInt();
+            s.littleEndian = so.value("le").toBool(true);
+            s.isSigned     = so.value("signed").toBool(false);
+            s.factor       = so.value("factor").toDouble(1.0);
+            s.offset       = so.value("offset").toDouble(0.0);
+            s.unit         = so.value("unit").toString();
+            def.sigs.append(s);
+        }
+        m_dbcIndex.insert(def.id, m_dbc.size());
+        m_dbc.append(def);
+    }
+    qDebug() << "CAN sniffer: loaded" << m_dbc.size() << "messages from DBC";
+}
+
+// Stash the latest payload + arrival time for an id (called on every valid frame).
+void VehicleDataProvider::recordRawFrame(quint32 id, const QByteArray &data) {
+    m_rawData[id]   = data;
+    m_rawLastMs[id] = QDateTime::currentMSecsSinceEpoch();
+}
+
+// Decode one little-endian signal out of a payload (CAN_MCU.dbc is all Intel @1).
+double VehicleDataProvider::decodeSignal(const QByteArray &data, const CanSignal &s) {
+    quint64 raw = 0;
+    const int n = qMin(data.size(), 8);
+    for (int i = 0; i < n; ++i)
+        raw |= static_cast<quint64>(static_cast<quint8>(data[i])) << (8 * i);
+
+    const quint64 mask = (s.bitLen >= 64) ? ~0ULL : ((1ULL << s.bitLen) - 1ULL);
+    const quint64 bits = (raw >> s.startBit) & mask;
+
+    if (s.isSigned && s.bitLen < 64 && (bits & (1ULL << (s.bitLen - 1))))
+        return static_cast<double>(static_cast<qint64>(bits | ~mask)) * s.factor + s.offset;
+    return static_cast<double>(bits) * s.factor + s.offset;
+}
+
+// Tell the other board to start/stop flooding every CAN message.
+// Framed command: [0xAA][id][0xAA^id]; id 'S' = start, 'E' = end.
+void VehicleDataProvider::setSnifferActive(bool on) {
+    if (!m_serial || !m_serial->isOpen()) {
+        qWarning() << "setSnifferActive: serial port not open";
+        return;
+    }
+    const uint8_t id = on ? static_cast<uint8_t>('S') : static_cast<uint8_t>('E');
+    QByteArray cmd;
+    cmd.append(static_cast<char>(0xAA));
+    cmd.append(static_cast<char>(id));
+    cmd.append(static_cast<char>(0xAA ^ id));
+    m_serial->write(cmd);
+    qDebug() << "Sniffer cmd ->" << cmd.toHex(' ');
+}
+
+// The full message list for the scrollable trace (sorted by id ascending).
+QVariantList VehicleDataProvider::snifferMessages() const {
+    QVariantList out;
+    out.reserve(m_dbc.size());
+    for (const CanMessageDef &m : m_dbc) {
+        QVariantMap row;
+        row["id"]    = m.id;
+        row["idHex"] = QStringLiteral("0x%1").arg(m.id, 3, 16, QLatin1Char('0')).toUpper();
+        row["name"]  = m.name;
+        row["dlc"]   = m.dlc;
+        out.append(row);
+    }
+    return out;
+}
+
+bool VehicleDataProvider::snifferReceived(int id) const {
+    return m_rawLastMs.contains(static_cast<quint32>(id));
+}
+
+QString VehicleDataProvider::snifferLastSeen(int id) const {
+    const quint32 key = static_cast<quint32>(id);
+    if (!m_rawLastMs.contains(key))
+        return QStringLiteral("—");
+    const qint64 age = QDateTime::currentMSecsSinceEpoch() - m_rawLastMs.value(key);
+    if (age < 1000)
+        return QString::number(age) + QStringLiteral(" ms");
+    return QString::number(age / 1000.0, 'f', 1) + QStringLiteral(" s");
+}
+
+// Decode every signal of a message from its latest payload. "—" when nothing seen.
+QVariantList VehicleDataProvider::snifferDecode(int id) const {
+    QVariantList out;
+    const quint32 key = static_cast<quint32>(id);
+    if (!m_dbcIndex.contains(key))
+        return out;
+    const CanMessageDef &def = m_dbc.at(m_dbcIndex.value(key));
+    const bool have = m_rawData.contains(key);
+    const QByteArray data = have ? m_rawData.value(key) : QByteArray();
+    for (const CanSignal &s : def.sigs) {
+        QVariantMap row;
+        row["name"] = s.name;
+        row["unit"] = s.unit;
+        if (!have) {
+            row["value"] = QStringLiteral("—");
+        } else {
+            const double v = decodeSignal(data, s);
+            if (s.factor == 1.0 && s.offset == 0.0)
+                row["value"] = QString::number(static_cast<qint64>(v));
+            else
+                row["value"] = QString::number(v, 'f', 3);
+        }
+        out.append(row);
+    }
+    return out;
 }
