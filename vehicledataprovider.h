@@ -14,6 +14,9 @@ class VehicleDataProvider : public QObject{
     Q_OBJECT
     QML_ELEMENT
 
+    // Ticks ~2 Hz so freshness-gated QML bindings re-check staleness over time.
+    Q_PROPERTY(int freshTick READ freshTick NOTIFY freshTickChanged)
+
     //Exposed registers
     Q_PROPERTY(int speed READ speed NOTIFY speedChanged)
     Q_PROPERTY(double brakeBias READ brakeBias NOTIFY brakeBiasChanged)
@@ -159,6 +162,14 @@ public:
     //   [{ name, value, unit }]  — value is "—" when nothing received yet.
     Q_INVOKABLE QVariantList snifferDecode(int id) const;
 
+    // ---- Data freshness (anti-stale display) ----
+    int freshTick() const { return m_freshTick; }
+    // True if CAN message <canId> arrived within the staleness window (5 s).
+    Q_INVOKABLE bool isFresh(int canId) const;
+    // A live value formatted to <decimals>, or "—" if its source is missing/stale.
+    Q_INVOKABLE QString fmt(double value, int canId, int decimals) const;
+    Q_INVOKABLE QString fmtInt(double value, int canId) const;
+
     // Get Functions
     int speed() const; double lapTime() const; double timeDelta() const; int lapCount() const;
     double accelX() const; double accelY() const; double throttleVal() const;
@@ -191,6 +202,7 @@ signals:
     void selectPressed();      // encoder-1 push (S1) -> confirm / enter
     void navigateBack();       // Back button -> pop to previous page
     void toggleMenu();         // Inner-Right button -> toggle the main menu page
+    void freshTickChanged();   // ~2 Hz heartbeat driving stale-value re-checks
 
     // Hardware Interrupt Triggers
     void speedChanged(); void lapTimeChanged(); void timeDeltaChanged(); void lapCountChanged();
@@ -303,6 +315,12 @@ private:
     // Live capture: latest payload + timing per arbitration id (the "trace").
     QHash<quint32, QByteArray> m_rawData;
     QHash<quint32, qint64>     m_rawLastMs;
+
+    // Data-freshness heartbeat + window. A value whose source CAN id hasn't been
+    // seen within kStaleTimeoutMs is rendered as "—" instead of a stale number.
+    int     m_freshTick = 0;
+    QTimer *m_freshTimer = nullptr;
+    static constexpr qint64 kStaleTimeoutMs = 5000;
 
     void loadDbc();
     void recordRawFrame(quint32 id, const QByteArray &data);

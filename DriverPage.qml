@@ -108,7 +108,7 @@ Item {
                                     duration: 250
                                 }
                             }
-                            text: Math.round(animatedSoc) + "%"
+                            text: (root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(801))) ? (Math.round(animatedSoc) + "%") : "—"
                             color: animatedSoc > 20 ? "#ffffff" : "#ff3333"
                             font.pixelSize: 32
                             font.bold: true
@@ -166,7 +166,7 @@ Item {
                                 }
 
                                 // 3. Bind the text to the SMOOTH animated variable
-                                text: animatedVoltage.toFixed(1) + " V"
+                                text: (root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(1315))) ? (animatedVoltage.toFixed(1) + " V") : "—"
 
                                 // 4. Bind the color to the RAW variable so the red warning is instant!
                                 color: (root.telemetry && root.telemetry.voltage <= 500.0) ? "#ff3333" : "white"// 550 Voltage critical point
@@ -190,7 +190,7 @@ Item {
                             font.letterSpacing: 1.5
                         }
                         Text {
-                            text: (root.telemetry ? root.telemetry.powerTarget.toFixed(0) : "0") + " kW"
+                            text: (root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(806))) ? (root.telemetry.powerTarget.toFixed(0) + " kW") : "—"
                             color: "#ffcc00"
                             font.pixelSize: 30
                             font.bold: true
@@ -499,7 +499,7 @@ Item {
                         spacing: -4
 
                         Text {
-                            text: Math.round(heroGaugeContainer.animatedSpeed)
+                            text: (root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(801))) ? Math.round(heroGaugeContainer.animatedSpeed) : "—"
                             color: "white"
                             font.pixelSize: 70 // Shrunk slightly to fit the stacked layout
                             font.bold: true
@@ -525,7 +525,7 @@ Item {
                         }
 
                         Text {
-                            text: Math.abs(heroGaugeContainer.animatedPower).toFixed(1)
+                            text: (root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(801))) ? Math.abs(heroGaugeContainer.animatedPower).toFixed(1) : "—"
                             color: heroGaugeContainer.animatedPower < 0 ? "#00ffcc" : "#ffcc00"
                             font.pixelSize: 32
                             font.bold: true
@@ -859,7 +859,7 @@ Item {
                     RowLayout {
                         Layout.alignment: Qt.AlignRight
                         Text {
-                            text: gMeterContainer.peakG.toFixed(2)
+                            text: (root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(1799))) ? gMeterContainer.peakG.toFixed(2) : "—"
                             color: gMeterContainer.peakG >= 1.5 ? "#00ffcc" : "white"
                             font.pixelSize: 40
                             font.bold: true

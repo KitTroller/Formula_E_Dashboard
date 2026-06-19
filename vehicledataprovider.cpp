@@ -109,7 +109,7 @@ VehicleDataProvider::VehicleDataProvider(QObject *parent)
     m_coolingActive(false), m_radioActive(false), m_tvActive(false),
     m_tcWarning(false), m_regenActive(false), m_ssActive(false),
     // Default Accumulator Values
-    m_soc(100), m_voltage(600.0), m_currentDc(0.0), m_power(0.0), m_powerTarget(60.0),//-------changed voltage to 600
+    m_soc(100), m_voltage(600.0), m_currentDc(0.0), m_power(0.0), m_powerTarget(60.0),//-------changed voltage to 600 change back to 0
     m_minCellTemp(20.0), m_maxCellTemp(25.0), m_minCellVoltage(4.1), m_maxCellVoltage(4.2),
     // Default Powertrain (4WD)
     m_torqueReqFL(0), m_torqueReqFR(0), m_torqueReqRL(0), m_torqueReqRR(0),
@@ -125,6 +125,16 @@ VehicleDataProvider::VehicleDataProvider(QObject *parent)
     m_cell1Temp(0.0), m_cell2Temp(0.0), m_cell3Temp(0.0), m_cell4Temp(0.0), m_cell5Temp(0.0), m_cell6Temp(0.0), m_cell7Temp(0.0), m_cell8Temp(0.0), m_cell9Temp(0.0), m_cell10Temp(0.0), m_cell11Temp(0.0), m_cell12Temp(0.0)
 {
     loadDbc();   // CAN message catalogue for the sniffer (bundled can_dbc.json)
+
+    // Freshness heartbeat: bump freshTick ~2 Hz so stale values flip to "—" even
+    // when no new frame is arriving (a frozen reading is as dangerous as a fake one).
+    m_freshTimer = new QTimer(this);
+    m_freshTimer->setInterval(500);
+    connect(m_freshTimer, &QTimer::timeout, this, [this]() {
+        ++m_freshTick;
+        emit freshTickChanged();
+    });
+    m_freshTimer->start();
 
     // Initialize the Serial Port
     m_serial = new QSerialPort(this);
@@ -815,6 +825,26 @@ QString VehicleDataProvider::snifferLastSeen(int id) const {
     if (age < 1000)
         return QString::number(age) + QStringLiteral(" ms");
     return QString::number(age / 1000.0, 'f', 1) + QStringLiteral(" s");
+}
+
+// ---- Data freshness helpers (used by every live readout in QML) ----
+bool VehicleDataProvider::isFresh(int canId) const {
+    const auto it = m_rawLastMs.constFind(static_cast<quint32>(canId));
+    if (it == m_rawLastMs.constEnd())
+        return false;                                   // never received
+    return (QDateTime::currentMSecsSinceEpoch() - it.value()) <= kStaleTimeoutMs;
+}
+
+QString VehicleDataProvider::fmt(double value, int canId, int decimals) const {
+    if (!isFresh(canId))
+        return QStringLiteral("—");
+    return QString::number(value, 'f', decimals);
+}
+
+QString VehicleDataProvider::fmtInt(double value, int canId) const {
+    if (!isFresh(canId))
+        return QStringLiteral("—");
+    return QString::number(qRound64(value));
 }
 
 // Decode every signal of a message from its latest payload. "—" when nothing seen.

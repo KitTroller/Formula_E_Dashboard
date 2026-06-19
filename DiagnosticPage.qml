@@ -315,6 +315,14 @@ Item {
 
                             property string cellName: "S" + (index + 1).toString().padStart(2, '0')
 
+                            // CAN source ids for this row's freshness check:
+                            // cell voltages are paired per msg (1600=cells1&2, 1601=3&4, …);
+                            // temps are grouped 4-per-msg (1606=1-4, 1607=5-8, 1608=9-12).
+                            property int vMsgId: 1600 + Math.floor(index / 2)
+                            property int tMsgId: 1606 + Math.floor(index / 4)
+                            property bool vFresh: root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(vMsgId))
+                            property bool tFresh: root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(tMsgId))
+
                             // 1. RAW DATA (Snaps instantly for the color logic)
                             property real rawMinV: {
                                 if (!root.telemetry)
@@ -450,7 +458,7 @@ Item {
 
                                 // Text reads the smoothly Animated variable, but the Color relies on the instant Raw variable!
                                 Text {
-                                    text: animMinV.toFixed(3)
+                                    text: vFresh ? animMinV.toFixed(3) : "—"
                                     color: (root.telemetry && rawMinV === root.telemetry.minCellVoltage) ? "#ff3333" : "white"
                                     font.pixelSize: 18
                                     font.bold: true
@@ -460,7 +468,7 @@ Item {
                                 }
 
                                 Text {
-                                    text: animMaxV.toFixed(3)
+                                    text: vFresh ? animMaxV.toFixed(3) : "—"
                                     color: (root.telemetry && rawMaxV === root.telemetry.maxCellVoltage) ? "#ff3333" : "white"
                                     font.pixelSize: 18
                                     font.bold: true
@@ -470,7 +478,7 @@ Item {
                                 }
 
                                 Text {
-                                    text: animTemp.toFixed(1) + " °C"
+                                    text: tFresh ? (animTemp.toFixed(1) + " °C") : "—"
                                     color: (root.telemetry && rawTemp === root.telemetry.maxCellTemp) ? "#ff3333" : "white"
                                     font.pixelSize: 18
                                     font.bold: true
@@ -512,7 +520,7 @@ Item {
                                         duration: 250
                                     }
                                 }
-                                text: calcPower.toFixed(1)
+                                text: (root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(1315))) ? calcPower.toFixed(1) : "—"
                                 color: "#ffcc00"
                                 font.pixelSize: 65
                                 font.bold: true
@@ -548,7 +556,7 @@ Item {
                                         duration: 250
                                     }
                                 }
-                                text: animVolts.toFixed(1)
+                                text: (root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(1315))) ? animVolts.toFixed(1) : "—"
                                 color: "white"
                                 font.pixelSize: 65
                                 font.bold: true
@@ -584,7 +592,7 @@ Item {
                                         duration: 250
                                     }
                                 }
-                                text: animAmps.toFixed(1)
+                                text: (root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(1315))) ? animAmps.toFixed(1) : "—"
                                 color: "white"
                                 font.pixelSize: 65
                                 font.bold: true
@@ -631,6 +639,9 @@ Item {
                         property real motorTemp: 0.0
                         property real igbtTemp: 0.0
                         property int alignFlag: Qt.AlignLeft
+                        // CAN id feeding this wheel (RL=701 RR=702 FL=703 FR=704); set by the Loader.
+                        property int sourceId: 0
+                        property bool fresh: root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(sourceId))
 
                         // Graph settings
                         property int maxTorque: 200 // Set your car's max physical Nm per wheel here
@@ -674,7 +685,7 @@ Item {
                                     Layout.alignment: boxRoot.alignFlag
                                     Text { text: "RPM:"; color: "#8899aa"; font.pixelSize: 16; font.bold: true }
                                     Text {
-                                        text: boxRoot.rpm
+                                        text: boxRoot.fresh ? boxRoot.rpm : "—"
                                         color: "white"
                                         font.pixelSize: 22
                                         font.bold: true
@@ -685,7 +696,7 @@ Item {
                                     Layout.alignment: boxRoot.alignFlag
                                     Text { text: "TRQ REQ:"; color: "#8899aa"; font.pixelSize: 16; font.bold: true }
                                     Text {
-                                        text: boxRoot.torqueReq + " Nm"
+                                        text: boxRoot.fresh ? (boxRoot.torqueReq + " Nm") : "—"
                                         color: "#ffcc00"
                                         font.pixelSize: 22
                                         font.bold: true
@@ -696,7 +707,7 @@ Item {
                                     Layout.alignment: boxRoot.alignFlag
                                     Text { text: "TRQ ACT:"; color: "#8899aa"; font.pixelSize: 16; font.bold: true }
                                     Text {
-                                        text: boxRoot.torqueAct + " Nm"
+                                        text: boxRoot.fresh ? (boxRoot.torqueAct + " Nm") : "—"
                                         color: "white"
                                         font.pixelSize: 22
                                         font.bold: true
@@ -707,7 +718,7 @@ Item {
                                     Layout.alignment: boxRoot.alignFlag
                                     Text { text: "MOTOR:"; color: "#8899aa"; font.pixelSize: 16; font.bold: true }
                                     Text {
-                                        text: boxRoot.motorTemp.toFixed(1) + " °C"
+                                        text: boxRoot.fresh ? (boxRoot.motorTemp.toFixed(1) + " °C") : "—"
                                         color: boxRoot.motorTemp > 65 ? "#ff3333" : "white"
                                         font.pixelSize: 22
                                         font.bold: true
@@ -717,7 +728,7 @@ Item {
                                     Layout.alignment: boxRoot.alignFlag
                                     Text { text: "IGBT:"; color: "#8899aa"; font.pixelSize: 16; font.bold: true }
                                     Text {
-                                        text: boxRoot.igbtTemp.toFixed(1) + " °C"
+                                        text: boxRoot.fresh ? (boxRoot.igbtTemp.toFixed(1) + " °C") : "—"
                                         color: boxRoot.igbtTemp > 60 ? "#ff3333" : "white"
                                         font.pixelSize: 22
                                         font.bold: true
@@ -865,6 +876,7 @@ Item {
                     sourceComponent: wheelDataBox
                     onLoaded: {
                         item.wheelName = "FL";
+                        item.sourceId = 703;
                         item.alignFlag = Qt.AlignRight;
                         item.tyrePress = Qt.binding(function () {
                             return (root.telemetry ? root.telemetry.tyrePressFL : 0.0) || 0.0;
@@ -897,6 +909,7 @@ Item {
                     sourceComponent: wheelDataBox
                     onLoaded: {
                         item.wheelName = "FR";
+                        item.sourceId = 704;
                         item.alignFlag = Qt.AlignLeft;
                         item.tyrePress = Qt.binding(function () {
                             return (root.telemetry ? root.telemetry.tyrePressFR : 0.0) || 0.0;
@@ -929,6 +942,7 @@ Item {
                     sourceComponent: wheelDataBox
                     onLoaded: {
                         item.wheelName = "RL";
+                        item.sourceId = 701;
                         item.alignFlag = Qt.AlignRight;
                         item.tyrePress = Qt.binding(function () {
                             return (root.telemetry ? root.telemetry.tyrePressRL : 0.0) || 0.0;
@@ -961,6 +975,7 @@ Item {
                     sourceComponent: wheelDataBox
                     onLoaded: {
                         item.wheelName = "RR";
+                        item.sourceId = 702;
                         item.alignFlag = Qt.AlignLeft;
                         item.tyrePress = Qt.binding(function () {
                             return (root.telemetry ? root.telemetry.tyrePressRR : 0.0) || 0.0;
