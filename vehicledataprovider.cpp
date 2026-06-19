@@ -164,11 +164,11 @@ VehicleDataProvider::VehicleDataProvider(QObject *parent)
     // Open the port ReadWrite — we both receive telemetry AND transmit commands
     // (mission select, tuning knobs / steering-wheel toggles). Opening ReadOnly
     // silently dropped every write(), so TX never actually left the dashboard.
-    /*if(m_serial->open(QIODevice::ReadWrite)) {
-        qDebug() << "Successfully opened virtual UART port!";
+    if(m_serial->open(QIODevice::ReadWrite)) {
+        //qDebug() << "Successfully opened UART port:" << chosenPort;
     } else {
-        qDebug() << "Failed to open UART port. (We will create it in the terminal next)";
-    }*/
+        //qDebug() << "Failed to open UART port" << chosenPort << ":" << m_serial->errorString();
+    }
 }
 
 
