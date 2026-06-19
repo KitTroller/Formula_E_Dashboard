@@ -567,6 +567,12 @@ Item {
                                           ? Math.round(root.telemetry.rawBrake) : "—"
                                     color: "#ff6666"; font.pixelSize: 18; font.bold: true
                                 }
+                                Text {
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    anchors.left: parent.left
+                                    text: "bar"
+                                    color: "#ff6666"; font.pixelSize: 18; font.bold: true
+                                }
                                 Text {                       // REAR brake — bottom-left
                                     anchors.bottom: parent.bottom
                                     anchors.left: parent.left
