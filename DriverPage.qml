@@ -61,14 +61,14 @@ Item {
                     Layout.alignment: Qt.AlignLeft | Qt.AlignTop
                     Layout.topMargin: -30 // Pull the WHOLE SoC block up!
 
-                    Text {
+                    /*Text {  removed SoC text as requested
                         text: "SoC"
                         color: "#777777"
                         font.pixelSize: 15
                         font.bold: true
                         font.letterSpacing: 2
                         Layout.leftMargin: 22
-                    }
+                    }*/
 
                     RowLayout {
                         spacing: 0
@@ -550,92 +550,110 @@ Item {
                     // BRAKE
                     ColumnLayout {
                         spacing: 5
-                        Rectangle {
-                            width: 24
-                            height: 90
-                            radius: 12
-                            color: "#111111"
-                            border.color: "#333333"
-                            border.width: 2
-                            clip: true
-
-                            // REAL C++ BINDING: 0.0 to 1.0
-                            property real brakeVal: root.telemetry ? root.telemetry.brakePress : 0.0
-                            Behavior on brakeVal {
-                                NumberAnimation {
-                                    duration: 50
-                                }
+                        RowLayout{
+                            spacing:6
+                            Text {                       // brake % — LEFT of the bar
+                                text: (root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(101)))
+                                      ? Math.round(root.telemetry.rawBrake) : "—"
+                                color: "#ff6666"; font.pixelSize: 18; font.bold: true
+                                Layout.alignment: Qt.AlignVCenter
                             }
 
                             Rectangle {
-                                anchors.bottom: parent.bottom
-                                width: parent.width
+                                width: 24
+                                height: 90
                                 radius: 12
-                                height: parent.height * parent.brakeVal
-                                gradient: Gradient {
-                                    GradientStop {
-                                        position: 0.0
-                                        color: "#ff3333"
+                                color: "#111111"
+                                border.color: "#333333"
+                                border.width: 2
+                                clip: true
+
+                                // REAL C++ BINDING: 0.0 to 1.0
+                                property real brakeVal: root.telemetry ? root.telemetry.brakePress : 0.0
+                                Behavior on brakeVal {
+                                    NumberAnimation {
+                                        duration: 50
                                     }
-                                    GradientStop {
-                                        position: 1.0
-                                        color: "#880000"
+                                }
+
+                                Rectangle {
+                                    anchors.bottom: parent.bottom
+                                    width: parent.width
+                                    radius: 12
+                                    height: parent.height * parent.brakeVal
+                                    gradient: Gradient {
+                                        GradientStop {
+                                            position: 0.0
+                                            color: "#ff3333"
+                                        }
+                                        GradientStop {
+                                            position: 1.0
+                                            color: "#880000"
+                                        }
                                     }
                                 }
                             }
-                        }
-                        Text {
-                            text: "BRK"
-                            color: "#666666"
-                            font.pixelSize: 14
-                            font.bold: true
-                            Layout.alignment: Qt.AlignHCenter
+                            Text {
+                                text: "BRK"
+                                color: "#666666"
+                                font.pixelSize: 14
+                                font.bold: true
+                                Layout.alignment: Qt.AlignHCenter
+                            }
                         }
                     }
 
                     // THROTTLE
                     ColumnLayout {
                         spacing: 5
-                        Rectangle {
-                            width: 24
-                            height: 90
-                            radius: 12
-                            color: "#111111"
-                            border.color: "#333333"
-                            border.width: 2
-                            clip: true
-
-                            // REAL C++ BINDING: 0.0 to 1.0 (0% to 100%)
-                            property real throttleVal: root.telemetry ? root.telemetry.throttleVal : 0.0
-                            Behavior on throttleVal {
-                                NumberAnimation {
-                                    duration: 50
-                                }
-                            } // Extremely fast 50ms smooth update
-
+                        RowLayout{
+                            spacing: 5
+                            Text{
+                                text:(root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(101)))? Math.round(root.throttleVal * 100) : "—"
+                                color: "#00ffcc"; font.pixelSize: 18; font.bold: true
+                                Layout.alignment: Qt.AlignVCenter
+                            }
                             Rectangle {
-                                anchors.bottom: parent.bottom
-                                width: parent.width
+                                width: 24
+                                height: 90
                                 radius: 12
-                                height: parent.height * parent.throttleVal
-                                gradient: Gradient {
-                                    GradientStop {
-                                        position: 0.0
-                                        color: "#00ffcc"
+                                color: "#111111"
+                                border.color: "#333333"
+                                border.width: 2
+                                clip: true
+
+                                // REAL C++ BINDING: 0.0 to 1.0 (0% to 100%)
+                                property real throttleVal: root.telemetry ? root.telemetry.throttleVal : 0.0
+                                Behavior on throttleVal {
+                                    NumberAnimation {
+                                        duration: 50
                                     }
-                                    GradientStop {
-                                        position: 1.0
-                                        color: "#006644"
+                                } // Extremely fast 50ms smooth update
+
+                                Rectangle {
+                                    anchors.bottom: parent.bottom
+                                    width: parent.width
+                                    radius: 12
+                                    height: parent.height * parent.throttleVal
+                                    gradient: Gradient {
+                                        GradientStop {
+                                            position: 0.0
+                                            color: "#00ffcc"
+                                        }
+                                        GradientStop {
+                                            position: 1.0
+                                            color: "#006644"
+                                        }
                                     }
                                 }
                             }
-                        }
-                        Text {
-                            text: "THR"
-                            color: "#666666"
-                            font.pixelSize: 14
-                            font.bold: true
-                            Layout.alignment: Qt.AlignHCenter
+                            Text {
+                                text: "THR"
+                                color: "#666666"
+                                font.pixelSize: 14
+                                font.bold: true
+                                Layout.alignment: Qt.AlignHCenter
+                            }
                         }
                     }
                 }
@@ -648,18 +666,18 @@ Item {
                 anchors.right: parent.right
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
-                width: 160 // Explicit width constraint
+                width: 230 // Explicit width constraint
                 spacing: 10
                 // INDICATORS (Compacted font and spacing)
                 // 1. TOP ICONS (Grouped Side-by-Side to save vertical space!)
                 RowLayout {
                     Layout.alignment: Qt.AlignRight
-                    spacing: 20 // Space between the two icons
+                    spacing: 20 // Space between the two icons increased to 25 from 20
 
                     // COOLING ICON
                     Item {
-                        Layout.preferredWidth: 42
-                        Layout.preferredHeight: 42
+                        Layout.preferredWidth: 50// changed from 42 to 50
+                        Layout.preferredHeight: 50
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -686,8 +704,8 @@ Item {
 
                     // RADIO ICON
                     Item {
-                        Layout.preferredWidth: 42
-                        Layout.preferredHeight: 42
+                        Layout.preferredWidth: 50// changed from 42 to 50
+                        Layout.preferredHeight: 50
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -713,8 +731,8 @@ Item {
                     }
                     // TRACTION CONTROL ICON
                     Item {
-                        Layout.preferredWidth: 42
-                        Layout.preferredHeight: 42
+                        Layout.preferredWidth: 50 // changed from 42 to 50
+                        Layout.preferredHeight: 50
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -742,10 +760,10 @@ Item {
                 // REGENERATION ICON
                 RowLayout {
                     Layout.alignment: Qt.AlignRight
-                    spacing: 20 // Space between the two icons
+                    spacing: 20 // Space between the two icons changed from 20 to 25
                     Item {
-                        Layout.preferredWidth: 42
-                        Layout.preferredHeight: 42
+                        Layout.preferredWidth: 50
+                        Layout.preferredHeight: 50 // changed from 42 to 50
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -771,8 +789,8 @@ Item {
                     }
 
                     Item {
-                        Layout.preferredWidth: 42
-                        Layout.preferredHeight: 42
+                        Layout.preferredWidth: 50
+                        Layout.preferredHeight: 50
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -797,8 +815,8 @@ Item {
                         }
                     }
                     Item {
-                        Layout.preferredWidth: 42
-                        Layout.preferredHeight: 42
+                        Layout.preferredWidth: 50 // changed from 42 to 50
+                        Layout.preferredHeight: 50
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit

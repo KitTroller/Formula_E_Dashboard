@@ -26,19 +26,19 @@ Window {
         function onNavigateNextPage() {           // CW / forward
             var it = stackView.currentItem;
             if (!it) return;
-            if (it.objectName === "mainMenuPage" || it.objectName === "missionSelectionPage")
+            if (it.objectName === "mainMenuPage" || it.objectName === "missionSelectionPage" || it.objectName === "canSnifferPage")
                 it.wheelScrollDown();
-            else if (it.objectName === "diagnosticPage")
-                it.nextTab();                     // next tab (stays at the last one)
+            //else if (it.objectName === "diagnosticPage")
+               // it.nextTab();                     // next tab (stays at the last one)--------------removed since we seperated the pages, no more diagnostic page slide view
         }
 
         function onNavigatePrevPage() {           // CCW / backward
             var it = stackView.currentItem;
             if (!it) return;
-            if (it.objectName === "mainMenuPage" || it.objectName === "missionSelectionPage")
+            if (it.objectName === "mainMenuPage" || it.objectName === "missionSelectionPage" || it.objectName === "canSnifferPage")
                 it.wheelScrollUp();
-            else if (it.objectName === "diagnosticPage")
-                it.prevTab();                     // previous tab (stays at the first one)
+            //else if (it.objectName === "diagnosticPage")
+               // it.prevTab();                     // previous tab (stays at the first one)
         }
 
         // Encoder push -> let the current page act on its selection
@@ -100,7 +100,7 @@ Window {
         onDoubleClicked: {
             // If we are on the Driver page, push the Diagnostics page
             if (stackView.depth === 1) {
-                stackView.push(Qt.resolvedUrl("DiagnosticPage.qml"), {
+                stackView.push(Qt.resolvedUrl("AccumulatorPage.qml"), {
                     "telemetry": telemetryProvider
                 });
             } // If we are on the Diagnostics page, pop back to the Driver page

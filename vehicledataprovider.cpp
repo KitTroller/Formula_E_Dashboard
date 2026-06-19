@@ -104,7 +104,7 @@ void VehicleDataProvider::updateMockData() {
 
 VehicleDataProvider::VehicleDataProvider(QObject *parent)
     : QObject(parent), m_speed(0), m_lapTime(0.0), m_timeDelta(0.0), m_lapCount(0),
-    m_accelX(0.0), m_accelY(0.0), m_throttleVal(0.0), m_brakePress(0.0), m_brakeBias(54.0),
+    m_accelX(0.0), m_accelY(0.0), m_throttleVal(0.0), m_brakePress(0.0), m_brakeBias(54.0), m_rawBrake(0.0), // added rawBrake everywhere
     // Default Booleans
     m_coolingActive(false), m_radioActive(false), m_tvActive(false),
     m_tcWarning(false), m_regenActive(false), m_ssActive(false),
@@ -165,9 +165,9 @@ VehicleDataProvider::VehicleDataProvider(QObject *parent)
     // (mission select, tuning knobs / steering-wheel toggles). Opening ReadOnly
     // silently dropped every write(), so TX never actually left the dashboard.
     if(m_serial->open(QIODevice::ReadWrite)) {
-        //qDebug() << "Successfully opened UART port:" << chosenPort;
+        qDebug() << "Successfully opened UART port:" << chosenPort;
     } else {
-        //qDebug() << "Failed to open UART port" << chosenPort << ":" << m_serial->errorString();
+        qDebug() << "Failed to open UART port" << chosenPort << ":" << m_serial->errorString();
     }
 }
 
@@ -189,6 +189,7 @@ double VehicleDataProvider::accelY() const { return m_accelY; }
 double VehicleDataProvider::throttleVal() const { return m_throttleVal; }
 double VehicleDataProvider::brakePress() const { return m_brakePress; }
 double VehicleDataProvider::brakeBias() const { return m_brakeBias; }
+double VehicleDataProvider::rawBrake() const {return m_rawBrake;}
 
 bool VehicleDataProvider::coolingActive() const { return m_coolingActive; }
 bool VehicleDataProvider::radioActive() const { return m_radioActive; }
@@ -379,9 +380,7 @@ void VehicleDataProvider::handleSteeringWheelInput(uint8_t id, uint8_t value) {
 }
 
 //THE UART INTERRUPT SERVICE ROUTINE
-// ==========================================
-// THE NEW UART INGESTION LOOP
-// ==========================================
+
 void VehicleDataProvider::parseUartData() {
     // 1. Grab whatever bytes just arrived on the serial port
     QByteArray rawData = m_serial->readAll();
@@ -464,8 +463,10 @@ void VehicleDataProvider::processIncomingByte(uint8_t byte) {
 
         if (calculatedChecksum == byte) {
             // SUCCESS! The packet is 100% valid. Send it to the DBC decoder.
+            ++m_rxFramesOk;
             parseCanMessage(m_currentId, m_currentDlc, m_payloadBuffer);
         } else {
+            ++m_rxChecksumFail;
             qWarning() << "UART Checksum Failed! Dropping packet.";
         }
 
@@ -577,7 +578,8 @@ void VehicleDataProvider::parseCanMessage(uint32_t canId, uint8_t dlc, const QBy
         if (dlc >= 2) UPDATE_VAL(m_throttleVal, extractU16(data, 0) * 0.001, throttleValChanged);
         break;
     case 101: // Brake Pressure
-        if (dlc >= 2) UPDATE_VAL(m_brakePress, std::min((extractU16(data, 0) * 0.01) / 200.0, 1.0), brakePressChanged);
+        if (dlc >= 2) UPDATE_VAL(m_brakePress, std::min((extractU16(data, 0) * 0.01) / 300.0, 1.0), brakePressChanged); // maximum is 300
+        if (dlc >= 2) UPDATE_VAL(m_rawBrake,(extractU16(data,0)* 0.01), rawBrakeChanged); // added reading for raw brake pressure
         break;
     case 1799: // SensoricSolutions Accel
         if (dlc >= 4) {

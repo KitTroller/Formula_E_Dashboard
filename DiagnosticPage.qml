@@ -738,7 +738,7 @@ Item {
 
                             // --- COLUMN 2: THE DYNAMIC TORQUE GRAPH ---
                             Item {
-                                Layout.preferredWidth: 12
+                                Layout.preferredWidth: 20 // increased thicccccness------
                                 Layout.fillHeight: true
                                 Layout.topMargin: 20 // Pushes the bar down to align with the actual torque text
                                 Layout.bottomMargin: 5

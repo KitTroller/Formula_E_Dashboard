@@ -120,9 +120,9 @@ Item {
                 border.color: index === msgList.currentIndex ? "#ffffff" : "#1a3344"
                 border.width: 1
 
-                property bool seen: sniffRoot.telemetry
+                property bool seen: false /*sniffRoot.telemetry ----------------temporary until logic is added
                                     ? (sniffRoot.refreshTick, sniffRoot.telemetry.snifferReceived(modelData.id))
-                                    : false
+                                    : false*/
 
                 RowLayout {
                     anchors.fill: parent
@@ -148,9 +148,9 @@ Item {
                     }
                     // Live "last seen" counter — refreshes on every tick.
                     Text {
-                        text: sniffRoot.telemetry
+                        text: "—" /*sniffRoot.telemetry-------- temporarily made just "-"
                               ? (sniffRoot.refreshTick, sniffRoot.telemetry.snifferLastSeen(modelData.id))
-                              : "—"
+                              : "—"*/
                         color: index === msgList.currentIndex
                                ? "#222222"
                                : (row.seen ? "#00ffcc" : "#55687a")
@@ -205,9 +205,9 @@ Item {
                 spacing: 6
                 Text { text: "last seen"; color: "#55687a"; font.pixelSize: 13 }
                 Text {
-                    text: sniffRoot.telemetry && sniffRoot.selectedId !== -1
+                    text: "-"/*sniffRoot.telemetry && sniffRoot.selectedId !== -1---------- temporarily
                           ? (sniffRoot.refreshTick, sniffRoot.telemetry.snifferLastSeen(sniffRoot.selectedId))
-                          : "—"
+                          : "—"*/
                     color: "#7790a5"
                     font.pixelSize: 16
                     font.bold: true

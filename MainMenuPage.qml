@@ -35,13 +35,16 @@ Item {
             view.push(Qt.resolvedUrl("MissionSelectionPage.qml"), { "telemetry": menuRoot.telemetry });
             break;
         case 1:
-            view.push(Qt.resolvedUrl("DiagnosticPage.qml"), { "telemetry": menuRoot.telemetry, "startTab": 0 });
+            view.push(Qt.resolvedUrl("AccumulatorPage.qml"), { "telemetry": menuRoot.telemetry});
             break;
         case 2:
-            view.push(Qt.resolvedUrl("DiagnosticPage.qml"), { "telemetry": menuRoot.telemetry, "startTab": 1 });
+            view.push(Qt.resolvedUrl("PowertrainPage.qml"), { "telemetry": menuRoot.telemetry});
             break;
         case 3:
             view.push(Qt.resolvedUrl("CanSnifferPage.qml"), { "telemetry": menuRoot.telemetry });
+            break;
+        case 4:
+            view.push(Qt.resolvedUrl("DebugPage.qml"), { "telemetry": menuRoot.telemetry });
             break;
         }
     }
@@ -78,7 +81,7 @@ Item {
             boundsBehavior: Flickable.StopAtBounds
             bottomMargin: 20
 
-            model: ["MISSION SELECTION", "ACCUMULATOR", "POWERTRAIN", "CAN SNIFFER"]
+            model: ["MISSION SELECTION", "ACCUMULATOR", "POWERTRAIN", "CAN SNIFFER", "DEBUG"]
 
             delegate: Rectangle {
                 width: ListView.view.width

@@ -27,6 +27,7 @@ class VehicleDataProvider : public QObject{
     Q_PROPERTY(double throttleVal READ throttleVal NOTIFY throttleValChanged)
     Q_PROPERTY(double brakePress READ brakePress NOTIFY brakePressChanged)
     Q_PROPERTY(double timeDelta READ timeDelta NOTIFY timeDeltaChanged) // Added this
+    Q_PROPERTY(double rawBrake READ rawBrake NOTIFY rawBrakeChanged) // added rawBrake everywhere
 
     //Status indicators
     Q_PROPERTY(bool coolingActive READ coolingActive WRITE setCoolingActive NOTIFY coolingActiveChanged)
@@ -170,10 +171,14 @@ public:
     Q_INVOKABLE QString fmt(double value, int canId, int decimals) const;
     Q_INVOKABLE QString fmtInt(double value, int canId) const;
 
+    // added soe Qinvocables for lost frames
+    Q_INVOKABLE int rxFramesOk() const   { return m_rxFramesOk; }
+    Q_INVOKABLE int rxChecksumFails() const { return m_rxChecksumFail; }
+
     // Get Functions
     int speed() const; double lapTime() const; double timeDelta() const; int lapCount() const;
     double accelX() const; double accelY() const; double throttleVal() const;
-    double brakePress() const; double brakeBias() const;
+    double brakePress() const; double brakeBias() const; double rawBrake() const; // added rawBrake everywhere
 
     bool coolingActive() const; bool radioActive() const; bool tvActive() const;
     bool tcWarning() const; bool regenActive() const; bool ssActive() const;
@@ -207,7 +212,7 @@ signals:
     // Hardware Interrupt Triggers
     void speedChanged(); void lapTimeChanged(); void timeDeltaChanged(); void lapCountChanged();
     void accelXChanged(); void accelYChanged(); void throttleValChanged();
-    void brakePressChanged(); void brakeBiasChanged();
+    void brakePressChanged(); void brakeBiasChanged(); void rawBrakeChanged();// added rawBrake everywhere
 
     void coolingActiveChanged(); void radioActiveChanged(); void tvActiveChanged();
     void tcWarningChanged(); void regenActiveChanged(); void ssActiveChanged();
@@ -237,7 +242,7 @@ private:
     // Internal Memory (The actual C++ variables)
     int m_speed; double m_lapTime; double m_timeDelta; int m_lapCount;
     double m_accelX; double m_accelY; double m_throttleVal;
-    double m_brakePress; double m_brakeBias;
+    double m_brakePress; double m_brakeBias; double m_rawBrake; // added rawBrake everywhere
 
     bool m_coolingActive; bool m_radioActive; bool m_tvActive;
     bool m_tcWarning; bool m_regenActive; bool m_ssActive;
@@ -259,6 +264,9 @@ private:
     double m_cell1MinV, m_cell2MinV, m_cell3MinV, m_cell4MinV, m_cell5MinV, m_cell6MinV, m_cell7MinV, m_cell8MinV, m_cell9MinV, m_cell10MinV, m_cell11MinV, m_cell12MinV;
     double m_cell1MaxV, m_cell2MaxV, m_cell3MaxV, m_cell4MaxV, m_cell5MaxV, m_cell6MaxV, m_cell7MaxV, m_cell8MaxV, m_cell9MaxV, m_cell10MaxV, m_cell11MaxV, m_cell12MaxV;
     double m_cell1Temp, m_cell2Temp, m_cell3Temp, m_cell4Temp, m_cell5Temp, m_cell6Temp, m_cell7Temp, m_cell8Temp, m_cell9Temp, m_cell10Temp, m_cell11Temp, m_cell12Temp;
+
+    quint32 m_rxFramesOk = 0;
+    quint32 m_rxChecksumFail = 0;// added variables for can frame drebugging
 
     QSerialPort *m_serial;
 

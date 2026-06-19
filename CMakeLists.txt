@@ -56,6 +56,9 @@ qt_add_qml_module(appFormulaDash
         assets/topdown.png
 
         can_dbc.json
+        QML_FILES DebugPage.qml
+        QML_FILES AccumulatorPage.qml
+        QML_FILES PowertrainPage.qml
 )
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
