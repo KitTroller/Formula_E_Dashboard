@@ -552,11 +552,28 @@ Item {
                         spacing: 5
                         RowLayout{
                             spacing:6
-                            Text {                       // brake % — LEFT of the bar
-                                text: (root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(101)))
-                                      ? Math.round(root.telemetry.rawBrake) : "—"
-                                color: "#ff6666"; font.pixelSize: 18; font.bold: true
+                            // Brake pressures beside the bar: FRONT top-left, REAR bottom-left.
+                            // Front = DASH_BRAKE/101 (rawBrake). Rear = VCU_FL_Info/703 (rpmFL) for  yes its weird
+                            // (Pantelis is the boss and confirmed FL rpm currently carries rear brake; will be renamed later).
+                            Item {
+                                Layout.preferredWidth: 24
+                                Layout.preferredHeight: 80   // match the bar height almost
                                 Layout.alignment: Qt.AlignVCenter
+
+                                Text {                       // FRONT brake — top-left
+                                    anchors.top: parent.top
+                                    anchors.left: parent.left
+                                    text: (root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(101)))
+                                          ? Math.round(root.telemetry.rawBrake) : "—"
+                                    color: "#ff6666"; font.pixelSize: 18; font.bold: true
+                                }
+                                Text {                       // REAR brake — bottom-left
+                                    anchors.bottom: parent.bottom
+                                    anchors.left: parent.left
+                                    text: (root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(703)))
+                                          ? Math.round(root.telemetry.rpmFL) : "—"
+                                    color: "#ff6666"; font.pixelSize: 18; font.bold: true
+                                }
                             }
 
                             Rectangle {
@@ -608,11 +625,16 @@ Item {
                         spacing: 5
                         RowLayout{
                             spacing: 5
-                            Text{
-                                text:(root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(101)))? Math.round(root.throttleVal * 100) : "—"
-                                color: "#00ffcc"; font.pixelSize: 18; font.bold: true
+                            Item {
+                                Layout.preferredWidth: 24
+                                Layout.preferredHeight: 20   // match the bar height
                                 Layout.alignment: Qt.AlignVCenter
-                            }
+
+                                Text{
+                                    text: (root.telemetry && (root.telemetry.freshTick, root.telemetry.isFresh(798))) ? Math.round(root.telemetry.throttleVal * 100) : "—"
+                                    color: "#00ffcc"; font.pixelSize: 18; font.bold: true
+                                    Layout.alignment: Qt.AlignVCenter
+                                }}
                             Rectangle {
                                 width: 24
                                 height: 90
@@ -672,12 +694,12 @@ Item {
                 // 1. TOP ICONS (Grouped Side-by-Side to save vertical space!)
                 RowLayout {
                     Layout.alignment: Qt.AlignRight
-                    spacing: 20 // Space between the two icons increased to 25 from 20
+                    spacing: 10 // Space between the icons (kept tight so 66px icons fit the 230 column)
 
                     // COOLING ICON
                     Item {
-                        Layout.preferredWidth: 50// changed from 42 to 50
-                        Layout.preferredHeight: 50
+                        Layout.preferredWidth: 66// changed from 42 to 50
+                        Layout.preferredHeight: 66
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -704,8 +726,8 @@ Item {
 
                     // RADIO ICON
                     Item {
-                        Layout.preferredWidth: 50// changed from 42 to 50
-                        Layout.preferredHeight: 50
+                        Layout.preferredWidth: 66// changed from 42 to 50
+                        Layout.preferredHeight: 66
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -731,8 +753,8 @@ Item {
                     }
                     // TRACTION CONTROL ICON
                     Item {
-                        Layout.preferredWidth: 50 // changed from 42 to 50
-                        Layout.preferredHeight: 50
+                        Layout.preferredWidth: 66 // changed from 42 to 50
+                        Layout.preferredHeight: 66
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -760,10 +782,10 @@ Item {
                 // REGENERATION ICON
                 RowLayout {
                     Layout.alignment: Qt.AlignRight
-                    spacing: 20 // Space between the two icons changed from 20 to 25
+                    spacing: 10 // Space between the icons (kept tight so 66px icons fit the 230 column)
                     Item {
-                        Layout.preferredWidth: 50
-                        Layout.preferredHeight: 50 // changed from 42 to 50
+                        Layout.preferredWidth: 66
+                        Layout.preferredHeight: 66 // changed from 42 to 50
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -789,8 +811,8 @@ Item {
                     }
 
                     Item {
-                        Layout.preferredWidth: 50
-                        Layout.preferredHeight: 50
+                        Layout.preferredWidth: 66
+                        Layout.preferredHeight: 66
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit
@@ -815,8 +837,8 @@ Item {
                         }
                     }
                     Item {
-                        Layout.preferredWidth: 50 // changed from 42 to 50
-                        Layout.preferredHeight: 50
+                        Layout.preferredWidth: 66 // changed from 42 to 50
+                        Layout.preferredHeight: 66
                         Image {
                             anchors.fill: parent
                             fillMode: Image.PreserveAspectFit

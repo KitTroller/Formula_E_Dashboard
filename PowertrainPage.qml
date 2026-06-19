@@ -79,7 +79,7 @@ Item {
                                 font.pixelSize: 20
                                 font.bold: true
                                 font.letterSpacing: 1
-                                Layout.alignment: boxRoot.alignFlag
+                                Layout.alignment: Qt.AlignHCenter
                                 Layout.bottomMargin: 4
                             }
                             Text {
@@ -87,14 +87,14 @@ Item {
                                 color: (boxRoot.tyrePress < 1.0 || boxRoot.tyreTemp > 90) ? "#ff3333" : "#00ffcc"
                                 font.pixelSize: 13
                                 font.bold: true
-                                Layout.alignment: boxRoot.alignFlag
+                                Layout.alignment: Qt.AlignHCenter
                                 Layout.bottomMargin: 4
                             }
                             */
                             // RPM
 
                             RowLayout {
-                                Layout.alignment: boxRoot.alignFlag
+                                Layout.alignment: Qt.AlignHCenter
                                 Text {
                                     text: "RPM:"
                                     color: "#8899aa"
@@ -110,11 +110,12 @@ Item {
                                     font.bold: true
                                     Layout.preferredWidth: 80
                                     horizontalAlignment: Text.AlignLeft
+                                    elide: Text.ElideRight
                                 }
                             }
                             // REQUESTED TORQUE
                             RowLayout {
-                                Layout.alignment: boxRoot.alignFlag
+                                Layout.alignment: Qt.AlignHCenter
                                 Text {
                                     text: "TRQ REQ:"
                                     color: "#8899aa"
@@ -130,11 +131,12 @@ Item {
                                     font.bold: true
                                     Layout.preferredWidth: 80
                                     horizontalAlignment: Text.AlignLeft
+                                    elide: Text.ElideRight
                                 }
                             }
                             // ACTUAL TORQUE
                             RowLayout {
-                                Layout.alignment: boxRoot.alignFlag
+                                Layout.alignment: Qt.AlignHCenter
                                 Text {
                                     text: "TRQ ACT:"
                                     color: "#8899aa"
@@ -150,11 +152,12 @@ Item {
                                     font.bold: true
                                     Layout.preferredWidth: 80
                                     horizontalAlignment: Text.AlignLeft
+                                    elide: Text.ElideRight
                                 }
                             }
                             // MOTOR TEMPERATURE
                             RowLayout {
-                                Layout.alignment: boxRoot.alignFlag
+                                Layout.alignment: Qt.AlignHCenter
                                 Text {
                                     text: "MOTOR:"
                                     color: "#8899aa"
@@ -170,11 +173,12 @@ Item {
                                     font.bold: true
                                     Layout.preferredWidth: 80
                                     horizontalAlignment: Text.AlignLeft
+                                    elide: Text.ElideRight
                                 }
                             }
                             // IGBT TEMPERATURE
                             RowLayout {
-                                Layout.alignment: boxRoot.alignFlag
+                                Layout.alignment: Qt.AlignHCenter
                                 Text {
                                     text: "IGBT:"
                                     color: "#8899aa"
@@ -190,6 +194,7 @@ Item {
                                     font.bold: true
                                     Layout.preferredWidth: 80
                                     horizontalAlignment: Text.AlignLeft
+                                    elide: Text.ElideRight
                                 }
                             }
                         }
@@ -290,7 +295,7 @@ Item {
                 id: carWireframe
                 anchors.centerIn: parent
                 width: 210  // Narrower so the wider wheel boxes have more room (controls L/R gap)
-                height: 380 // Controls the vertical gap between the Front and Rear panels (keeps the taller boxes from overlapping)
+                height: 420 // Raised to 420 so the 200px-tall top & bottom boxes don't overlap (2x200 < 420)
 
                 Image {
                     id: topdownImage
@@ -329,7 +334,7 @@ Item {
             // FRONT LEFT
             Loader {
                 anchors.right: carWireframe.left
-                anchors.top: carWireframe.top -20
+                anchors.top: carWireframe.top
                 anchors.rightMargin: 30
                 sourceComponent: wheelDataBox
                 onLoaded: {
@@ -362,7 +367,7 @@ Item {
             // FRONT RIGHT
             Loader {
                 anchors.left: carWireframe.right
-                anchors.top: carWireframe.top -20
+                anchors.top: carWireframe.top
                 anchors.leftMargin: 30
                 sourceComponent: wheelDataBox
                 onLoaded: {
