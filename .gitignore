@@ -1,0 +1,66 @@
+# ==========================================
+# 1. CMAKE & COMPILER BUILD FOLDERS
+# ==========================================
+# Ignore all folders that start with "build" 
+build/
+build-*/
+*.build/
+
+# Ignore CMake cache and generated Makefiles
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+compile_commands.json
+
+# ==========================================
+# 2. QT CREATOR USER SETTINGS
+# ==========================================
+# These files store your specific Mac's window sizes and compiler paths.
+# Your team should NOT download these.
+*.user
+*.user.*
+# ==========================================
+# 3. COMPILED OBJECTS & EXECUTABLES
+# ==========================================
+*.o
+*.obj
+*.moc
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+*.app
+appFormulaDash
+FormulaDash
+
+# ==========================================
+# 4. macOS SYSTEM FILES
+# ==========================================
+.DS_Store
+.AppleDouble
+.LSOverride
+# ==========================================
+# 5. Other Niggas
+# ==========================================
+TELEMETRY_AUDIT.md
+PIPELINE_ENGINEERING.md
+WHEEL_INTEGRATION_AUDIT.md
+MASTERCLASS.md
+
+# ==========================================
+# 6. FIRMWARE BUILD ARTIFACTS & HEAVY REFERENCE
+# ==========================================
+# CubeIDE build output for the steering-wheel firmware (keep the source under Core/)
+steeringwheel-STeeringV3/Debug/
+steeringwheel-STeeringV3/Release/
+# Auto-generated HAL/CMSIS driver tree (~50 MB, regenerable by CubeMX) — keep Core/
+steeringwheel-STeeringV3/Drivers/
+# Keil MDK build output (compiled binaries / dep files) — keep the .uvprojx/.ioc
+steeringwheel-STeeringV3/MDK-ARM/SteeringTest/
+steeringwheel-STeeringV3/MDK-ARM/DebugConfig/
+steeringwheel-STeeringV3/MDK-ARM/RTE/
+*.elf
+*.map
+*.list
+# 79 MB STM32 reference dump (contains its own nested .git) — not part of the app
+Sources for CAN frame extraction/
