@@ -260,7 +260,7 @@ Item {
                     width: 280
                     height: 280
                     scale: 1.45
-                    transform: Translate { y: 60 }¨ς
+                    transform: Translate { y: 60 }
 
                     // Your smooth animation logic for both variables
                     property real animatedSpeed: root.telemetry ? root.telemetry.speed : 0
