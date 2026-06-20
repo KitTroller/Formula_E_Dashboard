@@ -259,6 +259,8 @@ Item {
                     Layout.topMargin: 10
                     width: 280
                     height: 280
+                    scale: 1.45
+                    transform: Translate { y: 60 }
 
                     // Your smooth animation logic for both variables
                     property real animatedSpeed: root.telemetry ? root.telemetry.speed : 0
@@ -297,7 +299,7 @@ Item {
                         var cy = height / 2
                         var r = (width / 2) - 30 // Shrunk to fit numbers outside
 
-                        // Top Arc Math (1.05 PI to 1.95 PI) - Sweeps left to right over the top
+                        // Top Arc Math (1.05 PI to 1.95 PI) - Sweeps to right over the top
                         var speedStart = Math.PI * 1.05
                         var speedEnd = Math.PI * 1.95
                         var speedSweep = speedEnd - speedStart
@@ -550,6 +552,7 @@ Item {
                     // BRAKE
                     ColumnLayout {
                         spacing: 5
+                        transform: Translate { x: -280 }
                         RowLayout{
                             spacing:6
                             // Brake pressures beside the bar: FRONT top-left, REAR bottom-left.
@@ -629,6 +632,7 @@ Item {
                     // THROTTLE
                     ColumnLayout {
                         spacing: 5
+                        transform: Translate { x: -280 }
                         RowLayout{
                             spacing: 5
                             Item {

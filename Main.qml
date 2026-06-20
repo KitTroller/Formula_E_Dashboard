@@ -7,7 +7,7 @@ Window {
     height: 480
     visible: true
     title: "Formula Student Dashboard"
-    visibility:  Window.FullScreen
+    visibility:  Window.Windowed
     color: "black"
 
     //We instantiate the C++ backend here once.
