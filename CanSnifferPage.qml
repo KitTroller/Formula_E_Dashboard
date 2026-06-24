@@ -18,19 +18,19 @@ Item {
     property int selectedId: -1          // -1 = list mode, otherwise show that message's detail
     property var detailModel: []         // decoded signals of the selected message
     property int refreshTick: 0          // bumped ~4 Hz to refresh counters/values
+    property real wheelAcc: 0            // accumulates mouse/trackpad wheel until one row-step
 
     // ---- Steering-wheel hooks (from Main.qml) ----
-    function wheelScrollDown() {
-        if (selectedId === -1 && msgList.currentIndex < msgList.count - 1) {
-            msgList.currentIndex++;
-            msgList.positionViewAtIndex(msgList.currentIndex, ListView.Contain);
-        }
-    }
-    function wheelScrollUp() {
-        if (selectedId === -1 && msgList.currentIndex > 0) {
-            msgList.currentIndex--;
-            msgList.positionViewAtIndex(msgList.currentIndex, ListView.Contain);
-        }
+    function wheelScrollDown() { if (selectedId === -1) msgList.incrementCurrentIndex(); } // wraps
+    function wheelScrollUp()   { if (selectedId === -1) msgList.decrementCurrentIndex(); } // wraps
+    // Desktop only: a trackpad/mouse wheel notch (±120) steps one row. The
+    // accumulator keeps a fast trackpad swipe from skipping several rows at once.
+    // (Flip the <= / >= if natural-scroll direction feels inverted.)
+    function wheelStep(dy) {
+        if (selectedId !== -1) return;
+        wheelAcc += dy;
+        while (wheelAcc <= -120) { msgList.incrementCurrentIndex(); wheelAcc += 120; }
+        while (wheelAcc >=  120) { msgList.decrementCurrentIndex(); wheelAcc -= 120; }
     }
     function wheelSelect() {
         if (selectedId === -1)
@@ -98,65 +98,96 @@ Item {
             Text { text: "MESSAGE"; color: "#55687a"; font.pixelSize: 12; font.bold: true; Layout.fillWidth: true }
             Text { text: "LAST SEEN"; color: "#55687a"; font.pixelSize: 12; font.bold: true; horizontalAlignment: Text.AlignRight; Layout.preferredWidth: 70 }
         }
+        // thin rule grounds the header to the drum below
+        Rectangle { Layout.fillWidth: true; Layout.leftMargin: 12; Layout.rightMargin: 12; Layout.preferredHeight: 1; color: "#1a3344" }
 
-        ListView {
+        PathView {
             id: msgList
             Layout.fillWidth: true
             Layout.fillHeight: true
             clip: true
-            spacing: 3
-            boundsBehavior: Flickable.StopAtBounds
             model: sniffRoot.msgModel
-            // No highlightRange: changing currentIndex must NOT auto-scroll/animate
-            // (that caused the click-jump). The rotary nudges the view itself, and a
-            // touch-click lands on an already-visible row, so neither path scrolls jankily.
+
+            pathItemCount: 9                              // visible rows on the drum (tune this)
+            preferredHighlightBegin: 0.5                  // pin the selected row to the centre
+            preferredHighlightEnd: 0.5
+            highlightRangeMode: PathView.StrictlyEnforceRange   // <- this is what makes it loop
+            flickDeceleration: 800
+
+            // Χρησιμοποίησε την formula: Size_Ratio=1/(2-cos(nθ)) οπου θ= 2π/107 με 107 τον αριθμο των can frames και n ο ακαίραιος αριθμός απόστασης από τo κέντρικό delegate----------------------
+            path: Path {
+                startX: msgList.width / 2; startY: 0
+                PathAttribute { name: "rowScale"; value: 0.973 }
+                PathAttribute { name: "rowOpacity"; value: 0.70 }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.125 }
+
+                PathAttribute { name: "rowScale"; value: 0.985 }
+                PathAttribute { name: "rowOpacity"; value: 0.80 }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.250 }
+
+                PathAttribute { name: "rowScale"; value: 0.993 }
+                PathAttribute { name: "rowOpacity"; value: 0.90 }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.375 }
+
+                PathAttribute { name: "rowScale"; value: 0.999 }
+                PathAttribute { name: "rowOpacity"; value: 0.97 }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.500 }
+
+                PathAttribute { name: "rowScale"; value: 1.000 }
+                PathAttribute { name: "rowOpacity"; value: 1.00 }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.625 }
+
+                PathAttribute { name: "rowScale"; value: 0.999 }
+                PathAttribute { name: "rowOpacity"; value: 0.97 }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.750 }
+
+                PathAttribute { name: "rowScale"; value: 0.993 }
+                PathAttribute { name: "rowOpacity"; value: 0.90 }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.875 }
+
+                PathAttribute { name: "rowScale"; value: 0.985 }
+                PathAttribute { name: "rowOpacity"; value: 0.80 }
+                PathLine { x: msgList.width / 2; y: msgList.height }
+
+                PathAttribute { name: "rowScale"; value: 0.973 }
+                PathAttribute { name: "rowOpacity"; value: 0.70 }
+            }
 
             delegate: Rectangle {
                 id: row
-                width: ListView.view.width
+                property bool current: PathView.isCurrentItem
+                width: msgList.width
                 height: 34
                 radius: 5
-                color: index === msgList.currentIndex ? "#ffcc00" : "#cc0a1525"
-                border.color: index === msgList.currentIndex ? "#ffffff" : "#1a3344"
+                scale:   PathView.rowScale
+                opacity: PathView.rowOpacity
+                z: current ? 1 : 0
+                color: current ? "#ffcc00" : "#cc0a1525"
+                border.color: current ? "#ffffff" : "#1a3344"
                 border.width: 1
-
-                property bool seen: false /*sniffRoot.telemetry ----------------temporary until logic is added
-                                    ? (sniffRoot.refreshTick, sniffRoot.telemetry.snifferReceived(modelData.id))
-                                    : false*/
 
                 RowLayout {
                     anchors.fill: parent
                     anchors.leftMargin: 12
                     anchors.rightMargin: 12
                     spacing: 10
-
                     Text {
                         text: modelData.idHex
-                        color: index === msgList.currentIndex ? "#222222" : "#7790a5"
-                        font.pixelSize: 15
-                        font.bold: true
-                        font.family: "Menlo"
+                        color: row.current ? "#222222" : "#7790a5"
+                        font.pixelSize: 15; font.bold: true; font.family: "Menlo"
                         Layout.preferredWidth: 70
                     }
                     Text {
                         text: modelData.name
-                        color: index === msgList.currentIndex ? "black" : "white"
-                        font.pixelSize: 16
-                        font.bold: true
+                        color: row.current ? "black" : "white"
+                        font.pixelSize: 16; font.bold: true
                         Layout.fillWidth: true
                         elide: Text.ElideRight
                     }
-                    // Live "last seen" counter — refreshes on every tick.
-                    Text {
-                        text: "—" /*sniffRoot.telemetry-------- temporarily made just "-"
-                              ? (sniffRoot.refreshTick, sniffRoot.telemetry.snifferLastSeen(modelData.id))
-                              : "—"*/
-                        color: index === msgList.currentIndex
-                               ? "#222222"
-                               : (row.seen ? "#00ffcc" : "#55687a")
-                        font.pixelSize: 15
-                        font.bold: true
-                        font.family: "Menlo"
+                    Text {                                 // keep the "—" col so the header lines up
+                        text: "—"
+                        color: row.current ? "#222222" : "#55687a"
+                        font.pixelSize: 15; font.bold: true; font.family: "Menlo"
                         horizontalAlignment: Text.AlignRight
                         Layout.preferredWidth: 70
                     }
@@ -164,8 +195,9 @@ Item {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: msgList.currentIndex = index
+                    onClicked: msgList.currentIndex = index        // tap a row -> rotates it to centre
                     onDoubleClicked: sniffRoot.openDetail(modelData.id)
+                    onWheel: (wheel) => sniffRoot.wheelStep(wheel.angleDelta.y)  // desktop scroll
                 }
             }
         }
