@@ -113,44 +113,47 @@ Item {
             preferredHighlightEnd: 0.5
             highlightRangeMode: PathView.StrictlyEnforceRange   // <- this is what makes it loop
             flickDeceleration: 800
+            highlightMoveDuration: 150   // default ~300; lower = snappier,
+
 
             // Χρησιμοποίησε την formula: Size_Ratio=1/(2-cos(nθ)) οπου θ= 2π/107 με 107 τον αριθμο των can frames και n ο ακαίραιος αριθμός απόστασης από τo κέντρικό delegate----------------------
             path: Path {
                 startX: msgList.width / 2; startY: 0
                 PathAttribute { name: "rowScale"; value: 0.973 }
                 PathAttribute { name: "rowOpacity"; value: 0.70 }
-                PathLine { x: msgList.width / 2; y: msgList.height * 0.125 }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.111 }
 
                 PathAttribute { name: "rowScale"; value: 0.985 }
                 PathAttribute { name: "rowOpacity"; value: 0.80 }
-                PathLine { x: msgList.width / 2; y: msgList.height * 0.250 }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.222 }
 
                 PathAttribute { name: "rowScale"; value: 0.993 }
                 PathAttribute { name: "rowOpacity"; value: 0.90 }
-                PathLine { x: msgList.width / 2; y: msgList.height * 0.375 }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.333 }
 
                 PathAttribute { name: "rowScale"; value: 0.999 }
                 PathAttribute { name: "rowOpacity"; value: 0.97 }
-                PathLine { x: msgList.width / 2; y: msgList.height * 0.500 }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.444 }
 
                 PathAttribute { name: "rowScale"; value: 1.000 }
                 PathAttribute { name: "rowOpacity"; value: 1.00 }
-                PathLine { x: msgList.width / 2; y: msgList.height * 0.625 }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.555 }
 
                 PathAttribute { name: "rowScale"; value: 0.999 }
                 PathAttribute { name: "rowOpacity"; value: 0.97 }
-                PathLine { x: msgList.width / 2; y: msgList.height * 0.750 }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.666 }
 
                 PathAttribute { name: "rowScale"; value: 0.993 }
                 PathAttribute { name: "rowOpacity"; value: 0.90 }
-                PathLine { x: msgList.width / 2; y: msgList.height * 0.875 }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.777 }
 
                 PathAttribute { name: "rowScale"; value: 0.985 }
                 PathAttribute { name: "rowOpacity"; value: 0.80 }
-                PathLine { x: msgList.width / 2; y: msgList.height }
+                PathLine { x: msgList.width / 2; y: msgList.height * 0.888}
 
                 PathAttribute { name: "rowScale"; value: 0.973 }
                 PathAttribute { name: "rowOpacity"; value: 0.70 }
+                //PathLine { x: msgList.width / 2; y: msgList.height}
             }
 
             delegate: Rectangle {
@@ -159,8 +162,12 @@ Item {
                 width: msgList.width
                 height: 34
                 radius: 5
-                scale:   PathView.rowScale
-                opacity: PathView.rowOpacity
+                // Off-path/recycled delegates (happens on fast scroll) report
+                // undefined for these custom path attributes — fall back to a real
+                // number so we never assign undefined, and hide rows off the drum.
+                visible: PathView.onPath
+                scale:   PathView.rowScale   !== undefined ? PathView.rowScale   : 1
+                opacity: PathView.rowOpacity !== undefined ? PathView.rowOpacity : 1
                 z: current ? 1 : 0
                 color: current ? "#ffcc00" : "#cc0a1525"
                 border.color: current ? "#ffffff" : "#1a3344"
