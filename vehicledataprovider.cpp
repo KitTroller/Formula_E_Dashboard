@@ -156,7 +156,7 @@ VehicleDataProvider::VehicleDataProvider(QObject *parent)
         }
     }
     m_serial->setPortName(chosenPort);
-    m_serial->setBaudRate(QSerialPort::Baud115200);
+    m_serial->setBaudRate(460800);
 
     // Wire the hardware interrupt (readyRead) to our software slot (parseUartData)
     connect(m_serial, &QSerialPort::readyRead, this, &VehicleDataProvider::parseUartData); // Most crucial line!!!!
