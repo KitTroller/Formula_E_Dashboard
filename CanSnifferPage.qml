@@ -33,10 +33,16 @@ Item {
         }
     }
     function wheelSelect() {
-        if (selectedId === -1)
-            openDetail(msgModel[msgList.currentIndex].id);   // list -> detail
-        else
-            selectedId = -1;                                 // detail -> back to list
+            if (selectedId === -1)
+                openDetail(msgModel[msgList.currentIndex].id); // list -> detail
+        }
+
+    function wheelBack() {
+        if (selectedId !== -1) {
+            selectedId = -1; // detail -> back to list
+            return true;
+        }
+        return false;
     }
 
     function openDetail(id) {
@@ -273,7 +279,7 @@ Item {
         }
 
         Text {
-            text: "press = back to list   ·   menu button = home"
+            text: "back button = back to list   ·   menu button = home"
             color: "#55687a"
             font.pixelSize: 12
             Layout.alignment: Qt.AlignHCenter
