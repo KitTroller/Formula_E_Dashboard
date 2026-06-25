@@ -33,8 +33,8 @@ Item {
                 id: wheelDataBox
                 Rectangle {
                     id: boxRoot
-                    width: 255 // Wider for bigger, more readable fonts (title removed)
-                    height: 200 // fits 5 rows (RPM/torques + motor/IGBT temps) comfortably
+                    width: 275 // Wider for bigger, more readable fonts (title removed)
+                    height: 215 // fits 5 rows (RPM/torques + motor/IGBT temps) comfortably
                     color: "#cc050a15"
                     border.color: "#1a3344"
                     border.width: 1
@@ -69,7 +69,7 @@ Item {
                         // --- COLUMN 1: THE TEXT DATA ---
                         ColumnLayout {
                             Layout.fillWidth: true
-                            spacing: 3
+                            spacing: 5
 
                             /* WHEEL/TYRE TITLE + tyre pressure/temp removed for more text space.
                                Re-enable this block (and the tyrePress/tyreTemp bindings) when the car sends tyre data:
@@ -98,9 +98,9 @@ Item {
                                 Text {
                                     text: "RPM:"
                                     color: "#8899aa"
-                                    font.pixelSize: 16
+                                    font.pixelSize: 18
                                     font.bold: true
-                                    Layout.preferredWidth: 85
+                                    Layout.preferredWidth: 100
                                     horizontalAlignment: Text.AlignRight
                                 }
                                 Text {
@@ -119,9 +119,9 @@ Item {
                                 Text {
                                     text: "TRQ REQ:"
                                     color: "#8899aa"
-                                    font.pixelSize: 16
+                                    font.pixelSize: 18
                                     font.bold: true
-                                    Layout.preferredWidth: 85
+                                    Layout.preferredWidth: 100
                                     horizontalAlignment: Text.AlignRight
                                 }
                                 Text {
@@ -140,9 +140,9 @@ Item {
                                 Text {
                                     text: "TRQ ACT:"
                                     color: "#8899aa"
-                                    font.pixelSize: 16
+                                    font.pixelSize: 18
                                     font.bold: true
-                                    Layout.preferredWidth: 85
+                                    Layout.preferredWidth: 100
                                     horizontalAlignment: Text.AlignRight
                                 }
                                 Text {
@@ -161,9 +161,9 @@ Item {
                                 Text {
                                     text: "MOTOR:"
                                     color: "#8899aa"
-                                    font.pixelSize: 16
+                                    font.pixelSize: 18
                                     font.bold: true
-                                    Layout.preferredWidth: 85
+                                    Layout.preferredWidth: 100
                                     horizontalAlignment: Text.AlignRight
                                 }
                                 Text {
@@ -182,9 +182,9 @@ Item {
                                 Text {
                                     text: "IGBT:"
                                     color: "#8899aa"
-                                    font.pixelSize: 16
+                                    font.pixelSize: 18
                                     font.bold: true
-                                    Layout.preferredWidth: 85
+                                    Layout.preferredWidth: 100
                                     horizontalAlignment: Text.AlignRight
                                 }
                                 Text {
@@ -301,8 +301,8 @@ Item {
                     id: topdownImage
                     anchors.centerIn: parent
                     // Tweak these two numbers to make the car perfectly fill the center space.
-                    width: 360
-                    height: 520
+                    width: 300
+                    height: 490
 
                     anchors.horizontalCenterOffset: -10
 
@@ -334,8 +334,8 @@ Item {
             // FRONT LEFT
             Loader {
                 anchors.right: carWireframe.left
-                anchors.top: carWireframe.top
-                anchors.rightMargin: 30
+                anchors.top: parent.top //carWireframe.top
+                anchors.rightMargin: 5
                 sourceComponent: wheelDataBox
                 onLoaded: {
                     item.wheelName = "FL";
@@ -367,8 +367,8 @@ Item {
             // FRONT RIGHT
             Loader {
                 anchors.left: carWireframe.right
-                anchors.top: carWireframe.top
-                anchors.leftMargin: 30
+                anchors.top: parent.top //carWireframe.top
+                anchors.leftMargin: 5
                 sourceComponent: wheelDataBox
                 onLoaded: {
                     item.wheelName = "FR";
@@ -400,8 +400,8 @@ Item {
             // REAR LEFT
             Loader {
                 anchors.right: carWireframe.left
-                anchors.bottom: carWireframe.bottom
-                anchors.rightMargin: 30
+                anchors.bottom: parent.bottom //carWireframe.bottom
+                anchors.rightMargin: 5
                 sourceComponent: wheelDataBox
                 onLoaded: {
                     item.wheelName = "RL";
@@ -433,8 +433,8 @@ Item {
             // REAR RIGHT
             Loader {
                 anchors.left: carWireframe.right
-                anchors.bottom: carWireframe.bottom
-                anchors.leftMargin: 30
+                anchors.bottom: parent.bottom //carWireframe.bottom
+                anchors.leftMargin: 5
                 sourceComponent: wheelDataBox
                 onLoaded: {
                     item.wheelName = "RR";

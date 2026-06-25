@@ -7,7 +7,7 @@ Window {
     height: 480
     visible: true
     title: "Formula Student Dashboard"
-    visibility:  Window.FullScreen
+    visibility:  Window.Windowed
     color: "black"
 
     //We instantiate the C++ backend here once.
@@ -49,8 +49,19 @@ Window {
                 it.wheelSelect();
         }
 
-        // Back button -> pop one level (sub-page -> Menu, Menu -> Driver).
+        // Back button -> pop one level (sub-page -> Menu, Menu -> Driver),
+        // or let the page handle it if it has a custom back action (e.g. CanSniffer detail).
         function onNavigateBack() {
+             var it = stackView.currentItem;
+
+
+            if (it && typeof it.wheelBack === "function") {
+                if (it.wheelBack()) {
+                    return;
+                }
+            }
+
+
             if (stackView.depth > 1)
                 stackView.pop();
         }
